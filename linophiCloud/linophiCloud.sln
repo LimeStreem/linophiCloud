@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30626.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "linophiCloud", "linophiCloud\linophiCloud.ccproj", "{4785BFAE-E7FA-498E-B06F-FC20C2F45983}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinophiWeb", "LinophiWeb\LinophiWeb.csproj", "{818001C7-87B3-4AD1-BA8B-B90C7BF66DAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4785BFAE-E7FA-498E-B06F-FC20C2F45983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4785BFAE-E7FA-498E-B06F-FC20C2F45983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4785BFAE-E7FA-498E-B06F-FC20C2F45983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4785BFAE-E7FA-498E-B06F-FC20C2F45983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{818001C7-87B3-4AD1-BA8B-B90C7BF66DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{818001C7-87B3-4AD1-BA8B-B90C7BF66DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{818001C7-87B3-4AD1-BA8B-B90C7BF66DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{818001C7-87B3-4AD1-BA8B-B90C7BF66DAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
