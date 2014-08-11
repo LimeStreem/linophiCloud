@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using linophi;
+using linophi.Auth;
 using linophi.Models;
 using LinophiWeb.Providers;
 using Microsoft.AspNet.Identity;
