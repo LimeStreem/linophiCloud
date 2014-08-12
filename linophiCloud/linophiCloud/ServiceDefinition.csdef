@@ -14,5 +14,15 @@
     <Imports>
       <Import moduleName="Diagnostics" />
     </Imports>
+    <ConfigurationSettings>
+      <Setting name="Twitter-ConsumerKey"/>
+      <Setting name="Twitter-ConsumerSecret"/>
+      <Setting name="Facebook-AppID"/>
+      <Setting name ="Facebook-AppSecret"/>
+      <Setting name ="Google-ClientId"/>
+      <Setting name="Google-ClientSecret"/>
+      <Setting name="YahooJpn-AppID"/>
+      <Setting name="YahooJpn-AppSecret"/>
+    </ConfigurationSettings>
   </WebRole>
 </ServiceDefinition>
