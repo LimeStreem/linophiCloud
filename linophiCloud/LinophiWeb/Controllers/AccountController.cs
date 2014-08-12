@@ -59,7 +59,6 @@ namespace LinophiWeb.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            var loader = ConfigurationLoaderFactory.GetConfigurationLoader();
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");

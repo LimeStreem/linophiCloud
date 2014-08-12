@@ -226,6 +226,12 @@
     <Content Include="Content\css\Account\externalLoginConfirmation.min.css">
       <DependentUpon>externalLoginConfirmation.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Edit\header.css">
+      <DependentUpon>header.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Edit\header.min.css">
+      <DependentUpon>header.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\Home\index.css">
       <DependentUpon>index.less</DependentUpon>
     </Content>
@@ -240,6 +246,9 @@
     </Content>
     <Content Include="Content\imgs\bg-common.png" />
     <Content Include="Content\imgs\bg.png" />
+    <Content Include="Content\imgs\Edit\back-to-top.png" />
+    <Content Include="Content\imgs\Edit\back-to-top2.png" />
+    <Content Include="Content\imgs\Edit\square.png" />
     <Content Include="Content\imgs\logo.png" />
     <Content Include="Content\imgs\logo2.png" />
     <Content Include="Content\imgs\social\facebook.png" />
@@ -267,6 +276,10 @@
     <Content Include="Content\css\Account\externalLoginConfirmation.css.map">
       <DependentUpon>externalLoginConfirmation.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Edit\header.less" />
+    <Content Include="Content\css\Edit\header.css.map">
+      <DependentUpon>header.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -292,6 +305,8 @@
     <Content Include="Views\Home\Terms.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Developer.cshtml" />
+    <Content Include="Views\Edit\Index.cshtml" />
+    <Content Include="Views\Shared\_EditorLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -307,6 +322,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EditController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
