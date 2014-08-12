@@ -47,6 +47,7 @@ namespace LinophiWeb.Controllers
             return new EmptyResult();
         }
 
+        [AllowAnonymous]
         public ActionResult SignupDebug()
         {
             return View("ExternalLoginConfirmation");
@@ -59,7 +60,6 @@ namespace LinophiWeb.Controllers
         public ActionResult Login(string returnUrl)
         {
             var loader = ConfigurationLoaderFactory.GetConfigurationLoader();
-            var val = loader.GetConfiguration("LoadConfigurationTest");
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");

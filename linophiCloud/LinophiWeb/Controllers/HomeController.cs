@@ -19,5 +19,20 @@ namespace LinophiWeb.Controllers
         {
             return View();
         }
+
+        public ActionResult Terms()
+        {
+            return View();
+        }
+
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult Developer()
+        {
+            return View();
+        }
     }
 }

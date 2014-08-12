@@ -220,6 +220,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\Account\externalLoginConfirmation.css">
+      <DependentUpon>externalLoginConfirmation.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Account\externalLoginConfirmation.min.css">
+      <DependentUpon>externalLoginConfirmation.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\Home\index.css">
       <DependentUpon>index.less</DependentUpon>
     </Content>
@@ -257,6 +263,10 @@
     <Content Include="Content\css\Shared\commonDocument.css.map">
       <DependentUpon>commonDocument.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Account\externalLoginConfirmation.less" />
+    <Content Include="Content\css\Account\externalLoginConfirmation.css.map">
+      <DependentUpon>externalLoginConfirmation.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -278,6 +288,10 @@
     <Content Include="Views\Home\PrivacyPolicy.cshtml" />
     <Content Include="Views\Shared\_CommonDocumentLayout.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Shared\_BaseLayout.cshtml" />
+    <Content Include="Views\Home\Terms.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Developer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -303,6 +317,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utility\BirthDayInputHelper.cs" />
     <Compile Include="Utility\ChallengeResult.cs" />
     <Compile Include="Utility\Configuration\ConfigurationLoader.cs" />
     <Compile Include="Utility\ExtensionUtility.cs" />

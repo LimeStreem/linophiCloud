@@ -3,6 +3,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.17.2/build/cssreset/cssreset-min.css">
+    <meta name="robots" content="noindex,nofollow" />
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -16,7 +17,7 @@
     </script>
     <link href="~/Content/css/Shared/commonDocument.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
-    @RenderSection("CSS")
+    @RenderSection("CSS",false)
 </head>
 <body>
 
@@ -25,10 +26,11 @@
         <div class="common-header-link-container-outer">
             <div class="common-header-link-container-inner">
                 <ul>
-                    <li class="before-divider"><a href="/Home/">トップ</a></li>
-                    <li class="before-divider"><a>linophiとは</a></li>
-                    <li class="before-divider"><a>利用規約</a></li>
-                    <li><a>プライバシーポリシー</a></li>
+                    <li class="before-divider">@Html.ActionLink("トップ","Index","Home")</li>
+                    <li class="before-divider">@Html.ActionLink("linophiとは?","About","Home")</li>
+                    <li class="before-divider">@Html.ActionLink("プライバシーポリシー", "PrivacyPolicy", "Home")</li>
+                    <li class="before-divider">@Html.ActionLink("利用規約", "Terms", "Home")</li>
+                    <li>@Html.ActionLink("開発者", "Developer", "Home")</li>
                 </ul>
             </div>
         </div>

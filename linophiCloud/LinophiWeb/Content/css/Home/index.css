@@ -96,7 +96,7 @@ html {
 }
 footer {
   margin: 5% 20% 0 20%;
-  background: lightgray;
+  background: rgba(0, 0, 0, 0.6);
 }
 footer .footer-container {
   width: 100%;
@@ -108,13 +108,16 @@ footer .footer-container .footer-content .footer-content-divider {
   float: left;
 }
 footer .footer-container .footer-content .footer-content-divider a {
-  text-decoration: none;
+  text-decoration: underline;
+  color: white;
 }
 footer .footer-container .footer-content .footer-content-divider a:hover {
-  text-decoration: underline;
+  color: white;
+  text-decoration: none;
   cursor: pointer;
 }
 footer .footer-container .footer-copyright {
+  color: white;
   clear: both;
   text-align: center;
   padding: 0 0 5px 0;

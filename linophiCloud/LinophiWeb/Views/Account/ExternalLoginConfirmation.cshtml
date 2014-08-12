@@ -1,18 +1,58 @@
-﻿@model LinophiWeb.Models.ExternalLoginConfirmationViewModel
+﻿@using linophi.Utility
+@using LinophiWeb.Utility
+@model LinophiWeb.Models.ExternalLoginConfirmationViewModel
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <title>新規ユーザー登録</title>
-    </head>
-    <body>
-        <div>
-              
-        </div>
-    </body>
-</html>
+@section CSS{
+    <link href="~/Content/css/Account/externalLoginConfirmation.css" rel="stylesheet" />
+}
+<div class="confirmation-container">
+    <img class="confirmation-logo" src="/Content/imgs/logo2.png" />
+    <div class="form-container">
+        <h1>新規ユーザー登録</h1>
+        @using (Html.BeginForm())
+        {
+            <div class="confirmation-form-container">
+                <div class="confirmation-colmn">
+                    <p class="confirmation-row">ニックネーム:</p>
+                    <p class="confirmation-row">生年月日:</p>
+                    <p class="confirmation-row">性別:</p>
+                    <p class="confirmation-row">メールアドレス: </p>
+                </div>
+                <div class="confirmation-colmn confirmation-colmn-right">
+                    <div class="confirmation-row">
+                        @Html.TextBoxFor(model => model.NickName, new { placeholder = "例:りのりすたん", @class = "confirmation-textbox" })
+                    </div>
+                    <div class="confirmation-form-birthday-container confirmation-row">
+                        @Html.DropDownListFor(model => model.Day, BirthDayInputHelper.getYearList())
+                        <p>年</p>
+                        @Html.DropDownListFor(model => model.Month, BirthDayInputHelper.getMonthList())
+                        <p>月</p>
+                        @Html.DropDownListFor(model => model.Day, BirthDayInputHelper.getDayList())
+                        <p>日</p>
+                    </div>
+                    <div class="confirmation-row">
+                        @Html.EnumDropDownListFor(model => model.Gender, new { @class = "confirmation-gender-box" })
+                    </div>
+                    <div class="confirmation-row">
+                        @Html.TextBoxFor(model => model.Email, new { placeholder = "例:your@email.com", @class = "confirmation-textbox" })
+                    </div>
+                </div>
+                <div class="form-centerize">
+                    @Html.CheckBoxFor(model=>model.AgreeWithTerm,new{id="agreeWithTerm"})
+                    <label for="agreeWithTerm"><a>利用規約</a>と<a>プライバシーポリシー</a>に同意する</label>
+                </div>
+                <div class="form-centerize">
+                    @Html.CheckBoxFor(model => model.AcceptEmailToNotify, new { id = "acceptEmailNotify" })
+                    <label for="acceptEmailNotify">linophiからの通知メールを受け取る</label>
+                </div>
+                <div class="confirmation-submitbtn-container">
+                    <input type="submit" value=">> この内容で登録 <<" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

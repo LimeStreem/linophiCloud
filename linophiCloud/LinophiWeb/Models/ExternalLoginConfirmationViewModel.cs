@@ -131,5 +131,12 @@ namespace LinophiWeb.Models
         }
 
         public string BirthDay { get; set; }
+
+        
+        [Required]
+        public bool AgreeWithTerm { get; private set; }
+
+        [Required]
+        public bool AcceptEmailToNotify { get; private set; }
     }
 }
