@@ -1,7 +1,8 @@
+using linophi.Models;
 using LinophiWeb.Utility.Configuration;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace linophi.Models
+namespace LinophiWeb.Models
 {
     public class ApplicationDbContext : IdentityDbContext<UserAccount>
     {

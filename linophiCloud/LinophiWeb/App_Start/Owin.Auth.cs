@@ -1,6 +1,7 @@
 ﻿using System;
 using linophi.Auth;
 using linophi.Models;
+using LinophiWeb.Models;
 using LinophiWeb.Providers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;

@@ -12,6 +12,7 @@
       <Setting name="Google-ClientSecret" value="WORP87UE4EHz9ThneFX59GPR"/>
       <Setting name="YahooJpn-AppID" value="dj0zaiZpPVl4NllGMHBEM0J0eCZzPWNvbnN1bWVyc2VjcmV0Jng9YWQ-"/>
       <Setting name="YahooJpn-AppSecret" value="b9d81a0d9ddbbd9ac3869a70672fd6c2b10da957"/>
+      <Setting name="SQL-ConnectionString" value="Data Source=.\SQLEXPRESS;AttachDbFileName=|DataDirectory|linophi.mdf;Integrated Security=True;User Instance=True"/>
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

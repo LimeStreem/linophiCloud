@@ -23,6 +23,7 @@
       <Setting name="Google-ClientSecret"/>
       <Setting name="YahooJpn-AppID"/>
       <Setting name="YahooJpn-AppSecret"/>
+      <Setting name="SQL-ConnectionString"/>
     </ConfigurationSettings>
   </WebRole>
 </ServiceDefinition>
