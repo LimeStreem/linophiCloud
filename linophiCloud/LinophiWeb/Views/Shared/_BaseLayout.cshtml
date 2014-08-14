@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta name="robots" content="noindex,nofollow" />
@@ -16,11 +17,13 @@
         ga('create', 'UA-53737858-1', 'auto');
         ga('send', 'pageview');
     </script>
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/collections.js"></script>
     @RenderSection("CSS",false)
-    @RenderSection("JS",false)
     <title>@ViewBag.Title</title>
 </head>
 <body>
         @RenderBody()
+    @RenderSection("JS", false)
 </body>
 </html>

@@ -237,6 +237,7 @@ namespace LinophiWeb.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+
         }
 
 

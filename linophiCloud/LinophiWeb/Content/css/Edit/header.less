@@ -6,8 +6,7 @@
 body{
     background-image:url("/Content/imgs/bg-common.png"); 
     width:100%;
-    min-height:100%;
-    height:auto;
+    height:100%;
 }
 .editor-bg-overlay{
     background-color:rgba(107,107,107,0.4);
@@ -49,6 +48,7 @@ body{
                 padding:0 10px 0 0;
                 content:"❚";
             }
+            cursor:pointer;
             float: left;
             width: 150px;
             height: 2em;
@@ -68,12 +68,18 @@ body{
 }
 
 .editor-footer{
+    z-index:0;
     height:100px;
     width:100%;
-    background:rgba(107,107,107,0.4);
-    position:absolute;
+    background-image:url("/Content/imgs/bg-common.png"); 
+    position:fixed;
     bottom:0;
     text-align:center;
+    .editor-footer-inner{
+        width:100%;
+        height:100px;
+        background:rgba(107,107,107,0.4);
+    }
     .editor-submit-button{
         font-size:20px;
         color:#fff;
@@ -86,4 +92,12 @@ body{
         border:none;
         border-radius:2em;
     }
+}
+
+.tab-content{
+    display:none;
+}
+
+.selected-tab-content{
+    display:block!important;
 }
