@@ -1,9 +1,10 @@
 ﻿var editorInstance: NovelEditer.NovelEditer;
 $(() => {
     
-    editorInstance = new NovelEditer.NovelEditer($(".edit-context"), $(".preview-body"));
+    editorInstance = new NovelEditer.NovelEditer($(".edit-context"), $(".preview-body"),$(".preview-context"));
     editorInstance.createEmpty();
     editorInstance.updateToshow();
+    editPage.onChanged();
 });
 
 module NovelEditer
@@ -12,7 +13,9 @@ module NovelEditer
         private static _endOfLineChar: string[] = ["\n"];
         private static _shiftCaretKeys:number[]=[KeyCodes.KeyCode.ArrowRight,KeyCodes.KeyCode.ArrowLeft,KeyCodes.KeyCode.ArrowDown,KeyCodes.KeyCode.ArrowUp];
          private _editorTarget: JQuery;
-         private _previewTarget: JQuery;
+        private _previewTarget: JQuery;
+        private _previewBounds: JQuery;
+        private _lastParagraphNumberSpan:JQuery;
         private _currentParagraph: Paragraph;
         private _pageFirstParagraph:Paragraph;
         private _lastCaret: TextRegion;
@@ -24,7 +27,17 @@ module NovelEditer
         private _previewKeycode: number;
         private _isPasted: boolean;
         private _lastLnCount: number;
-        constructor(editorTarget: JQuery, previewTarget: JQuery) {
+        private _lastParagraphIndex: number;
+
+        public get LastParagraphIndex() {
+            return this._lastParagraphIndex;
+        }
+
+        public set LastParagraphIndex(val: number) {
+            this._lastParagraphIndex = val;
+        }
+        constructor(editorTarget: JQuery, previewTarget: JQuery, previewBounds: JQuery) {
+            this._previewBounds = previewBounds;
              this._editorTarget = editorTarget;
              this._previewTarget = previewTarget;
              this._editorTarget.keypress((event: JQueryKeyEventObject) => this.inputCommited(event));
@@ -103,8 +116,17 @@ module NovelEditer
              this._currentParagraph.isEmphasized = true;
          }
 
-         updateToshow() {
-             this._previewTarget.html(this._pageFirstParagraph.getParagraphHtmls(20));
+        updateToshow() {
+            var i: number = 1;
+            while (i<=this.LastParagraphIndex+1) {
+                this._previewTarget.html(this._pageFirstParagraph.getParagraphHtmls(i));
+                if (this._previewTarget.width() > this._previewBounds.width()) {
+                    this._previewTarget.html(this._pageFirstParagraph.getParagraphHtmls(i - 1));
+                    break;
+                }
+                i++;
+            }
+             
          }
 
         //変更された場合true、同じならfalse
@@ -212,7 +234,8 @@ module NovelEditer
                 this.paragraphIndex = 0;
             }
             this.updateCacheHtml();
-            if(!this.isFinalParagraph)this.nextParagraph.updateParagraphIndex();
+            if (!this.isFinalParagraph) this.nextParagraph.updateParagraphIndex();
+            if (this.isFinalParagraph)this._editer.LastParagraphIndex = this.paragraphIndex;
         }
         private _calculatedWidth:number=0;
         private _editer: NovelEditer;
@@ -402,6 +425,7 @@ module NovelEditer
 
         private updateCalculatedWidth() {
             this._calculatedWidth = $(this._cacheHtml).width();
+            console.warn(this._calculatedWidth + "pixel:" + this._cacheHtml);
         }
 
         updateCacheHtml() {
@@ -432,9 +456,10 @@ module NovelEditer
 
                 tag.html(rawStr);
             }
+            tag.addClass("p-" + this.paragraphIndex);
             if (this.isEmphasized) tag.addClass("em");
             this._cacheHtml = $("<div/>").append(tag).html();
-            this.updateParagraphIndex();
+            this.updateCalculatedWidth();
         }
     }
     

@@ -6,16 +6,18 @@
 };
 var editorInstance;
 $(function () {
-    editorInstance = new NovelEditer.NovelEditer($(".edit-context"), $(".preview-body"));
+    editorInstance = new NovelEditer.NovelEditer($(".edit-context"), $(".preview-body"), $(".preview-context"));
     editorInstance.createEmpty();
     editorInstance.updateToshow();
+    editPage.onChanged();
 });
 
 var NovelEditer;
 (function (_NovelEditer) {
     var NovelEditer = (function () {
-        function NovelEditer(editorTarget, previewTarget) {
+        function NovelEditer(editorTarget, previewTarget, previewBounds) {
             var _this = this;
+            this._previewBounds = previewBounds;
             this._editorTarget = editorTarget;
             this._previewTarget = previewTarget;
             this._editorTarget.keypress(function (event) {
@@ -43,6 +45,18 @@ var NovelEditer;
             this._lastCaret = new TextRegion(0, 0);
             this._lastText = this._editorTarget.val();
         }
+        Object.defineProperty(NovelEditer.prototype, "LastParagraphIndex", {
+            get: function () {
+                return this._lastParagraphIndex;
+            },
+            set: function (val) {
+                this._lastParagraphIndex = val;
+            },
+            enumerable: true,
+            configurable: true
+        });
+
+
         //最後のキャレットの位置を保存する
         NovelEditer.prototype.recordLastCaret = function () {
             this._lastCaret = TextRegion.fromCaretInfo(this._editorTarget.caret());
@@ -109,7 +123,15 @@ var NovelEditer;
         };
 
         NovelEditer.prototype.updateToshow = function () {
-            this._previewTarget.html(this._pageFirstParagraph.getParagraphHtmls(20));
+            var i = 1;
+            while (i <= this.LastParagraphIndex + 1) {
+                this._previewTarget.html(this._pageFirstParagraph.getParagraphHtmls(i));
+                if (this._previewTarget.width() > this._previewBounds.width()) {
+                    this._previewTarget.html(this._pageFirstParagraph.getParagraphHtmls(i - 1));
+                    break;
+                }
+                i++;
+            }
         };
 
         //変更された場合true、同じならfalse
@@ -242,6 +264,8 @@ var NovelEditer;
             this.updateCacheHtml();
             if (!this.isFinalParagraph)
                 this.nextParagraph.updateParagraphIndex();
+            if (this.isFinalParagraph)
+                this._editer.LastParagraphIndex = this.paragraphIndex;
         };
 
         Object.defineProperty(Paragraph.prototype, "nextParagraph", {
@@ -457,6 +481,7 @@ var NovelEditer;
 
         Paragraph.prototype.updateCalculatedWidth = function () {
             this._calculatedWidth = $(this._cacheHtml).width();
+            console.warn(this._calculatedWidth + "pixel:" + this._cacheHtml);
         };
 
         Paragraph.prototype.updateCacheHtml = function () {
@@ -489,10 +514,11 @@ var NovelEditer;
 
                 tag.html(rawStr);
             }
+            tag.addClass("p-" + this.paragraphIndex);
             if (this.isEmphasized)
                 tag.addClass("em");
             this._cacheHtml = $("<div/>").append(tag).html();
-            this.updateParagraphIndex();
+            this.updateCalculatedWidth();
         };
         return Paragraph;
     })();

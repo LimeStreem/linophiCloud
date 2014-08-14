@@ -18,6 +18,7 @@ function selectEditBelt() {
 
 var EditPage = (function () {
     function EditPage() {
+        var _this = this;
         this.asp = new AspectRatioStrecher(1.44969, $(".preview-container"), false);
         this.CurrentPage = 0 /* EditBody */;
         var st = new HeightStretcher($(".editor-content-bg"), $(".editor-bg-overlay"));
@@ -27,6 +28,9 @@ var EditPage = (function () {
         var st2 = new HeightStretcher($(".novel-editor-container-inner"), $(".novel-editor-container-outer"));
         st2.addSubElement($(".body-editor-header .half-divider"));
         st2.updateTargetProperty();
+        $(".editor-submit-button").click(function () {
+            _this.submit();
+        });
     }
     Object.defineProperty(EditPage.prototype, "CurrentPage", {
         get: function () {
@@ -57,6 +61,14 @@ var EditPage = (function () {
                 break;
             default:
         }
+    };
+
+    EditPage.prototype.onChanged = function () {
+        $(".editor-submit-button").addClass(".editor-submit-button-enabled");
+    };
+
+    EditPage.prototype.submit = function () {
+        $(".editor-submit-button").removeClass(".editor-submit-button-enabled");
     };
     return EditPage;
 })();

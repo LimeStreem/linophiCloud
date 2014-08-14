@@ -83,10 +83,13 @@ body {
   margin: 0 auto;
   margin-top: 1.5em;
   padding: 0.61em 4em;
-  background: #6ca3fd;
+  background: gray;
   text-align: center;
   border: none;
   border-radius: 2em;
+}
+.editor-footer .editor-submit-button-enabled {
+  background: #6ca3fd;
 }
 .tab-content {
   display: none;
