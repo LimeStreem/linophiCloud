@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="linophiCloud" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-01.2.3">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="linophiCloud" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-06.2.4">
   <Role name="LinophiWeb">
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
-      <Setting name="Twitter-ConsumerKey" value="Er54xldzyeOE2IwFcqJwDtIU1"/>
-      <Setting name="Twitter-ConsumerSecret" value="aJM41biol7JA1ZmpuapH5Zy8Of6nblJRLaBm4PBuf9CL6d6TqC"/>
-      <Setting name="Facebook-AppID" value="508113655985939"/>
-      <Setting name ="Facebook-AppSecret" value="d1e1e3aef66f9cf641fedb1b5fe772cd"/>
-      <Setting name ="Google-ClientId" value="765595399318-cmmucubh31mtm4rg2jcsv9bd8da4rh7q.apps.googleusercontent.com"/>
-      <Setting name="Google-ClientSecret" value="WORP87UE4EHz9ThneFX59GPR"/>
-      <Setting name="YahooJpn-AppID" value="dj0zaiZpPVl4NllGMHBEM0J0eCZzPWNvbnN1bWVyc2VjcmV0Jng9YWQ-"/>
-      <Setting name="YahooJpn-AppSecret" value="b9d81a0d9ddbbd9ac3869a70672fd6c2b10da957"/>
-      <Setting name="SQL-ConnectionString" value="Data Source=.\SQLEXPRESS;AttachDbFileName=|DataDirectory|linophi.mdf;Integrated Security=True;User Instance=True"/>
+      <Setting name="Twitter-ConsumerKey" value="Er54xldzyeOE2IwFcqJwDtIU1" />
+      <Setting name="Twitter-ConsumerSecret" value="aJM41biol7JA1ZmpuapH5Zy8Of6nblJRLaBm4PBuf9CL6d6TqC" />
+      <Setting name="Facebook-AppID" value="508113655985939" />
+      <Setting name="Facebook-AppSecret" value="d1e1e3aef66f9cf641fedb1b5fe772cd" />
+      <Setting name="Google-ClientId" value="765595399318-cmmucubh31mtm4rg2jcsv9bd8da4rh7q.apps.googleusercontent.com" />
+      <Setting name="Google-ClientSecret" value="WORP87UE4EHz9ThneFX59GPR" />
+      <Setting name="YahooJpn-AppID" value="dj0zaiZpPVl4NllGMHBEM0J0eCZzPWNvbnN1bWVyc2VjcmV0Jng9YWQ-" />
+      <Setting name="YahooJpn-AppSecret" value="b9d81a0d9ddbbd9ac3869a70672fd6c2b10da957" />
+      <Setting name="SQL-ConnectionString" value="Data Source=.\SQLEXPRESS;AttachDbFileName=|DataDirectory|linophi.mdf;Integrated Security=True;User Instance=True" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

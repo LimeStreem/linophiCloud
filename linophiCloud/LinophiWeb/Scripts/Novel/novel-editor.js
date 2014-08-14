@@ -213,13 +213,6 @@ var NovelEditer;
     })();
     _NovelEditer.NovelEditer = NovelEditer;
 
-    var Page = (function () {
-        function Page() {
-        }
-        return Page;
-    })();
-    _NovelEditer.Page = Page;
-
     //段落クラス
     var Paragraph = (function () {
         function Paragraph(editer) {
@@ -230,6 +223,13 @@ var NovelEditer;
             this.rawText = "";
             this.updateCacheHtml();
         }
+        Paragraph.createInstance = function (editer, rawText) {
+            var instance = new Paragraph(editer);
+            instance.rawText = rawText;
+            return instance;
+        };
+
+
         Object.defineProperty(Paragraph.prototype, "isEmphasized", {
             get: function () {
                 return this._isEmphasized;
@@ -241,11 +241,6 @@ var NovelEditer;
             enumerable: true,
             configurable: true
         });
-        Paragraph.createInstance = function (editer, rawText) {
-            var instance = new Paragraph(editer);
-            instance.rawText = rawText;
-            return instance;
-        };
 
         Object.defineProperty(Paragraph.prototype, "ParagraphIndex", {
             get: function () {
@@ -283,6 +278,7 @@ var NovelEditer;
             configurable: true
         });
 
+
         Object.defineProperty(Paragraph.prototype, "prevParagraph", {
             get: function () {
                 return this._prevParagraph;
@@ -298,6 +294,7 @@ var NovelEditer;
             enumerable: true,
             configurable: true
         });
+
 
         Object.defineProperty(Paragraph.prototype, "isFinalParagraph", {
             //これが最終段落か否か
@@ -328,6 +325,7 @@ var NovelEditer;
             enumerable: true,
             configurable: true
         });
+
 
         Object.defineProperty(Paragraph.prototype, "html", {
             get: function () {
@@ -514,6 +512,7 @@ var NovelEditer;
 
                 tag.html(rawStr);
             }
+
             tag.addClass("p-" + this.paragraphIndex);
             if (this.isEmphasized)
                 tag.addClass("em");
@@ -564,6 +563,7 @@ var NovelEditer;
         };
         return TitlePrefix;
     })(PrefixBase);
+
     var DividerPrefix = (function (_super) {
         __extends(DividerPrefix, _super);
         function DividerPrefix() {
@@ -592,6 +592,7 @@ var NovelEditer;
         TextRegion.prototype.substr = function (text) {
             return text.substr(this.begin, this.end - this.begin);
         };
+
         TextRegion.prototype.isRegion = function () {
             return this.begin != this.end;
         };
