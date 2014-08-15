@@ -258,6 +258,12 @@
     <Content Include="Content\css\Shared\commonDocument.min.css">
       <DependentUpon>commonDocument.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\View\index.css">
+      <DependentUpon>index.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\View\index.min.css">
+      <DependentUpon>index.css</DependentUpon>
+    </Content>
     <Content Include="Content\imgs\bg-common.png" />
     <Content Include="Content\imgs\bg.png" />
     <Content Include="Content\imgs\Edit\back-to-top.png" />
@@ -269,6 +275,11 @@
     <Content Include="Content\imgs\social\google.png" />
     <Content Include="Content\imgs\social\Twitter.png" />
     <Content Include="Content\imgs\social\yahoojpn.png" />
+    <Content Include="Content\imgs\View\goHome.png" />
+    <Content Include="Content\imgs\View\pageLeft.svg" />
+    <Content Include="Content\imgs\View\pageLeft.png" />
+    <Content Include="Content\imgs\View\pageRight.png" />
+    <Content Include="Content\imgs\View\pageRight.svg" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -305,6 +316,10 @@
     <Content Include="Content\css\Novel\novel-editor.css.map">
       <DependentUpon>novel-editor.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\View\index.less" />
+    <Content Include="Content\css\View\index.css.map">
+      <DependentUpon>index.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -335,6 +350,7 @@
     <Content Include="Views\Edit\Editor.cshtml" />
     <Content Include="Views\Home\AfterLogin.cshtml" />
     <Content Include="Scripts\underscore-min.map" />
+    <Content Include="Views\View\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -352,6 +368,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EditController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ViewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -382,6 +399,7 @@
     <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
     <TypeScriptCompile Include="Scripts\Utility\AspectRatioStretcher.ts" />
     <TypeScriptCompile Include="Scripts\Utility\HeightStretcher.ts" />
+    <TypeScriptCompile Include="Scripts\View\index.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
