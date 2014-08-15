@@ -390,6 +390,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Account\externalLoginConfirmation.ts" />
     <TypeScriptCompile Include="Scripts\collections.ts" />
     <TypeScriptCompile Include="Scripts\Edit\EditPage.ts" />
     <TypeScriptCompile Include="Scripts\Novel\IParagraph.ts" />

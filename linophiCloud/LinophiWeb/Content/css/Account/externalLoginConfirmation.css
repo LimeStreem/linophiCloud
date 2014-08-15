@@ -90,4 +90,16 @@ label a {
   color: white;
   background-color: #538EFD;
 }
+.err {
+  visibility: collapse;
+}
+.err-visible {
+  visibility: visible;
+}
+.blank {
+  border: 1px solid red;
+}
+.error-txt {
+  color: red;
+}
 /*# sourceMappingURL=externalLoginConfirmation.css.map */
