@@ -36,14 +36,14 @@ module NovelEditer
             this._editorTarget = editorTarget;
             this._previewTarget = previewTarget;
             this._editorTarget.keyup((event: JQueryKeyEventObject) => this.saveInput(event));
-            //マウスによってキャレットが移動した際は位置を保存しておく
-            //this._editorTarget.mousedown(() => this.mouseHandler());
+//            マウスによってキャレットが移動した際は位置を保存しておく
+            this._editorTarget.mousedown(() => this.mouseHandler());
             this._editorTarget.mouseup(() => this.mouseHandler());
             this._editorTarget.bind('paste', () => this.pasteCommited());
             this._editorTarget.bind('input propertychange', () => this.textChanged());
             this._paragraphManager = new ParagraphManager();
         }
-        //カレットと編集文字列のログを更新する
+//        カレットと編集文字列のログを更新する
         updateLastData()
         {
             this._lastCaret = TextRegion.fromCaretInfo(this._editorTarget.caret());
@@ -435,6 +435,7 @@ module NovelEditer
     }
     export class ParagraphManager
     {
+        private _paragraphDictionary: collections.Dictionary<string, Paragraph> = new collections.Dictionary<string,Paragraph>();
         //先頭の段落
         private _headParagraph: Paragraph;
         //最終段落のインデックス

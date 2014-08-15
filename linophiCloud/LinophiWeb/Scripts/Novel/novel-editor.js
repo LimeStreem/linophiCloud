@@ -27,8 +27,10 @@ var NovelEditer;
                 return _this.saveInput(event);
             });
 
-            //マウスによってキャレットが移動した際は位置を保存しておく
-            //this._editorTarget.mousedown(() => this.mouseHandler());
+            //            マウスによってキャレットが移動した際は位置を保存しておく
+            this._editorTarget.mousedown(function () {
+                return _this.mouseHandler();
+            });
             this._editorTarget.mouseup(function () {
                 return _this.mouseHandler();
             });
@@ -40,7 +42,7 @@ var NovelEditer;
             });
             this._paragraphManager = new ParagraphManager();
         }
-        //カレットと編集文字列のログを更新する
+        //        カレットと編集文字列のログを更新する
         NovelEditer.prototype.updateLastData = function () {
             this._lastCaret = TextRegion.fromCaretInfo(this._editorTarget.caret());
             this._lastText = this._editorTarget.val();
@@ -378,6 +380,7 @@ var NovelEditer;
     _NovelEditer.NovelEditer = NovelEditer;
     var ParagraphManager = (function () {
         function ParagraphManager() {
+            this._paragraphDictionary = new collections.Dictionary();
             //最終段落のインデックス
             this._lastParagraphIndex = 0;
             this._headParagraph = new Paragraph(this, "");
