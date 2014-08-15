@@ -57,6 +57,15 @@ class EditPage {
         var st2: HeightStretcher = new HeightStretcher($(".novel-editor-container-inner"), $(".novel-editor-container-outer"));
         st2.addSubElement($(".body-editor-header .half-divider"));
         st2.updateTargetProperty();
+        $(".editor-submit-button").click(() => { this.submit(); });
+    }
+
+    onChanged() {
+        $(".editor-submit-button").addClass(".editor-submit-button-enabled");
+    }
+
+    submit() {
+        $(".editor-submit-button").removeClass(".editor-submit-button-enabled");
     }
 
 }
