@@ -476,6 +476,17 @@ module NovelEditer
         {
             return this._lastParagraphIndex + 1;
         }
+        //ディクショナリへの登録
+        registParagraph(parag: Paragraph)
+        {
+            if (this._paragraphDictionary.containsKey(parag.getId()))return;
+            this._paragraphDictionary.setValue(parag.getId(), parag);
+        } 
+        //ディクショナリからの解除
+        unregistParagraph(id: string)
+        {
+            this._paragraphDictionary.remove(id);
+        }
 
         //現在の段落(とその強調表示)を変更する
         changeCurrentParagraph(currentParagraph: Paragraph)
@@ -509,6 +520,7 @@ module NovelEditer
         //末尾に段落を追加する
         addParagraph(parag: Paragraph)
         {
+            this.registParagraph(parag);
             if (this._lastParagraphIndex == 0)
             {
                 this._headParagraph = parag;
@@ -741,6 +753,7 @@ module NovelEditer
         //指定した段落をこの段落の直後に挿入
         insertNext(next: Paragraph)
         {
+            this._manager.registParagraph(next);
             if (!this.isFinalParagraph)
             {
                 var last: Paragraph = next.getLastParagraph();
@@ -754,6 +767,7 @@ module NovelEditer
          //指定した段落をこの段落の直前に挿入
         insertPrev(prev: Paragraph)
         {
+            this._manager.registParagraph(prev);
             if (!this.isFirstParagraph)
             {
                 prev.prevParagraph = this.prevParagraph;
@@ -825,6 +839,7 @@ module NovelEditer
         //この段落を削除する
         removeThis()
         {
+            this._manager.unregistParagraph(this._iD);
             if (this.isFinalParagraph)
             {
                 if (this.isFirstParagraph)//この行しかないとき
@@ -878,6 +893,9 @@ module NovelEditer
                 //return front;
             }
             front.updateParagraphIndex();
+            this._manager.unregistParagraph(this._iD);
+            this._manager.registParagraph(front);
+            this._manager.registParagraph(front.nextParagraph);
             return front;
         }
 
