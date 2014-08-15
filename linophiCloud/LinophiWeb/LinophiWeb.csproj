@@ -277,9 +277,9 @@
     <Content Include="Content\imgs\social\yahoojpn.png" />
     <Content Include="Content\imgs\View\goHome.png" />
     <Content Include="Content\imgs\View\pageLeft.svg" />
-    <Content Include="Content\imgs\View\pageLeft.png" />
-    <Content Include="Content\imgs\View\pageRight.png" />
-    <Content Include="Content\imgs\View\pageRight.svg" />
+    <Content Include="Content\imgs\View\pageRight.svg">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
