@@ -78,7 +78,7 @@ var ExternalLoginConfirmationPage = (function () {
             this._errFlag = true;
         }
         var mailAddr = $("#mail").val();
-        if (mailAddr.match(/^[A-Za-z0-9]+[\w-]+@[\w\.-]+\.\w{2,}$/)) {
+        if (mailAddr.match(/^[A-Za-z0-9][\w-\.]+@[A-Za-z0-9][\w-]+\.[A-Za-z0-9\.]+[A-Za-z0-9]+$/) && mailAddr.indexOf("..") == -1) {
             errorCount--;
             this.applySuccess($("#mail"), "OK");
         } else {
