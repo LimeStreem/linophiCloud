@@ -22,7 +22,10 @@ module NovelEditer
         //直前のカレット位置
         private _lastCaret: TextRegion = new TextRegion(0, 0);
         //直前の編集文字列
-        private _lastText:string ="";
+        private _lastText: string = "";
+
+
+        private _lastText2:string="";
 
         //段落管理
         private _paragraphManager:ParagraphManager;
@@ -362,6 +365,24 @@ module NovelEditer
             console.info("\tparagraphCount=\t"+this._paragraphManager.paragraphCount+"\n");
         }
 
+
+        checkChangeText(currentText: string):TextChangeInfo
+        {
+            var length: number = Math.min(currentText.length, this._lastText2.length);
+            var changeStartPoint: number = -1;
+            for (var i = 0; i < length; i++)
+            {
+                if (currentText.charAt(i) == this._lastText2.charAt(i))
+                {
+                    changeStartPoint = i;
+                    break;
+                }
+            }
+            //変更がない
+            if(changeStartPoint==-1)return new TextChangeInfo()
+        }
+
+
         updateToshow()
         {
             var i: number = 1;
@@ -374,35 +395,6 @@ module NovelEditer
                 i++;
             }
         }
-
-
-
-        //private _calcFocusRegion(text: string, selectionBegin: number, selectionEnd: number): TextRegion
-        //{
-        //    var length: number = text.length;
-        //    var end = selectionEnd, begin = selectionBegin;
-        //    if (!_.include(NovelEditer._endOfLineChar, text.substr(end, 1)))
-        //        for (var i = selectionEnd; i < length; i++)
-        //        {
-        //            end = i + 1;
-        //            if (_.include(NovelEditer._endOfLineChar, text.substr(end, 1))) break;
-        //        }
-        //    for (i = selectionBegin; i >= 0; i--)
-        //    {
-        //        begin = i;
-        //        if (i == 0 || _.include(NovelEditer._endOfLineChar, text.substr(i - 1, 1))) break;
-        //    }
-        //    return new TextRegion(begin, end);
-        //}
-
-        //updateFocusLine(): void
-        //{
-        //    var currentText: string = this._editorTarget.val();
-        //    var caret: CaretInfo = this._editorTarget.caret();
-        //    var region = this._calcFocusRegion(currentText, caret.begin, caret.end);
-        //    this._focusLine = region.substr(currentText);
-        //    console.warn("focusLine:" + this._focusLine);
-        //}
 
         //改行の数をカウントする
         countLf(str: string): number
@@ -432,6 +424,15 @@ module NovelEditer
             //    this.updateToshow();
             //}
         }
+    }
+    export class TextChangeInfo
+    {
+        changeStartPoint: number;
+        chengeLength: number;
+        changeStartParagraphIndex:number;
+        changeEndParagrapgIndex: number;
+
+        constructor(start: number, length: number,startParag:number,paragList:collections.)
     }
     export class ParagraphManager
     {
@@ -569,24 +570,15 @@ module NovelEditer
             var paragPos: number = 0;
             while (parag.rawText.length<caretPos)
             {
-                caretPos -= parag.rawText.length + 1;
-                paragPos = paragPos + 1;
-                if (caretPos == 0 && parag.isFinalParagraph)
+                if (parag.isFinalParagraph)
                 {
                     var ret: CaretPosition = new CaretPosition(paragPos, 0);
                     ret.isParagraphLast = true;
                     ret.isTextLast = true;
                     return ret;
                 }
-                if (parag.isFinalParagraph)
-                {
-                    /*
-                     * 編集文字列への入力後、saveInputが呼ばれるまでの僅かな隙間にEnter等によって
-                     * targetEditor.varが変化するとlastCaret、lastTextとの整合性が崩れてここが呼ばれる？
-                     */
-                    var sss = 0;
-                    sss++;
-                }
+                caretPos -= parag.rawText.length + 1;
+                paragPos++;
                 parag = parag.nextParagraph;
             }
             var pos: CaretPosition = new CaretPosition(paragPos, caretPos);

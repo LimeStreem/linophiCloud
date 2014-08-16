@@ -513,22 +513,14 @@ var NovelEditer;
             var parag = this._headParagraph;
             var paragPos = 0;
             while (parag.rawText.length < caretPos) {
-                caretPos -= parag.rawText.length + 1;
-                paragPos = paragPos + 1;
-                if (caretPos == 0 && parag.isFinalParagraph) {
+                if (parag.isFinalParagraph) {
                     var ret = new CaretPosition(paragPos, 0);
                     ret.isParagraphLast = true;
                     ret.isTextLast = true;
                     return ret;
                 }
-                if (parag.isFinalParagraph) {
-                    /*
-                    * 編集文字列への入力後、saveInputが呼ばれるまでの僅かな隙間にEnter等によって
-                    * targetEditor.varが変化するとlastCaret、lastTextとの整合性が崩れてここが呼ばれる？
-                    */
-                    var sss = 0;
-                    sss++;
-                }
+                caretPos -= parag.rawText.length + 1;
+                paragPos++;
                 parag = parag.nextParagraph;
             }
             var pos = new CaretPosition(paragPos, caretPos);

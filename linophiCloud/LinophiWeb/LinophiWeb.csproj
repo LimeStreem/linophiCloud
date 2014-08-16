@@ -395,6 +395,7 @@
     <TypeScriptCompile Include="Scripts\Edit\EditPage.ts" />
     <TypeScriptCompile Include="Scripts\Novel\IParagraph.ts" />
     <TypeScriptCompile Include="Scripts\Novel\novel-editor.ts" />
+    <TypeScriptCompile Include="Scripts\Novel\ParagraphFactory.ts" />
     <TypeScriptCompile Include="Scripts\typings\caret-util\caret-util.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
