@@ -10,3 +10,4 @@ $(() => {
     horizontalStreacher.ExtraMargin = 2;
     horizontalStreacher.updateTargetProperty();
 });
+

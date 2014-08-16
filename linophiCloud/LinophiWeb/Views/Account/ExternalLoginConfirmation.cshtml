@@ -16,6 +16,7 @@
     <img class="confirmation-logo" src="/Content/imgs/logo2.png" />
     <div class="form-container">
         <h1>新規ユーザー登録</h1>
+        <p>ご安心ください。入力はたったのこの一ページで終了します。</p>
         @using (Html.BeginForm())
         {
             <div class="confirmation-form-container">
@@ -28,9 +29,6 @@
                 <div class="confirmation-colmn confirmation-colmn-right">
                     <div class="confirmation-row">
                         @Html.TextBoxFor(model => model.NickName, new { placeholder = "例:りのりすたん", @class = "confirmation-textbox　name-border" ,id="nickname"})
-                        <p class="nickname-char-err err">None</p>
-                        <p class="nickname-length-err err">ニックネームは10文字以内である必要があります。</p>
-                        <p class="name-blank err">ニックネームが記入されていません。</p>
                     </div>
                     <div class="confirmation-form-birthday-container confirmation-row">
                         @Html.DropDownListFor(model => model.Day, BirthDayInputHelper.getYearList(), new {@class = "birthday-border" ,id="year"})
@@ -39,14 +37,12 @@
                         <p>月</p>
                         @Html.DropDownListFor(model => model.Day, BirthDayInputHelper.getDayList(), new {@class = "birthday-border" ,id = "day" })
                         <p>日</p>
-                        <p class="birthday-select-err err error-txt">生年月日が記入されていません。</p>
                     </div>
                     <div class="confirmation-row">
-                        @Html.EnumDropDownListFor(model => model.Gender, new { @class = "confirmation-gender-box",id="gender" })
+                        @Html.DropDownListFor(model => model.Gender,GenderInputHelper.getGenderInput(), new { @class = "confirmation-gender-box",id="gender" })
                     </div>
                     <div class="confirmation-row">
-                        @Html.TextBoxFor(model => model.Email, new { placeholder = "例:your@email.com", @class = "confirmation-textbox mail-border" ,id="mail"})
-                        <p class="mail-blank err error-txt">メールアドレスが記入されていません。</p>
+                        @Html.TextBoxFor(model => model.Email, new { placeholder = "例:your@email.com", @class = "confirmation-textbox mail-border" ,id="mail",type="mail"})
                     </div>
                 </div>
                 <div class="form-centerize">
@@ -57,6 +53,9 @@
                 <div class="form-centerize">
                     @Html.CheckBoxFor(model => model.AcceptEmailToNotify, new { id = "acceptEmailNotify" })
                     <label for="acceptEmailNotify">linophiからの通知メールを受け取る</label>
+                </div>
+                <div class="progress-bar">
+                    <div class="color-bar"></div>
                 </div>
                 <div class="confirmation-submitbtn-container" id="SignUp">
                     <input type="submit" value=">> この内容で登録 <<" id="submitBtn" />

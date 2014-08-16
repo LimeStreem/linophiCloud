@@ -252,6 +252,12 @@
     <Content Include="Content\css\Novel\novel-editor.min.css">
       <DependentUpon>novel-editor.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Novel\novel-viewer.css">
+      <DependentUpon>novel-viewer.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Novel\novel-viewer.min.css">
+      <DependentUpon>novel-viewer.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\Shared\commonDocument.css">
       <DependentUpon>commonDocument.less</DependentUpon>
     </Content>
@@ -320,6 +326,10 @@
     <Content Include="Content\css\View\index.css.map">
       <DependentUpon>index.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Novel\novel-viewer.less" />
+    <Content Include="Content\css\Novel\novel-viewer.css.map">
+      <DependentUpon>novel-viewer.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -382,6 +392,7 @@
     <Compile Include="Utility\ChallengeResult.cs" />
     <Compile Include="Utility\Configuration\ConfigurationLoader.cs" />
     <Compile Include="Utility\ExtensionUtility.cs" />
+    <Compile Include="Utility\GenderInputHelper.cs" />
     <Compile Include="Utility\IGravatarLoader.cs" />
     <Compile Include="Utility\MathEx.cs" />
     <Compile Include="WebRole.cs" />
@@ -395,6 +406,7 @@
     <TypeScriptCompile Include="Scripts\Edit\EditPage.ts" />
     <TypeScriptCompile Include="Scripts\Novel\IParagraph.ts" />
     <TypeScriptCompile Include="Scripts\Novel\novel-editor.ts" />
+    <TypeScriptCompile Include="Scripts\Novel\novel-viewer.ts" />
     <TypeScriptCompile Include="Scripts\typings\caret-util\caret-util.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />

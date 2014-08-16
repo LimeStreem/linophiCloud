@@ -6,6 +6,7 @@
 @section CSS
 {
     <link href="~/Content/css/View/index.css" rel="stylesheet" />
+    <link href="~/Content/css/Novel/novel-viewer.css" rel="stylesheet" />
 }
 @section JS
 {
@@ -23,12 +24,17 @@
     <!-- ▼ コンテンツ内容 -->
     <article>
         <a href="#"><img class="img-to-right" src="/Content/imgs/View/pageRight.svg" alt="次のページへ"></a>
-        <section id="left">
-            <a href="#"><img class="img-to-left" src="/Content/imgs/View/pageLeft.svg" alt="前のページへ"></a>
+        <a href="#"><img class="img-to-left" src="/Content/imgs/View/pageLeft.svg" alt="前のページへ"></a>
+        <section id="left" class="novel-side">
 
         </section>
-        <section id="right">
-            
+        <section id="right" class="novel-side">
+            <div class="novel-side-inner">
+                <p>1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p><br />
+                <p>1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p><br />
+                <p>1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</p><br />
+            </div>
+            @*            <p>あいうえおかきくけこあいうえおかきくけこあいうえおかきくけこあいうえおかきくけこあいうえおかきくけこあいうえおかきくけこ</p>*@
         </section>
     </article>
 
