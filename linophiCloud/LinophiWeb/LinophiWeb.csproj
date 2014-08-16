@@ -234,19 +234,17 @@
     <Content Include="Content\css\Edit\header.min.css">
       <DependentUpon>header.css</DependentUpon>
     </Content>
-<<<<<<< HEAD
     <Content Include="Content\css\Home\afterLogin.css">
       <DependentUpon>afterLogin.less</DependentUpon>
     </Content>
     <Content Include="Content\css\Home\afterLogin.min.css">
       <DependentUpon>afterLogin.css</DependentUpon>
-=======
+      </Content>
     <Content Include="Content\css\Edit\index.css">
       <DependentUpon>index.less</DependentUpon>
     </Content>
     <Content Include="Content\css\Edit\index.min.css">
       <DependentUpon>index.css</DependentUpon>
->>>>>>> fa1341d2aa4642d5434ac667dd1897354ed839cc
     </Content>
     <Content Include="Content\css\Home\index.css">
       <DependentUpon>index.less</DependentUpon>
@@ -321,7 +319,6 @@
     <Content Include="Content\css\Edit\header.css.map">
       <DependentUpon>header.css</DependentUpon>
     </Content>
-<<<<<<< HEAD
     <Content Include="Content\css\Home\afterLogin.less" />
     <Content Include="Content\css\Home\afterLogin.css.map">
       <DependentUpon>afterLogin.css</DependentUpon>
@@ -329,7 +326,6 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-=======
     <Content Include="Content\css\Edit\index.less" />
     <Content Include="Content\css\Edit\index.css.map">
       <DependentUpon>index.css</DependentUpon>
@@ -349,7 +345,6 @@
     <Content Include="Content\css\Novel\novel-viewer.css.map">
       <DependentUpon>novel-viewer.css</DependentUpon>
     </Content>
->>>>>>> fa1341d2aa4642d5434ac667dd1897354ed839cc
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -376,17 +371,14 @@
     <Content Include="Views\Home\Terms.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Developer.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Edit\Index.cshtml" />
     <Content Include="Views\Shared\_EditorLayout.cshtml" />
     <Content Include="Views\Home\AfterLogin.cshtml" />
-=======
     <Content Include="Views\Edit\EditBody.cshtml" />
     <Content Include="Views\Edit\Editor.cshtml" />
     <Content Include="Views\Home\AfterLogin.cshtml" />
     <Content Include="Scripts\underscore-min.map" />
     <Content Include="Views\View\Index.cshtml" />
->>>>>>> fa1341d2aa4642d5434ac667dd1897354ed839cc
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
