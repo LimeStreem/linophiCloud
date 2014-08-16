@@ -666,7 +666,7 @@ module NovelEditer
         fromJSON(str: string): void//じっそうしといて
         {
             var jsonObj: any = JSON.parse(str);
-            if (jsonObj.prevParagraph != null && this._manager.ParagraphDictionary.containsKey(jsonObj.prevParagraph))
+            if (jsonObj.prevParagraph != null && this._manager.ParagraphDictionary.containsKey  (jsonObj.prevParagraph))
             {
                 this.prevParagraph = this._manager.ParagraphDictionary.getValue(jsonObj.prevParagraph);
                 this.prevParagraph.nextParagraph = this;
