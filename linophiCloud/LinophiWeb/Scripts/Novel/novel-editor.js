@@ -20,6 +20,7 @@ var NovelEditer;
             this._lastCaret = new TextRegion(0, 0);
             //直前の編集文字列
             this._lastText = "";
+            this._lastText2 = "";
             this._previewBounds = previewBounds;
             this._editorTarget = editorTarget;
             this._previewTarget = previewTarget;
@@ -312,6 +313,21 @@ var NovelEditer;
             console.info("\tparagraphCount=\t" + this._paragraphManager.paragraphCount + "\n");
         };
 
+        NovelEditer.prototype.checkChangeText = function (currentText) {
+            var length = Math.min(currentText.length, this._lastText2.length);
+            var changeStartPoint = -1;
+            for (var i = 0; i < length; i++) {
+                if (currentText.charAt(i) == this._lastText2.charAt(i)) {
+                    changeStartPoint = i;
+                    break;
+                }
+            }
+
+            //変更がない
+            // if(changeStartPoint==-1)return new TextChangeInfo()
+            return null;
+        };
+
         NovelEditer.prototype.updateToshow = function () {
             var i = 1;
             while (i <= this._paragraphManager.lastParagraphIndex + 1) {
@@ -324,31 +340,6 @@ var NovelEditer;
             }
         };
 
-        //private _calcFocusRegion(text: string, selectionBegin: number, selectionEnd: number): TextRegion
-        //{
-        //    var length: number = text.length;
-        //    var end = selectionEnd, begin = selectionBegin;
-        //    if (!_.include(NovelEditer._endOfLineChar, text.substr(end, 1)))
-        //        for (var i = selectionEnd; i < length; i++)
-        //        {
-        //            end = i + 1;
-        //            if (_.include(NovelEditer._endOfLineChar, text.substr(end, 1))) break;
-        //        }
-        //    for (i = selectionBegin; i >= 0; i--)
-        //    {
-        //        begin = i;
-        //        if (i == 0 || _.include(NovelEditer._endOfLineChar, text.substr(i - 1, 1))) break;
-        //    }
-        //    return new TextRegion(begin, end);
-        //}
-        //updateFocusLine(): void
-        //{
-        //    var currentText: string = this._editorTarget.val();
-        //    var caret: CaretInfo = this._editorTarget.caret();
-        //    var region = this._calcFocusRegion(currentText, caret.begin, caret.end);
-        //    this._focusLine = region.substr(currentText);
-        //    console.warn("focusLine:" + this._focusLine);
-        //}
         //改行の数をカウントする
         NovelEditer.prototype.countLf = function (str) {
             var count = 0;
@@ -378,6 +369,12 @@ var NovelEditer;
         return NovelEditer;
     })();
     _NovelEditer.NovelEditer = NovelEditer;
+    var TextChangeInfo = (function () {
+        function TextChangeInfo(start, length, startParag) {
+        }
+        return TextChangeInfo;
+    })();
+    _NovelEditer.TextChangeInfo = TextChangeInfo;
     var ParagraphManager = (function () {
         function ParagraphManager() {
             this._paragraphDictionary = new collections.Dictionary();
@@ -387,6 +384,14 @@ var NovelEditer;
             this._lastParagraphIndex = 0;
             this._currentParagraph = this._headParagraph;
         }
+        Object.defineProperty(ParagraphManager.prototype, "ParagraphDictionary", {
+            get: function () {
+                return this._paragraphDictionary;
+            },
+            enumerable: true,
+            configurable: true
+        });
+
         Object.defineProperty(ParagraphManager.prototype, "lastParagraphIndex", {
             get: function () {
                 return this._lastParagraphIndex;
@@ -570,10 +575,28 @@ var NovelEditer;
         };
 
         Paragraph.prototype.toJSON = function () {
-            return "notImplement!!!!!!!!!!!!!!!!";
+            var jsonObj = {
+                prevParagraph: this.isFirstParagraph ? null : this.prevParagraph.getId(), nextParagraph: this.isFinalParagraph ? null : this.nextParagraph.getId(),
+                rawText: this.rawText,
+                paragraphIndex: this._paragraphIndex,
+                id: this._iD
+            };
+            return JSON.stringify(jsonObj);
         };
         Paragraph.prototype.fromJSON = function (str) {
-            var exception = "notImplement!!!!!!!!!!!!!!!!";
+            var jsonObj = JSON.parse(str);
+            if (jsonObj.prevParagraph != null && this._manager.ParagraphDictionary.containsKey(jsonObj.prevParagraph)) {
+                this.prevParagraph = this._manager.ParagraphDictionary.getValue(jsonObj.prevParagraph);
+                this.prevParagraph.nextParagraph = this;
+            }
+            if (jsonObj.nextParagraph != null && this._manager.ParagraphDictionary.containsKey(jsonObj.nextParagraph)) {
+                this.nextParagraph = this._manager.ParagraphDictionary.getValue(jsonObj.nextParagraph);
+                this.nextParagraph.prevParagraph = this;
+            }
+            this.rawText = jsonObj.rawText;
+            this.updateCacheHtml();
+            this._paragraphIndex = jsonObj.paragraphIndex;
+            this._iD = jsonObj.id;
         };
 
         Object.defineProperty(Paragraph.prototype, "isEmphasized", {

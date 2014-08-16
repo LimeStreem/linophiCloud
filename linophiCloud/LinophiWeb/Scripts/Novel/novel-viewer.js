@@ -26,10 +26,6 @@ var DummyParagraphFetcher = (function (_super) {
     function DummyParagraphFetcher() {
         _super.apply(this, arguments);
     }
-    DummyParagraphFetcher.prototype.getParagraph = function (from, to) {
-        for (var i = from; i < to; i++) {
-        }
-    };
     return DummyParagraphFetcher;
 })(ParagraphFetcher);
 //# sourceMappingURL=novel-viewer.js.map

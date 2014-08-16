@@ -28,10 +28,5 @@ class ParagraphFetcher
 
 class DummyParagraphFetcher extends ParagraphFetcher
 {
-    getParagraph(from: number, to: number): IParagraph
-    {
-        for (var i = from; i < to; i++)
-        {
-        }
-    }
+    
 }

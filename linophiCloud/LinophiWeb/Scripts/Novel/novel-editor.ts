@@ -379,7 +379,8 @@ module NovelEditer
                 }
             }
             //変更がない
-            if(changeStartPoint==-1)return new TextChangeInfo()
+           // if(changeStartPoint==-1)return new TextChangeInfo()
+            return null;
         }
 
 
