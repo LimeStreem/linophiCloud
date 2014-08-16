@@ -232,6 +232,12 @@
     <Content Include="Content\css\Edit\header.min.css">
       <DependentUpon>header.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Home\afterLogin.css">
+      <DependentUpon>afterLogin.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\afterLogin.min.css">
+      <DependentUpon>afterLogin.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\Home\index.css">
       <DependentUpon>index.less</DependentUpon>
     </Content>
@@ -249,6 +255,8 @@
     <Content Include="Content\imgs\Edit\back-to-top.png" />
     <Content Include="Content\imgs\Edit\back-to-top2.png" />
     <Content Include="Content\imgs\Edit\square.png" />
+    <Content Include="Content\imgs\Home\book.jpg" />
+    <Content Include="Content\imgs\Home\samune.png" />
     <Content Include="Content\imgs\logo.png" />
     <Content Include="Content\imgs\logo2.png" />
     <Content Include="Content\imgs\social\facebook.png" />
@@ -280,6 +288,10 @@
     <Content Include="Content\css\Edit\header.css.map">
       <DependentUpon>header.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Home\afterLogin.less" />
+    <Content Include="Content\css\Home\afterLogin.css.map">
+      <DependentUpon>afterLogin.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -307,6 +319,7 @@
     <Content Include="Views\Home\Developer.cshtml" />
     <Content Include="Views\Edit\Index.cshtml" />
     <Content Include="Views\Shared\_EditorLayout.cshtml" />
+    <Content Include="Views\Home\AfterLogin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

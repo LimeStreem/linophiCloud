@@ -15,6 +15,11 @@ namespace LinophiWeb.Controllers
             return View();
         }
 
+        public ActionResult AfterLogin()
+        {
+            return View();
+        }
+
         public ActionResult PrivacyPolicy()
         {
             return View();
