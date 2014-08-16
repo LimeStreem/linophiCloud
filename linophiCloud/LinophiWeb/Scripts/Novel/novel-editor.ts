@@ -61,7 +61,7 @@ module NovelEditer
 
             var currentText: string = this._editorTarget.val();//現在のテキスト
             if (currentText != this._lastText)
-            {
+        {
                 var changeInfo: TextChangeInfo = this.checkChangeText(currentText); //変化情報
                 //変化してる最初のパラグラフの頭のインデックス
                 var changeStartIndexOfText: number;
@@ -83,11 +83,11 @@ module NovelEditer
                         this._paragraphManager.headParagraph = parag;
                         this._paragraphManager.changeCurrentParagraph(parag);
                         parag.updateParagraphIndex();
-                    }
+                }
                     else //後方に変化してないのがある
-                    {
+                {
                         this._paragraphManager.getParagraphByIndex(changeInfo.changeEndParagrapgIndex).insertPrev(parag);
-                    }
+                }
                 }
                 else
                 {
@@ -100,18 +100,18 @@ module NovelEditer
             var caret: TextRegion = TextRegion.fromCaretInfo(this._editorTarget.caret());//現在のカレット取得
 
             for (var j = 0; j < this._paragraphList.size(); j++)
-            {
+                {
                 var num: number = this._paragraphList.elementAtIndex(j);
                 if (caret.begin<=num)
                 {
                     this._paragraphManager.changeCurrentParagraphByIndex(j);
                     break;
                 }
-            }
+                }
 
 
 
-       
+
             //if (_.include(NovelEditer._shiftCaretKeys, event.keyCode))
             //{//矢印キーによる移動
             //    console.info("catch [Arrow]");
@@ -121,25 +121,25 @@ module NovelEditer
             //        subStr = this._lastText.substring(this._lastCaret.begin, caret.begin);
             //        var clf: number = this.countLf(subStr);
             //        for (var i = 0; i < clf; i++)
-            //        {
+                //        {
             //            this._paragraphManager.moveNext();
-            //        }
-            //    }
+                //        }
+                //    }
             //    else if (this._lastCaret.begin > caret.begin)
-            //    {
+                //    {
             //        subStr = this._lastText.substring(caret.begin, this._lastCaret.begin);
             //        var clf: number = this.countLf(subStr);
             //        for (var i = 0; i < clf; i++)
             //        {
             //            this._paragraphManager.movePrev();
             //        }
-            //    }
+                //    }
             //    /*直前と現在の
             //     * カレット位置の間に挟まれる文字列を取得し、その中に現れる改行コード分だけ
             //     * currentをずらす
             //     */
-            //}
-            
+                //}
+
 
             this._lastCaret = caret;
             this.updateToshow();
@@ -172,14 +172,14 @@ module NovelEditer
                 }
                 this._paragraphList.add(currentText.length);
                 return new TextChangeInfo(null,null);
-            }
+                    }
             if (currentText == "")//全削除
-            {
+                    {
                 this._lastText = "";
                 this._paragraphList.clear();
                 this._paragraphList.add(0);
                 return new TextChangeInfo(null, null);
-            }
+                    }
 
             //変更がない
             if (currentText == this._lastText) return new TextChangeInfo(0, 0);
@@ -194,46 +194,46 @@ module NovelEditer
                     if (str != parag.rawText)
                     {
                         if (changeStart == 0)
-                        {
+                    {
                             changeStart = null;
                             break;
-                        }
+                    }
                         changeStart--;
                         break;
-                    }
+                }
                     if (str.substr(0, parag.rawText.length+1) == parag.rawText+"\n")
-                    {
+                        {
                         changeStart = parag.getParagraphIndex();
                         break;
+                        }
                     }
-                }
                 if (str.substr(0, parag.rawText.length+1) == parag.rawText+"\n")
-                {
+                        {
                     str = str.substr(parag.rawText.length);
                     parag = parag.nextParagraph;
                     continue;
-                }
+                        }
                 if (changeStart == 0)
                 {
                     changeStart = null;
                     break;
-                }
+                    }
                 changeStart--;
                 break;
-            }
+                }
 
             var changeEnd: number = this._paragraphManager.lastParagraphIndex;//最後の変更点の直後の位置
             str = currentText;//コピー
             parag = this._paragraphManager.getParagraphByIndex(this._paragraphManager.lastParagraphIndex);
             while (true)
-            {
+                    {
                 if (parag.isFirstParagraph)
-                {
+                    {
                     changeEnd = null;
                     break;
-                }
+                    }
                 if (str.substr(str.length - parag.rawText.length-1) == "\n"+parag.rawText)
-                {
+                    {
                     str = str.substr(0, str.length - parag.rawText.length);
                     parag = parag.prevParagraph;
                     continue;
@@ -242,10 +242,10 @@ module NovelEditer
                 {
                     changeEnd = null;
                     break;
-                }
+            }
                 changeEnd++;
                 break;
-            }
+        }
 
             var ret: TextChangeInfo = new TextChangeInfo(changeStart,changeEnd);//帰り値
 
@@ -254,7 +254,7 @@ module NovelEditer
             if (num == null) num = -1;
             num++;
             while (this._paragraphList.size() > num)
-            {
+        {
                 this._paragraphList.removeElementAtIndex(num);
             }
             for (var k = this.getParagraphStartIndex(num); k < currentText.length; k++)
@@ -263,11 +263,11 @@ module NovelEditer
                 {
                     this._paragraphList.add(k);
                 }
-            }
+                }
             this._paragraphList.add(currentText.length);
             this._lastText = currentText;
             return ret;
-        }
+            }
         //指定段落の開始インデックスを取得
         getParagraphStartIndex(paragraphIndex: number):number
         {
@@ -328,9 +328,14 @@ module NovelEditer
             this.changeEndParagrapgIndex = end;
         }
     }
+    }
     export class ParagraphManager
     {
-        private _paragraphDictionary: collections.Dictionary<string, Paragraph> = new collections.Dictionary<string,Paragraph>();
+        private _paragraphDictionary: collections.Dictionary<string, Paragraph> = new collections.Dictionary<string, Paragraph>();
+        get ParagraphDictionary(): collections.Dictionary<string, Paragraph>
+        {
+            return this._paragraphDictionary;
+        }
         //先頭の段落
         private _headParagraph: Paragraph;
         //最終段落のインデックス
@@ -574,11 +579,30 @@ module NovelEditer
 
         toJSON(): string//じっそうしといて
         {
-            return "notImplement!!!!!!!!!!!!!!!!";
+            var jsonObj: any = {
+                prevParagraph: this.isFirstParagraph ? null : this.prevParagraph.getId(), nextParagraph: this.isFinalParagraph ? null : this.nextParagraph.getId(),
+                rawText: this.rawText,
+                paragraphIndex: this._paragraphIndex,
+                id:this._iD
+            };
+            return JSON.stringify(jsonObj);
         }
         fromJSON(str: string): void//じっそうしといて
         {
-            var exception = "notImplement!!!!!!!!!!!!!!!!";
+            var jsonObj: any = JSON.parse(str);
+            if (jsonObj.prevParagraph != null && this._manager.ParagraphDictionary.containsKey  (jsonObj.prevParagraph))
+            {
+                this.prevParagraph = this._manager.ParagraphDictionary.getValue(jsonObj.prevParagraph);
+                this.prevParagraph.nextParagraph = this;
+            }
+            if (jsonObj.nextParagraph != null && this._manager.ParagraphDictionary.containsKey(jsonObj.nextParagraph)) {
+                this.nextParagraph = this._manager.ParagraphDictionary.getValue(jsonObj.nextParagraph);
+                this.nextParagraph.prevParagraph = this;
+            }
+            this.rawText = jsonObj.rawText;
+            this.updateCacheHtml();
+            this._paragraphIndex = jsonObj.paragraphIndex;
+            this._iD = jsonObj.id;
         }
         set isEmphasized(isem: boolean)
         {

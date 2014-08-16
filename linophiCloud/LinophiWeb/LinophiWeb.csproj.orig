@@ -234,12 +234,6 @@
     <Content Include="Content\css\Edit\header.min.css">
       <DependentUpon>header.css</DependentUpon>
     </Content>
-    <Content Include="Content\css\Home\afterLogin.css">
-      <DependentUpon>afterLogin.less</DependentUpon>
-    </Content>
-    <Content Include="Content\css\Home\afterLogin.min.css">
-      <DependentUpon>afterLogin.css</DependentUpon>
-    </Content>
     <Content Include="Content\css\Edit\index.css">
       <DependentUpon>index.less</DependentUpon>
     </Content>
@@ -281,8 +275,6 @@
     <Content Include="Content\imgs\Edit\back-to-top.png" />
     <Content Include="Content\imgs\Edit\back-to-top2.png" />
     <Content Include="Content\imgs\Edit\square.png" />
-    <Content Include="Content\imgs\Home\book.jpg" />
-    <Content Include="Content\imgs\Home\samune.png" />
     <Content Include="Content\imgs\logo.png" />
     <Content Include="Content\imgs\logo2.png" />
     <Content Include="Content\imgs\social\facebook.png" />
@@ -319,10 +311,6 @@
     <Content Include="Content\css\Edit\header.css.map">
       <DependentUpon>header.css</DependentUpon>
     </Content>
-    <Content Include="Content\css\Home\afterLogin.less" />
-    <Content Include="Content\css\Home\afterLogin.css.map">
-      <DependentUpon>afterLogin.css</DependentUpon>
-    </Content>
     <Content Include="Content\css\Edit\index.less" />
     <Content Include="Content\css\Edit\index.css.map">
       <DependentUpon>index.css</DependentUpon>
@@ -353,9 +341,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\underscore-min.js" />
     <Content Include="Scripts\underscore.js" />
-    <Content Include="Views\Home\AfterLogin.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -373,6 +358,7 @@
     <Content Include="Views\Home\Developer.cshtml" />
     <Content Include="Views\Edit\EditBody.cshtml" />
     <Content Include="Views\Edit\Editor.cshtml" />
+    <Content Include="Views\Home\AfterLogin.cshtml" />
     <Content Include="Scripts\underscore-min.map" />
     <Content Include="Views\View\Index.cshtml" />
     <None Include="Web.Debug.config">
@@ -420,8 +406,11 @@
     <TypeScriptCompile Include="Scripts\Edit\EditPage.ts" />
     <TypeScriptCompile Include="Scripts\Novel\IParagraph.ts" />
     <TypeScriptCompile Include="Scripts\Novel\novel-editor.ts" />
-    <TypeScriptCompile Include="Scripts\Novel\ParagraphFactory.ts" />
+<<<<<<< HEAD
     <TypeScriptCompile Include="Scripts\Novel\novel-viewer.ts" />
+=======
+    <TypeScriptCompile Include="Scripts\Novel\ParagraphFactory.ts" />
+>>>>>>> 53cf757ce3c14161ce7c52a45f219eec2ecbe091
     <TypeScriptCompile Include="Scripts\typings\caret-util\caret-util.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />

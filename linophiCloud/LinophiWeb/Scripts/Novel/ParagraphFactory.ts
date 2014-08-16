@@ -1,6 +1,6 @@
 ﻿module NovelEditer
 {
-    class ParagraphFactory
+    export class ParagraphFactory
     {
         private _manager;
         constructor()

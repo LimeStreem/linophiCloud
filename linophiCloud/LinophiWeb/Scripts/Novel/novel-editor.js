@@ -66,7 +66,7 @@ var NovelEditer;
                 var changeEndIndexOfText;
                 if (changeInfo.changeEndParagrapgIndex == null)
                     changeEndIndexOfText = currentText.length;
-                else
+                    else
                     changeEndIndexOfText = this.getParagraphStartIndex(changeInfo.changeEndParagrapgIndex);
                 var changetext = currentText.substring(changeStartIndexOfText, changeEndIndexOfText);
 
@@ -79,12 +79,12 @@ var NovelEditer;
                         parag.updateParagraphIndex();
                     } else {
                         this._paragraphManager.getParagraphByIndex(changeInfo.changeEndParagrapgIndex).insertPrev(parag);
-                    }
+                }
                 } else {
                     this._paragraphManager.removeParagraphRange(changeInfo.changeStartParagraphIndex, changeInfo.changeEndParagrapgIndex);
                     this._paragraphManager.getParagraphByIndex(changeInfo.changeStartParagraphIndex).insertNext(parag);
                 }
-            }
+                }
 
             var caret = TextRegion.fromCaretInfo(this._editorTarget.caret());
 
@@ -93,7 +93,7 @@ var NovelEditer;
                 if (caret.begin <= num) {
                     this._paragraphManager.changeCurrentParagraphByIndex(j);
                     break;
-                }
+            }
             }
 
             //if (_.include(NovelEditer._shiftCaretKeys, event.keyCode))
@@ -146,16 +146,16 @@ var NovelEditer;
                     if (currentText.charCodeAt(l) == 0x0a) {
                         this._paragraphList.add(l);
                     }
-                }
+                        }
                 this._paragraphList.add(currentText.length);
                 return new TextChangeInfo(null, null);
-            }
+                        }
             if (currentText == "") {
                 this._lastText = "";
                 this._paragraphList.clear();
                 this._paragraphList.add(0);
                 return new TextChangeInfo(null, null);
-            }
+                    }
 
             //変更がない
             if (currentText == this._lastText)
@@ -190,7 +190,7 @@ var NovelEditer;
                 }
                 changeStart--;
                 break;
-            }
+                    }
 
             var changeEnd = this._paragraphManager.lastParagraphIndex;
             str = currentText; //コピー
@@ -211,7 +211,7 @@ var NovelEditer;
                 }
                 changeEnd++;
                 break;
-            }
+                    }
 
             var ret = new TextChangeInfo(changeStart, changeEnd);
 
@@ -238,6 +238,21 @@ var NovelEditer;
             if (paragraphIndex == 0)
                 return 0;
             return this._paragraphList.elementAtIndex(paragraphIndex - 1) + 1;
+        };
+
+        NovelEditer.prototype.checkChangeText = function (currentText) {
+            var length = Math.min(currentText.length, this._lastText2.length);
+            var changeStartPoint = -1;
+            for (var i = 0; i < length; i++) {
+                if (currentText.charAt(i) == this._lastText2.charAt(i)) {
+                    changeStartPoint = i;
+                    break;
+                }
+            }
+
+            //変更がない
+            // if(changeStartPoint==-1)return new TextChangeInfo()
+            return null;
         };
 
         NovelEditer.prototype.updateToshow = function () {
@@ -281,14 +296,6 @@ var NovelEditer;
         return NovelEditer;
     })();
     _NovelEditer.NovelEditer = NovelEditer;
-    var TextChangeInfo = (function () {
-        function TextChangeInfo(start, end) {
-            this.changeStartParagraphIndex = start;
-            this.changeEndParagrapgIndex = end;
-        }
-        return TextChangeInfo;
-    })();
-    _NovelEditer.TextChangeInfo = TextChangeInfo;
     var ParagraphManager = (function () {
         function ParagraphManager() {
             this._paragraphDictionary = new collections.Dictionary();
@@ -298,6 +305,14 @@ var NovelEditer;
             this._lastParagraphIndex = 0;
             this._currentParagraph = this._headParagraph;
         }
+        Object.defineProperty(ParagraphManager.prototype, "ParagraphDictionary", {
+            get: function () {
+                return this._paragraphDictionary;
+            },
+            enumerable: true,
+            configurable: true
+        });
+
         Object.defineProperty(ParagraphManager.prototype, "lastParagraphIndex", {
             get: function () {
                 return this._lastParagraphIndex;
@@ -510,10 +525,28 @@ var NovelEditer;
         };
 
         Paragraph.prototype.toJSON = function () {
-            return "notImplement!!!!!!!!!!!!!!!!";
+            var jsonObj = {
+                prevParagraph: this.isFirstParagraph ? null : this.prevParagraph.getId(), nextParagraph: this.isFinalParagraph ? null : this.nextParagraph.getId(),
+                rawText: this.rawText,
+                paragraphIndex: this._paragraphIndex,
+                id: this._iD
+            };
+            return JSON.stringify(jsonObj);
         };
         Paragraph.prototype.fromJSON = function (str) {
-            var exception = "notImplement!!!!!!!!!!!!!!!!";
+            var jsonObj = JSON.parse(str);
+            if (jsonObj.prevParagraph != null && this._manager.ParagraphDictionary.containsKey(jsonObj.prevParagraph)) {
+                this.prevParagraph = this._manager.ParagraphDictionary.getValue(jsonObj.prevParagraph);
+                this.prevParagraph.nextParagraph = this;
+            }
+            if (jsonObj.nextParagraph != null && this._manager.ParagraphDictionary.containsKey(jsonObj.nextParagraph)) {
+                this.nextParagraph = this._manager.ParagraphDictionary.getValue(jsonObj.nextParagraph);
+                this.nextParagraph.prevParagraph = this;
+            }
+            this.rawText = jsonObj.rawText;
+            this.updateCacheHtml();
+            this._paragraphIndex = jsonObj.paragraphIndex;
+            this._iD = jsonObj.id;
         };
 
         Object.defineProperty(Paragraph.prototype, "isEmphasized", {
