@@ -574,6 +574,14 @@ var NovelEditer;
             return this._iD;
         };
 
+        Paragraph.prototype.generateId = function () {
+            var id = "";
+            for (var i = 0; i < 10; i++) {
+                id += Paragraph._IdString.substr(Math.floor(Math.random() * Paragraph._IdString.length), 1);
+            }
+            return id;
+        };
+
         Paragraph.prototype.toJSON = function () {
             var jsonObj = {
                 prevParagraph: this.isFirstParagraph ? null : this.prevParagraph.getId(), nextParagraph: this.isFinalParagraph ? null : this.nextParagraph.getId(),
@@ -854,6 +862,7 @@ var NovelEditer;
         Paragraph.prototype.toString = function () {
             return this.rawText;
         };
+        Paragraph._IdString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         return Paragraph;
     })();
     _NovelEditer.Paragraph = Paragraph;

@@ -10,6 +10,7 @@ module NovelEditer
 {
     export class NovelEditer
     {
+        
         private static _endOfLineChar: string[] = ["\n"];
         private static _shiftCaretKeys: number[] = [KeyCodes.KeyCode.ArrowRight, KeyCodes.KeyCode.ArrowLeft, KeyCodes.KeyCode.ArrowDown, KeyCodes.KeyCode.ArrowUp];
         //ユーザーが記述してるエディタ
@@ -606,6 +607,7 @@ module NovelEditer
 
     export class Paragraph implements IParagraph
     {
+        private static _IdString: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         //マークアップ付の生テキスト
         private _rawText: string;
         //段落管理クラス
@@ -652,6 +654,16 @@ module NovelEditer
         getId(): string
         {
             return this._iD;
+        }
+
+        generateId(): string
+        {
+            var id = "";
+            for (var i = 0; i < 10; i++)
+            {
+                id+=Paragraph._IdString.substr(Math.floor(Math.random()*Paragraph._IdString.length),1);
+            }
+            return id;
         }
 
         toJSON(): string//じっそうしといて

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceDefinition name="linophiCloud" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2014-06.2.4">
-  <WebRole name="LinophiWeb" vmsize="ExtraLarge">
+  <WebRole name="LinophiWeb" vmsize="ExtraSmall">
     <Sites>
       <Site name="Web">
         <Bindings>
@@ -26,4 +26,9 @@
       <Setting name="SQL-ConnectionString" />
     </ConfigurationSettings>
   </WebRole>
+  <WorkerRole name="LinophiCrawler" vmsize="Small">
+    <Imports>
+      <Import moduleName="Diagnostics" />
+    </Imports>
+  </WorkerRole>
 </ServiceDefinition>
