@@ -11,7 +11,7 @@ namespace LinophiWeb.Controllers
         // GET: Edit
         public ActionResult Index()
         {
-            return View();
+            return View("Editor");
         }
     }
 }

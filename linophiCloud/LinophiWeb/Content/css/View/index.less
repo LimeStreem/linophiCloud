@@ -1,0 +1,101 @@
+﻿html{
+    height:100%;
+    width:100%;
+}
+body {
+  height: 100%;     
+  width:100%;        /* #containerのmin-heightに対して必要なもの */
+  margin: 0;
+  padding: 0;
+}
+
+div#container {
+  background: #fff8ee;
+  margin: 0 auto;
+  position: relative;       /* フッターの為の位置決め用 */
+  
+  height: auto !important;  /* IE6対策：この2行で */
+  height: 100%;             /* IE6対策：擬似的にmin-heightと同じことをさせてる */
+  
+  min-height: 100%;         /* 中身が少なくても高さ100%にする */
+}
+
+.Topimage{
+    position:absolute;
+}
+
+.toTop{
+    color:gray;
+    font-weight:bolder;
+    position:absolute;
+    float:left;
+    margin-top:15px;
+    margin-left:50px;
+    text-decoration:none;
+    text-shadow:1px 1px 1px;
+    letter-spacing:0.2em;
+}
+
+header {
+  background:white;
+  height:50px;
+  h1{
+    margin:0;
+}
+}
+
+article {
+    position:relative;
+    margin:0 auto;
+    height:100%;    /* フッターの内容量によっては下方向のpaddingを調整 */
+    
+}
+
+section#right{
+    float:left;
+    height:100%;
+}
+
+section#left{
+    float:left;
+    width:50%;
+    height:100%;
+    border-right: 1px solid #f3e2c9;
+}
+
+.img-to-left{
+    width:120px;
+    position:absolute;
+    bottom:15%;
+    left:2%;
+    opacity:0.2;
+        &:hover{
+        opacity:0.99;
+    }
+}
+
+.img-to-right{
+    width:120px;
+    position:absolute;
+    bottom:15%;
+    right:2%;
+    opacity:0.2;
+        &:hover{
+        opacity:0.99;
+    }
+}
+
+footer {
+  background: white;
+  height:100px;
+  bottom: 0;                /* フッターが下に来るようにする */
+  color: white;
+  position: absolute;
+  width: 100%;
+  .footer-line{
+    margin:0 auto;
+    margin-top:1%;
+    width:60%;
+    border-top:2px solid gray;
+  }
+}

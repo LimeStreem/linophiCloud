@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="linophiCloud" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2014-01.2.3">
+<ServiceDefinition name="linophiCloud" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2014-06.2.4">
   <WebRole name="LinophiWeb" vmsize="Small">
     <Sites>
       <Site name="Web">
@@ -15,15 +15,15 @@
       <Import moduleName="Diagnostics" />
     </Imports>
     <ConfigurationSettings>
-      <Setting name="Twitter-ConsumerKey"/>
-      <Setting name="Twitter-ConsumerSecret"/>
-      <Setting name="Facebook-AppID"/>
-      <Setting name ="Facebook-AppSecret"/>
-      <Setting name ="Google-ClientId"/>
-      <Setting name="Google-ClientSecret"/>
-      <Setting name="YahooJpn-AppID"/>
-      <Setting name="YahooJpn-AppSecret"/>
-      <Setting name="SQL-ConnectionString"/>
+      <Setting name="Twitter-ConsumerKey" />
+      <Setting name="Twitter-ConsumerSecret" />
+      <Setting name="Facebook-AppID" />
+      <Setting name="Facebook-AppSecret" />
+      <Setting name="Google-ClientId" />
+      <Setting name="Google-ClientSecret" />
+      <Setting name="YahooJpn-AppID" />
+      <Setting name="YahooJpn-AppSecret" />
+      <Setting name="SQL-ConnectionString" />
     </ConfigurationSettings>
   </WebRole>
 </ServiceDefinition>
