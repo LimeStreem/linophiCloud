@@ -239,7 +239,7 @@
     </Content>
     <Content Include="Content\css\Home\afterLogin.min.css">
       <DependentUpon>afterLogin.css</DependentUpon>
-      </Content>
+    </Content>
     <Content Include="Content\css\Edit\index.css">
       <DependentUpon>index.less</DependentUpon>
     </Content>
@@ -323,9 +323,6 @@
     <Content Include="Content\css\Home\afterLogin.css.map">
       <DependentUpon>afterLogin.css</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Content\css\Edit\index.less" />
     <Content Include="Content\css\Edit\index.css.map">
       <DependentUpon>index.css</DependentUpon>
@@ -356,6 +353,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\underscore-min.js" />
     <Content Include="Scripts\underscore.js" />
+    <Content Include="Views\Home\AfterLogin.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -371,12 +371,8 @@
     <Content Include="Views\Home\Terms.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Developer.cshtml" />
-    <Content Include="Views\Edit\Index.cshtml" />
-    <Content Include="Views\Shared\_EditorLayout.cshtml" />
-    <Content Include="Views\Home\AfterLogin.cshtml" />
     <Content Include="Views\Edit\EditBody.cshtml" />
     <Content Include="Views\Edit\Editor.cshtml" />
-    <Content Include="Views\Home\AfterLogin.cshtml" />
     <Content Include="Scripts\underscore-min.map" />
     <Content Include="Views\View\Index.cshtml" />
     <None Include="Web.Debug.config">
