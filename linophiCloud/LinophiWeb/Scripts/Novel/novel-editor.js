@@ -424,6 +424,18 @@ var NovelEditer;
             configurable: true
         });
 
+        //ディクショナリへの登録
+        ParagraphManager.prototype.registParagraph = function (parag) {
+            if (this._paragraphDictionary.containsKey(parag.getId()))
+                return;
+            this._paragraphDictionary.setValue(parag.getId(), parag);
+        };
+
+        //ディクショナリからの解除
+        ParagraphManager.prototype.unregistParagraph = function (id) {
+            this._paragraphDictionary.remove(id);
+        };
+
         //現在の段落(とその強調表示)を変更する
         ParagraphManager.prototype.changeCurrentParagraph = function (currentParagraph) {
             this._currentParagraph.isEmphasized = false;
@@ -456,6 +468,7 @@ var NovelEditer;
 
         //末尾に段落を追加する
         ParagraphManager.prototype.addParagraph = function (parag) {
+            this.registParagraph(parag);
             if (this._lastParagraphIndex == 0) {
                 this._headParagraph = parag;
                 this._currentParagraph = parag;
@@ -500,22 +513,14 @@ var NovelEditer;
             var parag = this._headParagraph;
             var paragPos = 0;
             while (parag.rawText.length < caretPos) {
-                caretPos -= parag.rawText.length + 1;
-                paragPos = paragPos + 1;
-                if (caretPos == 0 && parag.isFinalParagraph) {
+                if (parag.isFinalParagraph) {
                     var ret = new CaretPosition(paragPos, 0);
                     ret.isParagraphLast = true;
                     ret.isTextLast = true;
                     return ret;
                 }
-                if (parag.isFinalParagraph) {
-                    /*
-                    * 編集文字列への入力後、saveInputが呼ばれるまでの僅かな隙間にEnter等によって
-                    * targetEditor.varが変化するとlastCaret、lastTextとの整合性が崩れてここが呼ばれる？
-                    */
-                    var sss = 0;
-                    sss++;
-                }
+                caretPos -= parag.rawText.length + 1;
+                paragPos++;
                 parag = parag.nextParagraph;
             }
             var pos = new CaretPosition(paragPos, caretPos);
@@ -666,6 +671,7 @@ var NovelEditer;
 
         //指定した段落をこの段落の直後に挿入
         Paragraph.prototype.insertNext = function (next) {
+            this._manager.registParagraph(next);
             if (!this.isFinalParagraph) {
                 var last = next.getLastParagraph();
                 last.nextParagraph = this.nextParagraph;
@@ -678,6 +684,7 @@ var NovelEditer;
 
         //指定した段落をこの段落の直前に挿入
         Paragraph.prototype.insertPrev = function (prev) {
+            this._manager.registParagraph(prev);
             if (!this.isFirstParagraph) {
                 prev.prevParagraph = this.prevParagraph;
                 this.prevParagraph.nextParagraph = prev;
@@ -745,6 +752,7 @@ var NovelEditer;
 
         //この段落を削除する
         Paragraph.prototype.removeThis = function () {
+            this._manager.unregistParagraph(this._iD);
             if (this.isFinalParagraph) {
                 if (this.isFirstParagraph) {
                     this.rawText = "";
@@ -795,6 +803,9 @@ var NovelEditer;
                 //return front;
             }
             front.updateParagraphIndex();
+            this._manager.unregistParagraph(this._iD);
+            this._manager.registParagraph(front);
+            this._manager.registParagraph(front.nextParagraph);
             return front;
         };
 
