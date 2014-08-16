@@ -20,6 +20,9 @@ var NovelEditer;
             this._lastCaret = new TextRegion(0, 0);
             //直前の編集文字列
             this._lastText = "";
+            //改行コードの位置を示す。
+            //テキスト末尾も含む
+            this._paragraphList = new collections.LinkedList();
             this._previewBounds = previewBounds;
             this._editorTarget = editorTarget;
             this._previewTarget = previewTarget;
@@ -34,282 +37,207 @@ var NovelEditer;
             this._editorTarget.mouseup(function () {
                 return _this.mouseHandler();
             });
-            this._editorTarget.bind('paste', function () {
-                return _this.pasteCommited();
-            });
             this._editorTarget.bind('input propertychange', function () {
                 return _this.textChanged();
             });
             this._paragraphManager = new ParagraphManager();
+            this._paragraphList.add(0);
         }
-        //        カレットと編集文字列のログを更新する
-        NovelEditer.prototype.updateLastData = function () {
-            this._lastCaret = TextRegion.fromCaretInfo(this._editorTarget.caret());
-            this._lastText = this._editorTarget.val();
-        };
-
-        NovelEditer.prototype.pasteCommited = function () {
-            this._isPasted = true;
-            this._lastText = this._editorTarget.val();
-            this._lastCaret = TextRegion.fromCaretInfo(this._editorTarget.caret());
-        };
-
         NovelEditer.prototype.textChanged = function () {
-            console.info("textChanged is Called...!:\t" + this._editorTarget.val());
-            if (this._isPasted) {
-                var diffLength = this._editorTarget.val().length - this._lastText.length;
-                var difftext = this._editorTarget.val().substr(this._lastCaret.begin, diffLength);
-
-                //直前の段落カレット位置取得
-                var pos = this._paragraphManager.getCaretPositionAsParag(this._lastCaret.begin);
-
-                //ペースト位置が段落の隙間なら、その隙間に挿入
-                //段落の中なら、その位置で段落を二つに分けて、その間に挿入
-                var frontParag;
-                var backParag;
-                var currentParag = this._paragraphManager.getParagraphByIndex(pos.paragraphIndex);
-                var frontStr;
-                var backStr;
-                if (pos.paragraphIndex == 0) {
-                    frontParag = null;
-                    if (pos.paragraphIndex == this._paragraphManager.lastParagraphIndex)
-                        backParag = null;
-                    else
-                        backParag = currentParag.nextParagraph;
-                } else if (pos.paragraphIndex == this._paragraphManager.lastParagraphIndex) {
-                    frontParag = currentParag.prevParagraph;
-                    backParag = null;
-                } else {
-                    frontParag = currentParag.prevParagraph;
-                    backParag = currentParag.nextParagraph;
-                }
-                frontStr = currentParag.rawText.substring(0, pos.charIndex);
-                backStr = currentParag.rawText.substring(pos.charIndex, this._paragraphManager.headParagraph.rawText.length);
-
-                difftext = frontStr + difftext + backStr;
-                currentParag.removeThis();
-
-                var pasteParag = this._paragraphManager.createParagraphFromText(difftext);
-
-                if (backParag != null) {
-                    pasteParag.getLastParagraph().insertNext(backParag);
-                }
-                if (frontParag != null) {
-                    frontParag.insertNext(pasteParag);
-                }
-                if (backParag == null && frontParag == null) {
-                    this._paragraphManager.currentParagraph = pasteParag;
-                    this._paragraphManager.headParagraph = pasteParag;
-                    pasteParag.updateParagraphIndex();
-                }
-
-                this.updateLastData();
-                this._isPasted = false;
-            }
-            //else
-            //{
-            //    var caret: TextRegion = TextRegion.fromCaretInfo(this._editorTarget.caret());//現在のカレット取得
-            //    if (!caret.isRegion() && !this._lastCaret.isRegion()) //範囲指定じゃない
-            //    {
-            //        //Enterによる改行
-            //        if (event.keyCode == KeyCodes.KeyCode.Enter && this._editorTarget.val().charCodeAt(caret.begin - 1) == 0x0a) {
-            //            /*直前のカレット位置が
-            //             *段落末尾なら、その後ろに新規段落を挿入し、これをcarrentに。
-            //             * 段落先頭なら、その前に新規段落を挿入し、carrentはそのまま。
-            //             * 段落中なら、そこで分断し、後ろのほうをcarrent
-            //             */
-            //            console.info("catch [Enter]");
-            //            var pos: CaretPosition = this._paragraphManager.getCaretPositionAsParag(this._lastCaret.begin);//直前のカレット位置
-            //            if (pos.isParagraphLast)//段落末尾
-            //            {
-            //                this._paragraphManager.getParagraphByIndex(pos.paragraphIndex).insertNext(
-            //                    new Paragraph(this._paragraphManager, ""));
-            //                this._paragraphManager.moveNext();
-            //            }
-            //            else if (pos.charIndex == 0)//段落先頭
-            //            {
-            //                this._paragraphManager.getParagraphByIndex(pos.paragraphIndex).insertPrev(
-            //                    new Paragraph(this._paragraphManager, ""));
-            //            }
-            //            else {
-            //                var div = this._paragraphManager.getParagraphByIndex(pos.paragraphIndex).sepalateParagraph(pos.charIndex);
-            //                this._paragraphManager.changeCurrentParagraph(div.nextParagraph);
-            //            }
-            //        }
-            //        else if (event.keyCode == KeyCodes.KeyCode.BackSpace && caret.begin != 0) {
-            //            console.info("catch [Back]");
-            //            var lastCaretPos: CaretPosition = this._paragraphManager.getCaretPositionAsParag(this._lastCaret.begin);
-            //            var currentCaretPos: CaretPosition = this._paragraphManager.getCaretPositionAsParag(caret.begin);
-            //            var backStr: string;//切られた後ろの文字列
-            //            var backParag: Paragraph;//切られた後ろの次の段落
-            //            if (lastCaretPos.isTextLast) {
-            //                backStr = "";
-            //                backParag = null;
-            //            }
-            //            else {
-            //                var pr: Paragraph = this._paragraphManager.getParagraphByIndex(lastCaretPos.paragraphIndex);
-            //                backStr = pr.rawText.substring(lastCaretPos.charIndex, pr.rawText.length);
-            //                if (pr.isFinalParagraph) backParag = null;
-            //                else backParag = pr.nextParagraph;
-            //            }
-            //            var frontStr: string;//切られた前の文字列
-            //            var frontParag: Paragraph;//切られた前の文字列の段落
-            //            frontParag = this._paragraphManager.getParagraphByIndex(currentCaretPos.paragraphIndex);
-            //            frontStr = frontParag.rawText.substr(0, currentCaretPos.charIndex);
-            //        var currentIndex: number = this._paragraphManager.currentParagraph.getParagraphIndex();
-            //        if (currentCaretPos.paragraphIndex < currentIndex && currentIndex <= lastCaretPos.paragraphIndex)//currentが削除されるとき
-            //        {
-            //            this._paragraphManager.changeCurrentParagraph(frontParag);
-            //        }
-            //        frontParag.rawText = frontStr + backStr;
-            //        frontParag.nextParagraph = backParag;
-            //        frontParag.updateParagraphIndex();
-            //        frontParag.updateCacheHtml();
-            //        /*
-            //         * 直前のカレットのend位置から、現在のカレットのbegin位置まで削除
-            //         * 直前が段落中、段落末尾なら、その段落に接続
-            //         * 段落先頭なら、つなげる先の先頭を新しい段落にして接続
-            //         * 現在が先頭なら、直前につなげる
-            //         */
-            //    }
-            //    else if (event.keyCode == KeyCodes.KeyCode.Delete)
-            //    {
-            //        console.info("catch [Del]");
-            //        var delCount = this._lastText.length - this._editorTarget.val().length;
-            //        //文字列の長さからデリーとされた文字列の長さを考える。
-            //        //var lnc2 = this.countLf(this._lastTextOnKeyDown.substr(caret.begin, delCount));
-            //        //if (lnc2 != 0)
-            //        //{
-            //        //    this._currentParagraph.nextParagraph.removeRange(lnc2 - 1);
-            //        //}
-            //        /*
-            //         * 算出した削除長で上のbackspaceと同様に削除
-            //         */
-            //    }
-            //    this._paragraphManager.reLoadParagraph(this._editorTarget.val(), caret.begin);
-            //    this.updateToshow();
-            //    //this._lastCaret = caret;
-            //    //this._lastText = this._editorTarget.val();
-            //    this.updateLastData();
-            //    console.info("\tcurrent       =\t" + this._paragraphManager.currentParagraph.getParagraphIndex() + ":" +
-            //        this._paragraphManager.currentParagraph.rawText);
-            //    console.info("\tlastCurret:   =\t" + this._lastCaret.begin);
-            //    console.info("\tparagraphCount=\t" + this._paragraphManager.paragraphCount + "\n");
-            //}
-            //}
+            //console.info("textChanged is Called...!:\t"+this._editorTarget.val());
         };
 
-        //private _previewKeycode: number;
-        //private _lastLnCount: number;
         //キー入力による編集文字列変化の反映処理
         NovelEditer.prototype.saveInput = function (event) {
             console.info("saveInput is Called...!");
-            var caret = TextRegion.fromCaretInfo(this._editorTarget.caret());
-            if (!caret.isRegion() && !this._lastCaret.isRegion()) {
-                //Enterによる改行
-                if (event.keyCode == 13 /* Enter */ && this._editorTarget.val().charCodeAt(caret.begin - 1) == 0x0a) {
-                    /*直前のカレット位置が
-                    *段落末尾なら、その後ろに新規段落を挿入し、これをcarrentに。
-                    * 段落先頭なら、その前に新規段落を挿入し、carrentはそのまま。
-                    * 段落中なら、そこで分断し、後ろのほうをcarrent
-                    */
-                    console.info("catch [Enter]");
-                    var pos = this._paragraphManager.getCaretPositionAsParag(this._lastCaret.begin);
-                    if (pos.isParagraphLast) {
-                        this._paragraphManager.getParagraphByIndex(pos.paragraphIndex).insertNext(new Paragraph(this._paragraphManager, ""));
-                        this._paragraphManager.moveNext();
-                    } else if (pos.charIndex == 0) {
-                        this._paragraphManager.getParagraphByIndex(pos.paragraphIndex).insertPrev(new Paragraph(this._paragraphManager, ""));
+
+            var currentText = this._editorTarget.val();
+            if (currentText != this._lastText) {
+                var changeInfo = this.checkChangeText(currentText);
+
+                //変化してる最初のパラグラフの頭のインデックス
+                var changeStartIndexOfText;
+                if (changeInfo.changeStartParagraphIndex == null)
+                    changeStartIndexOfText = 0;
+                else
+                    changeStartIndexOfText = this.getParagraphStartIndex(changeInfo.changeStartParagraphIndex + 1);
+
+                //変化の最後の次
+                var changeEndIndexOfText;
+                if (changeInfo.changeEndParagrapgIndex == null)
+                    changeEndIndexOfText = currentText.length;
+                else
+                    changeEndIndexOfText = this.getParagraphStartIndex(changeInfo.changeEndParagrapgIndex);
+                var changetext = currentText.substring(changeStartIndexOfText, changeEndIndexOfText);
+
+                var parag = this._paragraphManager.createParagraphFromText(changetext);
+
+                if (changeInfo.changeStartParagraphIndex == null) {
+                    if (changeInfo.changeEndParagrapgIndex == null) {
+                        this._paragraphManager.headParagraph = parag;
+                        this._paragraphManager.changeCurrentParagraph(parag);
+                        parag.updateParagraphIndex();
                     } else {
-                        var div = this._paragraphManager.getParagraphByIndex(pos.paragraphIndex).sepalateParagraph(pos.charIndex);
-                        this._paragraphManager.changeCurrentParagraph(div.nextParagraph);
+                        this._paragraphManager.getParagraphByIndex(changeInfo.changeEndParagrapgIndex).insertPrev(parag);
                     }
-                } else if (_.include(NovelEditer._shiftCaretKeys, event.keyCode)) {
-                    console.info("catch [Arrow]");
-                    var subStr;
-                    if (this._lastCaret.begin < caret.begin) {
-                        subStr = this._lastText.substring(this._lastCaret.begin, caret.begin);
-                        var clf = this.countLf(subStr);
-                        for (var i = 0; i < clf; i++) {
-                            this._paragraphManager.moveNext();
-                        }
-                    } else if (this._lastCaret.begin > caret.begin) {
-                        subStr = this._lastText.substring(caret.begin, this._lastCaret.begin);
-                        var clf = this.countLf(subStr);
-                        for (var i = 0; i < clf; i++) {
-                            this._paragraphManager.movePrev();
-                        }
-                    }
-                    /*直前と現在の
-                    * カレット位置の間に挟まれる文字列を取得し、その中に現れる改行コード分だけ
-                    * currentをずらす
-                    */
-                } else if (event.keyCode == 8 /* BackSpace */ && caret.begin != 0) {
-                    console.info("catch [Back]");
-
-                    var lastCaretPos = this._paragraphManager.getCaretPositionAsParag(this._lastCaret.begin);
-                    var currentCaretPos = this._paragraphManager.getCaretPositionAsParag(caret.begin);
-
-                    var backStr;
-                    var backParag;
-                    if (lastCaretPos.isTextLast) {
-                        backStr = "";
-                        backParag = null;
-                    } else {
-                        var pr = this._paragraphManager.getParagraphByIndex(lastCaretPos.paragraphIndex);
-                        backStr = pr.rawText.substring(lastCaretPos.charIndex, pr.rawText.length);
-                        if (pr.isFinalParagraph)
-                            backParag = null;
-                        else
-                            backParag = pr.nextParagraph;
-                    }
-
-                    var frontStr;
-                    var frontParag;
-
-                    frontParag = this._paragraphManager.getParagraphByIndex(currentCaretPos.paragraphIndex);
-                    frontStr = frontParag.rawText.substr(0, currentCaretPos.charIndex);
-
-                    var currentIndex = this._paragraphManager.currentParagraph.getParagraphIndex();
-                    if (currentCaretPos.paragraphIndex < currentIndex && currentIndex <= lastCaretPos.paragraphIndex) {
-                        this._paragraphManager.changeCurrentParagraph(frontParag);
-                    }
-
-                    frontParag.rawText = frontStr + backStr;
-                    frontParag.nextParagraph = backParag;
-                    frontParag.updateParagraphIndex();
-                    frontParag.updateCacheHtml();
-                    /*
-                    * 直前のカレットのend位置から、現在のカレットのbegin位置まで削除
-                    * 直前が段落中、段落末尾なら、その段落に接続
-                    * 段落先頭なら、つなげる先の先頭を新しい段落にして接続
-                    * 現在が先頭なら、直前につなげる
-                    */
-                } else if (event.keyCode == 46 /* Delete */) {
-                    console.info("catch [Del]");
-
-                    var delCount = this._lastText.length - this._editorTarget.val().length;
-                    //文字列の長さからデリーとされた文字列の長さを考える。
-                    //var lnc2 = this.countLf(this._lastTextOnKeyDown.substr(caret.begin, delCount));
-                    //if (lnc2 != 0)
-                    //{
-                    //    this._currentParagraph.nextParagraph.removeRange(lnc2 - 1);
-                    //}
-                    /*
-                    * 算出した削除長で上のbackspaceと同様に削除
-                    */
+                } else {
+                    this._paragraphManager.removeParagraphRange(changeInfo.changeStartParagraphIndex, changeInfo.changeEndParagrapgIndex);
+                    this._paragraphManager.getParagraphByIndex(changeInfo.changeStartParagraphIndex).insertNext(parag);
                 }
             }
-            this._paragraphManager.reLoadParagraph(this._editorTarget.val(), caret.begin);
+
+            var caret = TextRegion.fromCaretInfo(this._editorTarget.caret());
+
+            for (var j = 0; j < this._paragraphList.size(); j++) {
+                var num = this._paragraphList.elementAtIndex(j);
+                if (caret.begin <= num) {
+                    this._paragraphManager.changeCurrentParagraphByIndex(j);
+                    break;
+                }
+            }
+
+            //if (_.include(NovelEditer._shiftCaretKeys, event.keyCode))
+            //{//矢印キーによる移動
+            //    console.info("catch [Arrow]");
+            //    var subStr: string;
+            //    if (this._lastCaret.begin < caret.begin)
+            //    {
+            //        subStr = this._lastText.substring(this._lastCaret.begin, caret.begin);
+            //        var clf: number = this.countLf(subStr);
+            //        for (var i = 0; i < clf; i++)
+            //        {
+            //            this._paragraphManager.moveNext();
+            //        }
+            //    }
+            //    else if (this._lastCaret.begin > caret.begin)
+            //    {
+            //        subStr = this._lastText.substring(caret.begin, this._lastCaret.begin);
+            //        var clf: number = this.countLf(subStr);
+            //        for (var i = 0; i < clf; i++)
+            //        {
+            //            this._paragraphManager.movePrev();
+            //        }
+            //    }
+            //    /*直前と現在の
+            //     * カレット位置の間に挟まれる文字列を取得し、その中に現れる改行コード分だけ
+            //     * currentをずらす
+            //     */
+            //}
+            this._lastCaret = caret;
             this.updateToshow();
 
-            //this._lastCaret = caret;
-            //this._lastText = this._editorTarget.val();
-            this.updateLastData();
-
             console.info("\tcurrent       =\t" + this._paragraphManager.currentParagraph.getParagraphIndex() + ":" + this._paragraphManager.currentParagraph.rawText);
-            console.info("\tlastCurret:   =\t" + this._lastCaret.begin);
+
+            //console.info("\tlastCurret:   =\t" + this._lastCaret.begin);
+            var str = "";
+            for (var i = 0; i < this._paragraphList.size(); i++) {
+                str += ", " + this._paragraphList.elementAtIndex(i);
+            }
+            console.info("endParag:       \t" + str);
             console.info("\tparagraphCount=\t" + this._paragraphManager.paragraphCount + "\n");
+        };
+
+        //テキストの変更箇所を探して、更新します
+        NovelEditer.prototype.checkChangeText = function (currentText) {
+            if (this._lastText == "") {
+                this._lastText = currentText;
+                this._paragraphList.clear();
+                for (var l = 0; l < currentText.length; l++) {
+                    if (currentText.charCodeAt(l) == 0x0a) {
+                        this._paragraphList.add(l);
+                    }
+                }
+                this._paragraphList.add(currentText.length);
+                return new TextChangeInfo(null, null);
+            }
+            if (currentText == "") {
+                this._lastText = "";
+                this._paragraphList.clear();
+                this._paragraphList.add(0);
+                return new TextChangeInfo(null, null);
+            }
+
+            //変更がない
+            if (currentText == this._lastText)
+                return new TextChangeInfo(0, 0);
+
+            var parag = this._paragraphManager.headParagraph;
+            var changeStart = 0;
+            var str = currentText;
+            while (true) {
+                if (parag.isFinalParagraph) {
+                    if (str != parag.rawText) {
+                        if (changeStart == 0) {
+                            changeStart = null;
+                            break;
+                        }
+                        changeStart--;
+                        break;
+                    }
+                    if (str.substr(0, parag.rawText.length + 1) == parag.rawText + "\n") {
+                        changeStart = parag.getParagraphIndex();
+                        break;
+                    }
+                }
+                if (str.substr(0, parag.rawText.length + 1) == parag.rawText + "\n") {
+                    str = str.substr(parag.rawText.length);
+                    parag = parag.nextParagraph;
+                    continue;
+                }
+                if (changeStart == 0) {
+                    changeStart = null;
+                    break;
+                }
+                changeStart--;
+                break;
+            }
+
+            var changeEnd = this._paragraphManager.lastParagraphIndex;
+            str = currentText; //コピー
+            parag = this._paragraphManager.getParagraphByIndex(this._paragraphManager.lastParagraphIndex);
+            while (true) {
+                if (parag.isFirstParagraph) {
+                    changeEnd = null;
+                    break;
+                }
+                if (str.substr(str.length - parag.rawText.length - 1) == "\n" + parag.rawText) {
+                    str = str.substr(0, str.length - parag.rawText.length);
+                    parag = parag.prevParagraph;
+                    continue;
+                }
+                if (changeEnd == this._paragraphManager.lastParagraphIndex) {
+                    changeEnd = null;
+                    break;
+                }
+                changeEnd++;
+                break;
+            }
+
+            var ret = new TextChangeInfo(changeStart, changeEnd);
+
+            //更新処理
+            var num = ret.changeStartParagraphIndex;
+            if (num == null)
+                num = -1;
+            num++;
+            while (this._paragraphList.size() > num) {
+                this._paragraphList.removeElementAtIndex(num);
+            }
+            for (var k = this.getParagraphStartIndex(num); k < currentText.length; k++) {
+                if (currentText.charCodeAt(k) == 0x0a) {
+                    this._paragraphList.add(k);
+                }
+            }
+            this._paragraphList.add(currentText.length);
+            this._lastText = currentText;
+            return ret;
+        };
+
+        //指定段落の開始インデックスを取得
+        NovelEditer.prototype.getParagraphStartIndex = function (paragraphIndex) {
+            if (paragraphIndex == 0)
+                return 0;
+            return this._paragraphList.elementAtIndex(paragraphIndex - 1) + 1;
         };
 
         NovelEditer.prototype.updateToshow = function () {
@@ -324,31 +252,6 @@ var NovelEditer;
             }
         };
 
-        //private _calcFocusRegion(text: string, selectionBegin: number, selectionEnd: number): TextRegion
-        //{
-        //    var length: number = text.length;
-        //    var end = selectionEnd, begin = selectionBegin;
-        //    if (!_.include(NovelEditer._endOfLineChar, text.substr(end, 1)))
-        //        for (var i = selectionEnd; i < length; i++)
-        //        {
-        //            end = i + 1;
-        //            if (_.include(NovelEditer._endOfLineChar, text.substr(end, 1))) break;
-        //        }
-        //    for (i = selectionBegin; i >= 0; i--)
-        //    {
-        //        begin = i;
-        //        if (i == 0 || _.include(NovelEditer._endOfLineChar, text.substr(i - 1, 1))) break;
-        //    }
-        //    return new TextRegion(begin, end);
-        //}
-        //updateFocusLine(): void
-        //{
-        //    var currentText: string = this._editorTarget.val();
-        //    var caret: CaretInfo = this._editorTarget.caret();
-        //    var region = this._calcFocusRegion(currentText, caret.begin, caret.end);
-        //    this._focusLine = region.substr(currentText);
-        //    console.warn("focusLine:" + this._focusLine);
-        //}
         //改行の数をカウントする
         NovelEditer.prototype.countLf = function (str) {
             var count = 0;
@@ -361,8 +264,8 @@ var NovelEditer;
         };
 
         NovelEditer.prototype.mouseHandler = function () {
-            console.info("mouseHandler is Called...!");
-            var caret = TextRegion.fromCaretInfo(this._editorTarget.caret());
+            //console.info("mouseHandler is Called...!");
+            //var caret: TextRegion = TextRegion.fromCaretInfo(this._editorTarget.caret());
             //this._caret = caret;
             //this.updateFocusLine();
             //var region = TextRegion.fromCaretInfo(this._editorTarget.caret());
@@ -378,6 +281,14 @@ var NovelEditer;
         return NovelEditer;
     })();
     _NovelEditer.NovelEditer = NovelEditer;
+    var TextChangeInfo = (function () {
+        function TextChangeInfo(start, end) {
+            this.changeStartParagraphIndex = start;
+            this.changeEndParagrapgIndex = end;
+        }
+        return TextChangeInfo;
+    })();
+    _NovelEditer.TextChangeInfo = TextChangeInfo;
     var ParagraphManager = (function () {
         function ParagraphManager() {
             this._paragraphDictionary = new collections.Dictionary();
@@ -444,6 +355,31 @@ var NovelEditer;
             console.info("currentParagraph:" + currentParagraph.rawText);
         };
 
+        //startからendをつないで、その間を削除。end==nullで後ろ全部
+        ParagraphManager.prototype.removeParagraphRange = function (start, end) {
+            var startParag = this.getParagraphByIndex(start);
+            var currentIndex = this._currentParagraph.getParagraphIndex();
+            if (end == null) {
+                if (start < currentIndex) {
+                    this.changeCurrentParagraph(startParag);
+                }
+                startParag.nextParagraph = null;
+                startParag.updateParagraphIndex();
+                this.refreshRegist();
+                return;
+            }
+            if (start < currentIndex && currentIndex < end)
+                this.changeCurrentParagraph(startParag);
+            var endParag = this.getParagraphByIndex(end);
+            startParag.nextParagraph = endParag;
+            endParag.prevParagraph = startParag;
+            this.refreshRegist();
+        };
+        ParagraphManager.prototype.refreshRegist = function () {
+            this._paragraphDictionary.clear();
+            this._headParagraph.updateParagraphIndex();
+        };
+
         //現在の段落(とその強調表示)をインデックス指定で変更する
         ParagraphManager.prototype.changeCurrentParagraphByIndex = function (paragraphIndex) {
             var parag = this._currentParagraph.getParagraphByIndex(paragraphIndex);
@@ -485,17 +421,18 @@ var NovelEditer;
 
         //テキストを改行で分割してパラグラフに分ける。先頭を返す
         ParagraphManager.prototype.createParagraphFromText = function (str) {
-            while (str.substr(str.length - 1, 1) == "\n") {
-                str = str.substr(0, str.length - 1);
-            }
             var num = str.indexOf("\n");
             if (num == -1)
                 return new Paragraph(this, str);
 
             var parag = new Paragraph(this, str.substr(0, num));
+            if (num == str.length - 1) {
+                parag.insertNext(new Paragraph(this, ""));
+                return parag;
+            }
             str = str.substr(num + 1, str.length - num - 1); //改行の後ろ
 
-            while (str.length != 0) {
+            while (true) {
                 num = str.indexOf("\n"); //改行を探す
                 if (num == -1) {
                     parag.insertNext(new Paragraph(this, str));
@@ -503,9 +440,12 @@ var NovelEditer;
                 }
                 parag.insertNext(new Paragraph(this, str.substr(0, num)));
                 parag = parag.nextParagraph;
+                if (num == str.length - 1) {
+                    parag.insertNext(new Paragraph(this, ""));
+                    return parag.getFirstParagraph();
+                }
                 str = str.substr(num + 1, str.length - num - 1); //改行の後ろ
             }
-            return parag.getFirstParagraph();
         };
 
         //指定したカレット位置を段落上のカレット位置に変換する
@@ -657,6 +597,7 @@ var NovelEditer;
 
         //段落番号と最終段落番号の更新。常に整合性を保つ
         Paragraph.prototype.updateParagraphIndex = function () {
+            this._manager.registParagraph(this);
             if (this.prevParagraph != null) {
                 this._paragraphIndex = this.prevParagraph._paragraphIndex + 1;
             } else {
