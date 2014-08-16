@@ -328,7 +328,6 @@ module NovelEditer
             this.changeEndParagrapgIndex = end;
         }
     }
-    }
     export class ParagraphManager
     {
         private _paragraphDictionary: collections.Dictionary<string, Paragraph> = new collections.Dictionary<string, Paragraph>();
@@ -418,6 +417,17 @@ module NovelEditer
             endParag.prevParagraph = startParag;
             this.refreshRegist();
         }
+        //toJson():string[]
+        //{
+        //    this.refreshRegist();
+        //    var ret: string[] = new Array(this.lastParagraphIndex + 1);
+        //    for (var i = 0; i < ; i++)
+        //    {
+                
+        //    }
+        //}
+
+        //登録を再確認
         refreshRegist()
         {
             this._paragraphDictionary.clear();
@@ -544,7 +554,7 @@ module NovelEditer
         //強調表示フラグ
         private _isEmphasized: boolean = false;
         //ID
-        private _iD: string;
+        private _iD: string="Not Implemented!";
 
         constructor(manager: ParagraphManager, rawText: string)
         {
@@ -580,7 +590,8 @@ module NovelEditer
         toJSON(): string//じっそうしといて
         {
             var jsonObj: any = {
-                prevParagraph: this.isFirstParagraph ? null : this.prevParagraph.getId(), nextParagraph: this.isFinalParagraph ? null : this.nextParagraph.getId(),
+                prevParagraph: this.isFirstParagraph ? null : this.prevParagraph.getId(),
+                nextParagraph: this.isFinalParagraph ? null : this.nextParagraph.getId(),
                 rawText: this.rawText,
                 paragraphIndex: this._paragraphIndex,
                 id:this._iD
