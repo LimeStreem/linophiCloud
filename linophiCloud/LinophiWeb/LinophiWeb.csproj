@@ -239,7 +239,7 @@
     </Content>
     <Content Include="Content\css\Home\afterLogin.min.css">
       <DependentUpon>afterLogin.css</DependentUpon>
-      </Content>
+    </Content>
     <Content Include="Content\css\Edit\index.css">
       <DependentUpon>index.less</DependentUpon>
     </Content>
@@ -282,6 +282,8 @@
     <Content Include="Content\imgs\Edit\back-to-top2.png" />
     <Content Include="Content\imgs\Edit\square.png" />
     <Content Include="Content\imgs\Home\book.jpg" />
+    <Content Include="Content\imgs\Home\left.png" />
+    <Content Include="Content\imgs\Home\right.png" />
     <Content Include="Content\imgs\Home\samune.png" />
     <Content Include="Content\imgs\logo.png" />
     <Content Include="Content\imgs\logo2.png" />

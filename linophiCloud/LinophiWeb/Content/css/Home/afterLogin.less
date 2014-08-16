@@ -10,7 +10,7 @@ body {
     background: url("/Content/imgs/bg-common.png");
 }
 
-img { vertical-align:bottom }
+img { vertical-align: bottom }
 
 .afterlogin {
 
@@ -75,7 +75,7 @@ img { vertical-align:bottom }
                 margin: 0.3em 0;
                 border-right: solid 4px #ccc;
             }
-            a[href='AfterLogin'] li{
+            a[href='/Home/AfterLogin'] li{
                 font-weight: 700;
                 border: none;
                 box-shadow: 1.2em 0 #9e9cbf;
@@ -99,10 +99,12 @@ img { vertical-align:bottom }
         margin-left: 100px;
 
         h1 {
-            padding-left: 1em;
+            padding-left: 2.5em;
+            padding-top: 0.4em;
             font-size: 20px;
             font-weight: 700;
-            border-left: #00aeff solid 30px;
+            height: 67px;
+            background: url('../../imgs/Home/h1.png') no-repeat;
             margin-top: 20px;
             margin-bottom: 20px;
         }
@@ -110,11 +112,15 @@ img { vertical-align:bottom }
         .books {
             background: rgba(255, 255, 255, 0.9);
             padding: 30px 20px;
-            overflow: none;
+            vertical-align: middle;
             > img {
                 margin-right: 30px;
                 &:first-child {
                     margin-left: 30px;
+                    margin-bottom: 45px;
+                }
+                &:last-child {
+                    margin-bottom: 45px;
                 }
             }
         }
@@ -126,15 +132,15 @@ img { vertical-align:bottom }
         text-align: center;
         font-size: 10px;
         position: absolute;
-        background: #666;
+        border-top: 1px solid #444;
         height: 2em;
         bottom: 0;
         a {
-            color: #f0f8ff;
+            color: #444;
             text-decoration: none;
             padding: 0 2px 0;
             &:hover {
-                color: #87cefa;
+                color: #333;
                 text-decoration: underline;
             }
         }
