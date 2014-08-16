@@ -282,6 +282,8 @@
     <Content Include="Content\imgs\Edit\back-to-top2.png" />
     <Content Include="Content\imgs\Edit\square.png" />
     <Content Include="Content\imgs\Home\book.jpg" />
+    <Content Include="Content\imgs\Home\left.png" />
+    <Content Include="Content\imgs\Home\right.png" />
     <Content Include="Content\imgs\Home\samune.png" />
     <Content Include="Content\imgs\logo.png" />
     <Content Include="Content\imgs\logo2.png" />

@@ -74,7 +74,7 @@ img {
   margin: 0.3em 0;
   border-right: solid 4px #ccc;
 }
-.afterlogin-sidebar ul a[href='AfterLogin'] li {
+.afterlogin-sidebar ul a[href='/Home/AfterLogin'] li {
   font-weight: 700;
   border: none;
   box-shadow: 1.2em 0 #9e9cbf;
@@ -90,39 +90,45 @@ img {
   margin-left: 100px;
 }
 .afterlogin-contents h1 {
-  padding-left: 1em;
+  padding-left: 2.5em;
+  padding-top: 0.4em;
   font-size: 20px;
   font-weight: 700;
-  border-left: #00aeff solid 30px;
+  height: 67px;
+  background: url('../../imgs/Home/h1.png') no-repeat;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 .afterlogin-contents .books {
   background: rgba(255, 255, 255, 0.9);
   padding: 30px 20px;
-  overflow: none;
+  vertical-align: middle;
 }
 .afterlogin-contents .books > img {
   margin-right: 30px;
 }
 .afterlogin-contents .books > img:first-child {
   margin-left: 30px;
+  margin-bottom: 45px;
+}
+.afterlogin-contents .books > img:last-child {
+  margin-bottom: 45px;
 }
 .afterlogin-footer {
   text-align: center;
   font-size: 10px;
   position: absolute;
-  background: #666;
+  border-top: 1px solid #444;
   height: 2em;
   bottom: 0;
 }
 .afterlogin-footer a {
-  color: #f0f8ff;
+  color: #444;
   text-decoration: none;
   padding: 0 2px 0;
 }
 .afterlogin-footer a:hover {
-  color: #87cefa;
+  color: #333;
   text-decoration: underline;
 }
 /*# sourceMappingURL=afterLogin.css.map */
