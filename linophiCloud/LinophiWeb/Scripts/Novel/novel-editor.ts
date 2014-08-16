@@ -432,11 +432,18 @@ module NovelEditer
         changeStartParagraphIndex:number;
         changeEndParagrapgIndex: number;
 
-        constructor(start: number, length: number,startParag:number,paragList:collections.)
+        constructor(start: number, length: number, startParag: number)
+        {
+            
+        }
     }
     export class ParagraphManager
     {
-        private _paragraphDictionary: collections.Dictionary<string, Paragraph> = new collections.Dictionary<string,Paragraph>();
+        private _paragraphDictionary: collections.Dictionary<string, Paragraph> = new collections.Dictionary<string, Paragraph>();
+        get ParagraphDictionary(): collections.Dictionary<string, Paragraph>
+        {
+            return this._paragraphDictionary;
+        }
         //先頭の段落
         private _headParagraph: Paragraph;
         //最終段落のインデックス
@@ -648,11 +655,30 @@ module NovelEditer
 
         toJSON(): string//じっそうしといて
         {
-            return "notImplement!!!!!!!!!!!!!!!!";
+            var jsonObj: any = {
+                prevParagraph: this.isFirstParagraph ? null : this.prevParagraph.getId(), nextParagraph: this.isFinalParagraph ? null : this.nextParagraph.getId(),
+                rawText: this.rawText,
+                paragraphIndex: this._paragraphIndex,
+                id:this._iD
+            };
+            return JSON.stringify(jsonObj);
         }
         fromJSON(str: string): void//じっそうしといて
         {
-            var exception = "notImplement!!!!!!!!!!!!!!!!";
+            var jsonObj: any = JSON.parse(str);
+            if (jsonObj.prevParagraph != null && this._manager.ParagraphDictionary.containsKey(jsonObj.prevParagraph))
+            {
+                this.prevParagraph = this._manager.ParagraphDictionary.getValue(jsonObj.prevParagraph);
+                this.prevParagraph.nextParagraph = this;
+            }
+            if (jsonObj.nextParagraph != null && this._manager.ParagraphDictionary.containsKey(jsonObj.nextParagraph)) {
+                this.nextParagraph = this._manager.ParagraphDictionary.getValue(jsonObj.nextParagraph);
+                this.nextParagraph.prevParagraph = this;
+            }
+            this.rawText = jsonObj.rawText;
+            this.updateCacheHtml();
+            this._paragraphIndex = jsonObj.paragraphIndex;
+            this._iD = jsonObj.id;
         }
         set isEmphasized(isem: boolean)
         {

@@ -6,12 +6,14 @@
 };
 var NovelViewer = (function () {
     function NovelViewer() {
+        this._paragraphFetcher = new DummyParagraphFetcher(this._paragraphFactory);
     }
     return NovelViewer;
 })();
 
 var ParagraphFetcher = (function () {
-    function ParagraphFetcher() {
+    function ParagraphFetcher(factory) {
+        this._paragraphFactory = factory;
     }
     ParagraphFetcher.prototype.getParagraph = function (from, to) {
         return null;
@@ -25,6 +27,8 @@ var DummyParagraphFetcher = (function (_super) {
         _super.apply(this, arguments);
     }
     DummyParagraphFetcher.prototype.getParagraph = function (from, to) {
+        for (var i = from; i < to; i++) {
+        }
     };
     return DummyParagraphFetcher;
 })(ParagraphFetcher);

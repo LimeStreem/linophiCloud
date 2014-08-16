@@ -11,5 +11,6 @@
         };
         return ParagraphFactory;
     })();
+    NovelEditer.ParagraphFactory = ParagraphFactory;
 })(NovelEditer || (NovelEditer = {}));
 //# sourceMappingURL=ParagraphFactory.js.map
