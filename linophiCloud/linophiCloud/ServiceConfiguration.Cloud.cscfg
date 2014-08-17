@@ -15,10 +15,4 @@
       <Setting name="SQL-ConnectionString" value="Data Source=.\SQLEXPRESS;AttachDbFileName=|DataDirectory|linophi.mdf;Integrated Security=True;User Instance=True" />
     </ConfigurationSettings>
   </Role>
-  <Role name="LinophiCrawler">
-    <Instances count="1" />
-    <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
-    </ConfigurationSettings>
-  </Role>
 </ServiceConfiguration>

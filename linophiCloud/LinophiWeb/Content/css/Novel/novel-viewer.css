@@ -22,7 +22,8 @@
   word-wrap: break-word;
   /* IE 5+ */
 }
-.novel-side-inner {
-  padding: 3em 2em 3em 2em;
+#left-inner,
+#right-inner {
+  margin: 3em 2em 3em 2em;
 }
 /*# sourceMappingURL=novel-viewer.css.map */

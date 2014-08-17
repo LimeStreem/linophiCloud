@@ -10,5 +10,5 @@
 interface IJSONable
 {
     toJSON(): string;
-    fromJSON(str:string):void;
+    fromJSON(jsonObj:any):void;
 }

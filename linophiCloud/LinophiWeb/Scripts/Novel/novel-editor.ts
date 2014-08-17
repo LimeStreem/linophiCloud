@@ -1,12 +1,4 @@
-﻿var editorInstance: NovelEditer.NovelEditer;
-$(() =>
-{
-    editorInstance = new NovelEditer.NovelEditer($(".edit-context"), $(".preview-body"), $(".preview-context"));
-    editorInstance.updateToshow();
-    editPage.onChanged();
-});
-
-module NovelEditer
+﻿module NovelEditer
 {
     export class NovelEditer
     {
@@ -19,6 +11,8 @@ module NovelEditer
         private _previewTarget: JQuery;
         //なにこれわかんね
         private _previewBounds: JQuery;
+
+        private _nextPageFirstParagraph: Paragraph;
 
         //直前のカレット位置
         private _lastCaret: TextRegion = new TextRegion(0, 0);
@@ -42,6 +36,8 @@ module NovelEditer
             this._editorTarget.mousedown(() => this.mouseHandler());
             this._editorTarget.mouseup(() => this.mouseHandler());
             this._editorTarget.bind('input propertychange', () => this.textChanged());
+            $(".next-page").click(() => { this.gonextPage(); });
+            $(".prev-page").click(() => { this.goprevPage(); });
             this._paragraphManager = new ParagraphManager();
             this._paragraphList.add(0);
         }
@@ -287,6 +283,8 @@ module NovelEditer
                 }
                 i++;
             }
+            this._nextPageFirstParagraph = this._paragraphManager.headParagraph.getParagraphFromthis(i);
+            console.warn(this._nextPageFirstParagraph);
         }
 
         //改行の数をカウントする
@@ -303,6 +301,20 @@ module NovelEditer
             return count;
         }
 
+        toJSON():string
+        {
+            var innerJSON: string = "";
+            var cacheParagraph: Paragraph = this._paragraphManager.headParagraph;
+            while (true)
+            {
+                innerJSON += cacheParagraph.toJSON();
+                if (!cacheParagraph.isFinalParagraph) innerJSON += ",";
+                if(cacheParagraph.isFinalParagraph)break;
+                cacheParagraph = cacheParagraph.nextParagraph;
+            }
+            return "[" + innerJSON + "]";
+        }
+
         mouseHandler()
         {
             //console.info("mouseHandler is Called...!");
@@ -316,6 +328,38 @@ module NovelEditer
             //    this.currentParagraphChanged(this._pageFirstParagraph.getParagraph(lfc));
             //    this.updateToshow();
             //}
+        }
+
+        gonextPage()
+        {
+            if (this._nextPageFirstParagraph != null)
+            {
+                this._paragraphManager.headParagraph = this._nextPageFirstParagraph;
+                this.updateToshow();
+            }
+        }
+        goprevPage()
+        {
+            var i: number = 1;
+            var cacheHead: Paragraph = this._paragraphManager.headParagraph;
+            if (cacheHead.isFirstParagraph)return;
+            while (true)
+            {
+                cacheHead = cacheHead.prevParagraph;
+                while (i <= this._paragraphManager.lastParagraphIndex + 1) {
+                    this._previewTarget.html(cacheHead.getParagraphHtmls(i));
+                    if (this._previewTarget.width() > this._previewBounds.width()) {
+                        this._previewTarget.html(cacheHead.getParagraphHtmls(i - 1));
+                        break;
+                    }
+                    i++;
+                }
+                var next = cacheHead.getParagraphFromthis(i);
+                if(next==this._paragraphManager.headParagraph)break;
+                if (cacheHead.isFinalParagraph) break;
+                cacheHead = cacheHead.prevParagraph;
+            }
+            this._paragraphManager.headParagraph = cacheHead;
         }
     }
     export class TextChangeInfo
@@ -562,6 +606,7 @@ module NovelEditer
         {
             this._manager = manager;
             this._rawText = rawText;
+            this._iD = this.generateId();
             this.updateCacheHtml();
         }
 
@@ -610,9 +655,8 @@ module NovelEditer
             };
             return JSON.stringify(jsonObj);
         }
-        fromJSON(str: string): void//じっそうしといて
+        fromJSON(jsonObj:any): void//じっそうしといて
         {
-            var jsonObj: any = JSON.parse(str);
             if (jsonObj.prevParagraph != null && this._manager.ParagraphDictionary.containsKey  (jsonObj.prevParagraph))
             {
                 this.prevParagraph = this._manager.ParagraphDictionary.getValue(jsonObj.prevParagraph);
@@ -626,6 +670,10 @@ module NovelEditer
             this.updateCacheHtml();
             this._paragraphIndex = jsonObj.paragraphIndex;
             this._iD = jsonObj.id;
+            if (!this._manager.ParagraphDictionary.containsKey(this._iD))
+            {
+                this._manager.ParagraphDictionary.setValue(this._iD, this);
+            }
         }
         set isEmphasized(isem: boolean)
         {
@@ -681,6 +729,11 @@ module NovelEditer
                     isPrefixed = true;
                     break;
                 }
+            }
+            var markups: any[] = [new RubyMarkupBase()];
+            for (var j = 0; j < markups.length; j++)
+            {
+                rawStr = markups[j].getMarkupString(rawStr);
             }
             if (!isPrefixed)
             {
@@ -751,6 +804,18 @@ module NovelEditer
             var parag: Paragraph = this;
             for (var i = 0; i < index; i++)
             {
+                if (parag.nextParagraph == null)return parag.nextParagraph;
+                parag = parag.nextParagraph;
+            }
+            return parag;
+        }
+
+        getParagraphFromthis(dest: number): Paragraph
+        {
+            var parag: Paragraph = this;
+            for (var i = 0; i < dest; i++)
+            {
+                if (parag.nextParagraph == null) return parag.nextParagraph;
                 parag = parag.nextParagraph;
             }
             return parag;

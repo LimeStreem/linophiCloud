@@ -26,9 +26,4 @@
       <Setting name="SQL-ConnectionString" />
     </ConfigurationSettings>
   </WebRole>
-  <WorkerRole name="LinophiCrawler" vmsize="Small">
-    <Imports>
-      <Import moduleName="Diagnostics" />
-    </Imports>
-  </WorkerRole>
 </ServiceDefinition>
