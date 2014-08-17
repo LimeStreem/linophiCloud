@@ -1,0 +1,28 @@
+﻿h1 {
+  font-size: 30px;
+  font-weight: bold;
+  border-left: #e95464 0.5em solid;
+  padding: 0 1em;
+  margin-bottom: 1em;
+}
+.search-result {
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.search-result img {
+  float: left;
+  width: 10%;
+}
+.search-result > div {
+  float: left;
+  width: 90%;
+}
+.search-result > div > p {
+  padding: 16px 40px;
+}
+.search-result > div > p:first-child {
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 1px solid #bbb;
+}
+/*# sourceMappingURL=search.css.map */
