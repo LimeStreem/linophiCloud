@@ -70,7 +70,7 @@ img {
   font-size: 14px;
 }
 .afterlogin-sidebar ul li {
-  padding: 0 1em;
+  padding: 0.1em 1em;
   margin: 0.3em 0;
   border-right: solid 4px #ccc;
 }
