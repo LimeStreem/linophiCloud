@@ -20,6 +20,16 @@ namespace LinophiWeb.Controllers
             return View();
         }
 
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        public ActionResult NewArticle()
+        {
+            return View();
+        }
+
         public ActionResult PrivacyPolicy()
         {
             return View();

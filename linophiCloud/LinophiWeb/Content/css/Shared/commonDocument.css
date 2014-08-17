@@ -5,7 +5,7 @@
 }
 html body {
   width: 100%;
-  background-image: url("/Content/imgs/bg-common.png");
+  background: url("/Content/imgs/bg-common.png");
   height: 100%;
 }
 html body .common-header-container {
@@ -62,8 +62,8 @@ html body .content-background h2 {
   font-size: large;
   line-height: 1.5em;
 }
-html body .content-background div {
-  margin-left: 10px;
-  margin-right: 10px;
+html body .content-background > div {
+  margin-left: 2.2em;
+  margin-right: 2.2em;
 }
 /*# sourceMappingURL=commonDocument.css.map */

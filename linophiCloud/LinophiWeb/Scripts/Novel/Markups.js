@@ -56,6 +56,7 @@ var RubyMarkupBase = (function (_super) {
                 result += s6_inv + "<ruby><rb>" + s6 + "</rb><rt>" + s3_b + "</rt></ruby>";
                 continue;
             }
+
             if (RubyMarkupBase.isKanji(c1, 0)) {
                 console.info("漢字/自動ルピ");
                 var count = 1;

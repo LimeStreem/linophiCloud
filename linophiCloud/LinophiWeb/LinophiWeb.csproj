@@ -252,6 +252,12 @@
     <Content Include="Content\css\Home\index.min.css">
       <DependentUpon>index.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Home\search.css">
+      <DependentUpon>search.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\search.min.css">
+      <DependentUpon>search.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\Novel\novel-editor.css">
       <DependentUpon>novel-editor.less</DependentUpon>
     </Content>
@@ -344,6 +350,10 @@
     <Content Include="Content\css\Novel\novel-viewer.css.map">
       <DependentUpon>novel-viewer.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Home\search.less" />
+    <Content Include="Content\css\Home\search.css.map">
+      <DependentUpon>search.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -377,6 +387,8 @@
     <Content Include="Views\Edit\Editor.cshtml" />
     <Content Include="Scripts\underscore-min.map" />
     <Content Include="Views\View\Index.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\_TopLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
