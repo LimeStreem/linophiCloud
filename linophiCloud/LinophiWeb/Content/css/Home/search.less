@@ -3,11 +3,13 @@
     font-weight: bold;
     border-left: #e95464 0.5em solid;
     padding: 0 1em;
+    margin-top: 1em;
     margin-bottom: 1em 
 }
 
 .search-result {
     overflow: hidden;
+    margin-bottom: 30px;
     img { 
         float: left;
         width: 10%; 
@@ -15,16 +17,16 @@
     > div {
         float: left;
         width: 90%;
-
         > p {
+            line-height: 150%;
+            color: #444;
             padding: 16px 40px;
+            width: 800px;
             &:first-child {
-                font-size: 20px;
-                font-weight: bold;
+                color: #0066ff;
+                font-size: 24px;
                 border-bottom: 1px solid #bbb;
             }
         }
-    }
-    margin-bottom: 32px;
-
+    } // %をでかくした時に.search-resultが消えるバグあり
 }

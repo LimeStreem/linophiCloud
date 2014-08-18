@@ -246,6 +246,12 @@
     <Content Include="Content\css\Edit\index.min.css">
       <DependentUpon>index.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Home\follow.css">
+      <DependentUpon>follow.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\follow.min.css">
+      <DependentUpon>follow.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\Home\index.css">
       <DependentUpon>index.less</DependentUpon>
     </Content>
@@ -276,6 +282,12 @@
     <Content Include="Content\css\Shared\commonDocument.min.css">
       <DependentUpon>commonDocument.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Shared\topLayout.css">
+      <DependentUpon>topLayout.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Shared\topLayout.min.css">
+      <DependentUpon>topLayout.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\View\index.css">
       <DependentUpon>index.less</DependentUpon>
     </Content>
@@ -288,9 +300,12 @@
     <Content Include="Content\imgs\Edit\back-to-top2.png" />
     <Content Include="Content\imgs\Edit\square.png" />
     <Content Include="Content\imgs\Home\book.jpg" />
+    <Content Include="Content\imgs\Home\bookicon.png" />
     <Content Include="Content\imgs\Home\left.png" />
     <Content Include="Content\imgs\Home\right.png" />
     <Content Include="Content\imgs\Home\samune.png" />
+    <Content Include="Content\imgs\Home\search.png" />
+    <Content Include="Content\imgs\Home\settings2.png" />
     <Content Include="Content\imgs\logo.png" />
     <Content Include="Content\imgs\logo2.png" />
     <Content Include="Content\imgs\social\facebook.png" />
@@ -354,6 +369,14 @@
     <Content Include="Content\css\Home\search.css.map">
       <DependentUpon>search.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Shared\topLayout.less" />
+    <Content Include="Content\css\Shared\topLayout.css.map">
+      <DependentUpon>topLayout.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\follow.less" />
+    <Content Include="Content\css\Home\follow.css.map">
+      <DependentUpon>follow.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -389,6 +412,7 @@
     <Content Include="Views\View\Index.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\_TopLayout.cshtml" />
+    <Content Include="Views\Home\Follow.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
