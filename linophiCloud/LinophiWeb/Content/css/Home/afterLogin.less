@@ -1,103 +1,5 @@
-﻿html, body, .afterlogin-container, .afterlogin-main, .afterlogin-sidebar, .afterlogin-contents {
-    height: 100%;
-}
-
-html, body, .afterlogin-container, .afterlogin-main, .afterlogin-footer {
-    width: 100%;
-}
-
-body {
-    background: url("/Content/imgs/bg-common.png");
-}
-
-img { vertical-align: bottom }
-
-.afterlogin {
-
-    &-container {
-        position: relative;
-        margin: 0 auto;
-        min-height: 100%;
-
-    }
-
-    &-main {
-        overflow: hidden;
-    }
-
-    &-sidebar {
-        float: left;
-        background: #433D59;
-        color: #fff;
-        width: 150px;
-
-        .profile {
-            overflow: hidden;
-            > div {
-                float: left;
-                font-size: 10px;
-                font-weight: 700;
-                margin: 10px auto 10px; 
-                position: relative;
-                > p {
-                    margin-top: 20px;
-                    padding: 0.3em 1em;
-                    border-bottom: #bbb solid 1px;
-                }
-
-                > img {
-                    padding: 5px;
-                    border: 1px solid #bbb;
-                }
-            }
-
-            &:nth-child(2) {
-                text-align: center;
-                margin: 0 auto;
-                background: #746e8a;
-                margin-bottom: 40px;
-            }
-        }
-
-        a {
-            color: #fff;
-            text-decoration: none;
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-
-        ul {
-            text-align: right;
-            font-size: 14px;
-            li {
-                padding: 0.1em 1em;
-                margin: 0.3em 0;
-                border-right: solid 4px #ccc;
-            }
-            a[href='/Home/AfterLogin'] li{
-                font-weight: 700;
-                border: none;
-                box-shadow: 1.2em 0 #9e9cbf;
-                background: #9e9cbf;
-
-            }
-        }
-
-        .side-footer {
-            font-size:10px;
-            margin: 100px auto;
-            text-align: center;
-
-        }
-
-    }
-
-
+﻿.afterlogin {
     &-contents {
-        float: left;
-        margin-left: 100px;
-
         h1 {
             padding-left: 2.5em;
             padding-top: 0.4em;
@@ -127,23 +29,13 @@ img { vertical-align: bottom }
 
     }
 
+}
 
-    &-footer {
-        text-align: center;
-        font-size: 10px;
-        position: absolute;
-        border-top: 1px solid #444;
-        height: 2em;
-        bottom: 0;
-        a {
-            color: #444;
-            text-decoration: none;
-            padding: 0 2px 0;
-            &:hover {
-                color: #333;
-                text-decoration: underline;
-            }
-        }
-    }
+
+a[href='/Home/AfterLogin'] li{
+    font-weight: 700;
+    border: none;
+    box-shadow: 1.2em 0 #9e9cbf;
+    background: #9e9cbf;
 
 }

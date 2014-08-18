@@ -25,6 +25,11 @@ namespace LinophiWeb.Controllers
             return View();
         }
 
+        public ActionResult Follow()
+        {
+            return View();
+        }
+
         public ActionResult NewArticle()
         {
             return View();

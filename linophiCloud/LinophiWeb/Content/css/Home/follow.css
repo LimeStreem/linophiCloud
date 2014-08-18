@@ -1,0 +1,59 @@
+﻿h1 {
+  font-size: 30px;
+  font-weight: bold;
+  border-left: #e95464 0.5em solid;
+  padding: 0 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.afterlogin-box-wrapper1 {
+  overflow: hidden;
+}
+.afterlogin-box-wrapper2 {
+  float: left;
+  overflow: hidden;
+  width: 300px;
+  margin-left: 40px;
+  margin-bottom: 50px;
+}
+.afterlogin-box-left {
+  float: left;
+  width: 100px;
+}
+.afterlogin-box-left > img {
+  padding: 8px;
+  border: #aaa 1px solid;
+  margin-bottom: 12px;
+}
+.afterlogin-box-left > p {
+  font-weight: 700;
+}
+.afterlogin-box-right {
+  float: left;
+  width: 200px;
+}
+.afterlogin-box-right > div {
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 0.7em;
+}
+.afterlogin-box-right > div:last-child {
+  padding-top: 0.7em;
+  border-top: 1px solid #aaa;
+  text-align: center;
+  overflow: hidden;
+}
+.afterlogin-box-right > div:last-child p {
+  float: left;
+  background: url('../../imgs/Home/bookicon.png') no-repeat right center;
+}
+.afterlogin-box-right > div:last-child p:last-child {
+  background: url('../../imgs/Home/settings2.png') no-repeat right center;
+}
+.afterlogin-box-right > div:last-child p > a {
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  padding: 9px 3em 9px 1em;
+}
+/*# sourceMappingURL=follow.css.map */

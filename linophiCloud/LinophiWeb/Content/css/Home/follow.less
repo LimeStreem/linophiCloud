@@ -1,0 +1,71 @@
+﻿h1 {
+    font-size: 30px;
+    font-weight: bold;
+    border-left: #e95464 0.5em solid;
+    padding: 0 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.afterlogin-box {
+    &-wrapper1 {
+        overflow: hidden;
+    }
+
+    &-wrapper2 {
+        float: left;
+        overflow: hidden;
+
+        width: 300px;
+        margin-left: 40px;
+        margin-bottom: 50px;
+    }
+
+    &-left {
+        float: left;
+        width: 100px;
+
+        > img {
+            // htmlにてheight=width=70pxを指定
+            padding: 8px;
+            border: #aaa 1px solid;
+            margin-bottom: 12px;
+        }
+        > p {
+            font-weight: 700;
+        }
+    }
+
+    &-right {
+        float: left;
+        width: 200px;
+        > div {
+            padding-left: 1em;
+            padding-right: 1em;
+            padding-bottom: 0.7em;
+
+            &:last-child { 
+                padding-top: 0.7em;
+                border-top: 1px solid #aaa; 
+                text-align: center;
+                overflow: hidden;
+                p {
+                    float: left;
+                    background: url('../../imgs/Home/bookicon.png') no-repeat right center;
+                    &:last-child {
+                        background: url('../../imgs/Home/settings2.png') no-repeat right center;
+                    }
+
+                    > a {
+                        display: block;
+                        text-align: right;
+                        font-size: 12px;
+                        padding: 9px 3em 9px 1em;
+                    }
+                }
+            }
+
+
+        }
+    }
+}
