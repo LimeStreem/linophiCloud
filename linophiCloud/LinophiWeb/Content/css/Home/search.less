@@ -22,10 +22,21 @@
             color: #444;
             padding: 16px 40px;
             width: 800px;
+
             &:first-child {
-                color: #0066ff;
-                font-size: 24px;
                 border-bottom: 1px solid #bbb;
+            }
+            a {
+                color: #0066ff;
+                text-decoration: none;
+                font-size: 24px;
+                &:hover {
+                    color: darkblue;
+                    text-decoration: underline;
+                }
+                &:visited {
+                    color: indigo;
+                }
             }
         }
     } // %をでかくした時に.search-resultが消えるバグあり

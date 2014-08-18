@@ -413,6 +413,7 @@
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\_TopLayout.cshtml" />
     <Content Include="Views\Home\Follow.cshtml" />
+    <Content Include="Views\Home\Follower.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
