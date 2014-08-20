@@ -4,7 +4,7 @@ body,
 .afterlogin-main,
 .afterlogin-sidebar,
 .afterlogin-contents {
-  height: 100%;
+  min-height: 1080px;
 }
 html,
 body,
@@ -96,7 +96,8 @@ img {
   margin: 100px auto;
   text-align: center;
 }
-.afterlogin-searchbutton {
+.afterlogin-searchbutton,
+.afterlogin-searchform {
   position: absolute;
   top: 0;
   right: 0;
@@ -106,6 +107,51 @@ img {
   border-radius: 0 0 0 70px;
   color: #fff;
   text-align: center;
+}
+.afterlogin-searchform {
+  text-align: right;
+  opacity: 0;
+  background: #433D59;
+  z-index: -1000;
+}
+.afterlogin-searchform input[type='search'] {
+  position: absolute;
+  top: 3em;
+  right: 6em;
+  padding: 0 1.5em;
+  border-radius: 1em 0 0 1em;
+  width: 200px;
+  height: 2em;
+  font-size: 16px;
+  background: #fff;
+  border: none;
+}
+.afterlogin-searchform input[type='search'] ::-webkit-input-placeholder {
+  color: #cccccc;
+}
+.afterlogin-searchform input[type='search'] ::-moz-placeholder {
+  color: #cccccc;
+}
+.afterlogin-searchform input[type='search'] :-moz-placeholder {
+  color: #cccccc;
+}
+.afterlogin-searchform input[type='search'] :-ms-input-placeholder {
+  color: #cccccc;
+}
+.afterlogin-searchform button {
+  position: absolute;
+  top: 3em;
+  right: 3em;
+  border-radius: 0 1em 1em 0;
+  width: 3em;
+  height: 2em;
+  font-size: 16px;
+  background: #fff;
+  border: none;
+  border-left: 1px solid #ccc;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .afterlogin-contents {
   position: relative;

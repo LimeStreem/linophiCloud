@@ -246,6 +246,18 @@
     <Content Include="Content\css\Edit\index.min.css">
       <DependentUpon>index.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Home\notification.css">
+      <DependentUpon>notification.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\notification.min.css">
+      <DependentUpon>notification.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\ranking.css">
+      <DependentUpon>ranking.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\ranking.min.css">
+      <DependentUpon>ranking.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\Home\follow.css">
       <DependentUpon>follow.less</DependentUpon>
     </Content>
@@ -263,6 +275,12 @@
     </Content>
     <Content Include="Content\css\Home\search.min.css">
       <DependentUpon>search.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\settings.css">
+      <DependentUpon>settings.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\settings.min.css">
+      <DependentUpon>settings.css</DependentUpon>
     </Content>
     <Content Include="Content\css\Novel\novel-editor.css">
       <DependentUpon>novel-editor.less</DependentUpon>
@@ -305,6 +323,7 @@
     <Content Include="Content\imgs\Home\right.png" />
     <Content Include="Content\imgs\Home\samune.png" />
     <Content Include="Content\imgs\Home\search.png" />
+    <Content Include="Content\imgs\Home\settings.png" />
     <Content Include="Content\imgs\Home\settings2.png" />
     <Content Include="Content\imgs\logo.png" />
     <Content Include="Content\imgs\logo2.png" />
@@ -377,6 +396,17 @@
     <Content Include="Content\css\Home\follow.css.map">
       <DependentUpon>follow.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Home\ranking.less" />
+    <Content Include="Content\css\Home\ranking.css.map">
+      <DependentUpon>ranking.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\notification.less" />
+    <Content Include="Content\css\Home\notification.css.map">
+      <DependentUpon>notification.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\settings.css.map">
+      <DependentUpon>settings.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -414,6 +444,12 @@
     <Content Include="Views\Home\_TopLayout.cshtml" />
     <Content Include="Views\Home\Follow.cshtml" />
     <Content Include="Views\Home\Follower.cshtml" />
+    <Content Include="Views\Home\Favorites.cshtml" />
+    <Content Include="Views\Home\Ranking.cshtml" />
+    <Content Include="Views\Home\Notification.cshtml" />
+    <Content Include="Views\Home\Settings.cshtml" />
+    <Content Include="Content\css\Home\settings.less" />
+    <Content Include="Views\Home\MyProduction.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,71 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "設定";
+    Layout = "~/Views/Shared/_CommonDocumentLayout.cshtml";
+}
+
+@section CSS
+{
+    <link href="~/Content/css/Home/settings.min.css" rel="stylesheet" />
+}
+
+
+<h2>アカウント設定</h2>
+<div>
+    <div class="settings-box-top">
+        <h3>一般</h3>
+    </div>
+    <div class="settings-box-contents">
+        プロフィール変更
+        <button>設定</button>
+    </div>
+    <div class="settings-box-contents">
+        パスワード変更
+        <button>設定</button>
+    </div>
+
+    <div class="settings-box-top">
+        <h3>SNSアカウント</h3>
+    </div>
+    <div class="settings-box-contents">
+        <img src="~/Content/imgs/social/facebook.png" height="25" width="25">facebook
+        <button>連携する</button>
+    </div>
+    <div class="settings-box-contents">
+        <img src="~/Content/imgs/social/twitter.png" height="25" width="25">Twitter
+        <button>連携する</button>
+    </div>
+    <div class="settings-box-contents">
+        <img src="~/Content/imgs/social/google.png" height="25" width="25">Google
+        <button>連携する</button>
+    </div>
+
+    <div class="settings-box-top">
+        <h3>管理</h3>
+    </div>
+    <div class="settings-box-contents">
+        ブックマーク管理
+        <button>管理</button>
+    </div>
+    <div class="settings-box-contents">
+        フォロー管理
+        <button>管理</button>
+    </div>
+    <div class="settings-box-contents">
+        フォロワー管理
+        <button>管理</button>
+    </div>
+
+    <div class="settings-box-top">
+        <h3>作家</h3>
+    </div>
+    <div class="settings-box-contents">
+        アクセスログ・統計
+        <button>管理</button>
+    </div>
+    <div class="settings-box-contents">
+        著書管理
+        <button>管理</button>
+    </div>
+</div>

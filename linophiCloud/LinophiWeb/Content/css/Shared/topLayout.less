@@ -1,5 +1,6 @@
 ﻿html, body, .afterlogin-container, .afterlogin-main, .afterlogin-sidebar, .afterlogin-contents {
-    height: 100%;
+    // height: 100%;
+    min-height: 1080px;
 }
 
 html, body, .afterlogin-container, .afterlogin-main, .afterlogin-footer {
@@ -12,13 +13,19 @@ body {
 
 img { vertical-align: bottom }
 
+.placeholder-color(@color) {
+    ::-webkit-input-placeholder { color: @color }
+    ::-moz-placeholder { color: @color }
+    :-moz-placeholder { color: @color }
+    :-ms-input-placeholder { color: @color } 
+}
+
 .afterlogin {
 
     &-container {
         position: relative;
         margin: 0 auto;
         min-height: 100%;
-
     }
 
     &-main {
@@ -27,7 +34,6 @@ img { vertical-align: bottom }
 
     &-sidebar {
         position: relative;
-
         float: left;
         background: #433D59;
         color: #fff;
@@ -37,6 +43,7 @@ img { vertical-align: bottom }
             position: absolute;
             top: 0;
             right: 0;
+
             > div {
                 font-size: 28px;
                 position: relative;
@@ -47,17 +54,18 @@ img { vertical-align: bottom }
                 color: #fff;
                 text-align: center;
             }
-
         }
 
         .profile {
             overflow: hidden;
+
             > div {
                 float: left;
                 font-size: 10px;
                 font-weight: 700;
-                margin: 10px auto 10px; 
+                margin: 10px auto 10px;
                 position: relative;
+
                 > p {
                     margin-top: 20px;
                     padding: 0.3em 1em;
@@ -82,6 +90,7 @@ img { vertical-align: bottom }
         a {
             color: #fff;
             text-decoration: none;
+
             &:hover {
                 text-decoration: underline;
             }
@@ -90,6 +99,7 @@ img { vertical-align: bottom }
         ul {
             text-align: right;
             font-size: 14px;
+
             li {
                 padding: 0.1em 1em;
                 margin: 0.3em 0;
@@ -98,26 +108,60 @@ img { vertical-align: bottom }
         }
 
         .side-footer {
-            font-size:10px;
+            font-size: 10px;
             margin: 100px auto;
             text-align: center;
-
         }
-
     }
 
-    &-searchbutton {
+    &-searchbutton, &-searchform {
         position: absolute;
         top: 0;
         right: 0;
         height: 70px;
-        width : 70px;
+        width: 70px;
         background: #433D59 url('../../imgs/Home/search.png') right top;
         border-radius: 0 0 0 70px;
         color: #fff;
         text-align: center;
     }
 
+    &-searchform {
+        text-align: right;
+        opacity: 0;
+        background: #433D59;
+        z-index: -1000;
+
+        input[type='search'] {
+            position: absolute;
+            top: 3em;
+            right: 6em;
+            padding: 0 1.5em;
+            border-radius: 1em 0 0 1em;
+            width: 200px;
+            height: 2em;
+            font-size: 16px;
+            .placeholder-color(#ccc);
+            background: #fff;
+            border: none;
+        }
+
+        button {
+            position: absolute;
+            top: 3em;
+            right: 3em;
+            border-radius: 0 1em 1em 0;
+            width: 3em;
+            height: 2em;
+            font-size: 16px;
+            background: #fff;
+            border: none;
+            border-left: 1px solid #ccc;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+    }
 
     &-contents {
         position: relative;
@@ -134,15 +178,16 @@ img { vertical-align: bottom }
         height: 2em;
         bottom: 0;
         background: #444;
+
         a {
             color: #fff;
             text-decoration: none;
             padding: 0 2px 0;
+
             &:hover {
                 color: #eee;
                 text-decoration: underline;
             }
         }
     }
-
 }

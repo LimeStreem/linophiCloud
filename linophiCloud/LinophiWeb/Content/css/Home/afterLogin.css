@@ -13,20 +13,21 @@
   padding: 30px 20px;
   vertical-align: middle;
 }
+.afterlogin-contents .books a {
+  margin-right: 45px;
+}
 .afterlogin-contents .books > img {
-  margin-right: 30px;
+  margin-right: 45px;
+  margin-bottom: 55px;
 }
 .afterlogin-contents .books > img:first-child {
   margin-left: 30px;
-  margin-bottom: 45px;
 }
-.afterlogin-contents .books > img:last-child {
-  margin-bottom: 45px;
+a[href='Follow'] li,
+a[href='Settings'] li {
+  margin-top: 20px;
 }
-a[href='AfterLogin'] li {
-  font-weight: 700;
-  border: none;
-  box-shadow: 1.2em 0 #9e9cbf;
-  background: #9e9cbf;
+a[href='Settings'] li {
+  border-right: none;
 }
 /*# sourceMappingURL=afterLogin.css.map */
