@@ -318,6 +318,12 @@
     <Content Include="Content\css\Shared\topLayout.min.css">
       <DependentUpon>topLayout.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\View\afterRead.css">
+      <DependentUpon>afterRead.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\View\afterRead.min.css">
+      <DependentUpon>afterRead.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\View\index.css">
       <DependentUpon>index.less</DependentUpon>
     </Content>
@@ -428,6 +434,10 @@
     <Content Include="Content\css\Home\bookShelves.less" />
     <Content Include="Content\css\Home\bookShelves.css.map">
       <DependentUpon>bookShelves.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\View\afterRead.less" />
+    <Content Include="Content\css\View\afterRead.css.map">
+      <DependentUpon>afterRead.css</DependentUpon>
     </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
