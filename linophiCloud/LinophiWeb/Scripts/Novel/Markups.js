@@ -41,8 +41,8 @@ var RubyMarkupBase = (function (_super) {
             s3_a = s3_a.replace(/\|\(/g, "(").replace(/\|\)/g, ")");
             ;
             var s3_b = s2.replace(/^.*?[\(](.+)?[\)]$/, "$1");
-            s3_b = strCache.substr(str.length - 1 - s3_b.length, s3_b.length).replace(/\|\(/g, "(").replace(/\|\)/g, ")");
-            ;
+
+            //s3_b = strCache.substr(str.length - 1 - s3_b.length, s3_b.length).replace(/\|\(/g, "(").replace(/\|\)/g, ")");;
             console.info("s2=" + s2);
             console.info("s3-a=" + s3_a);
             console.info("s3-b=" + s3_b);
