@@ -1,0 +1,1 @@
+{"version":3,"file":"AfterLogin.js","sourceRoot":"","sources":["AfterLogin.ts"],"names":[],"mappings":"AAAA,CAAC,CAAC;IACE,CAAC,CAAC,kBAAkB,CAAC,CAAC,IAAI,CAAC,OAAO,EAAE,mHAAmH,CAAC;IACxJ,CAAC,CAAC,kBAAkB,CAAC,CAAC,WAAW,CAAC;QAC9B,aAAa,EAAC,IAAI;QAClB,QAAQ,EAAC,QAAQ;KACpB,CAAC;AACN,CAAC,CAAC"}

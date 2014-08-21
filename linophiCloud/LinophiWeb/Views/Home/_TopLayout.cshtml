@@ -8,11 +8,14 @@
 @section CSS
 {
     <link href="~/Content/css/Shared/topLayout.min.css" rel="stylesheet" />
+    <link href="~/Content/Tooltipster/css/tooltipster.css" rel="stylesheet" />
     @RenderSection("CSS_Child",false)
 }
 
 @section JS
 {
+<script src="~/Scripts/jquery.tooltipster.js"></script>
+<script src="~/Scripts/Home/AfterLogin.js"></script>
     @RenderSection("JS_Child", false)
     <script>
         $(function () {
