@@ -36,9 +36,26 @@ a[href='Settings'] li {
 .tip-book-title {
   text-align: center;
   font-size: x-large;
+  margin: 2px auto;
 }
 .tip-book-auther {
   text-align: center;
-  margin: 0 auto;
+  margin: 2px auto;
+}
+.tip-left {
+  float: left;
+  width: 50%;
+}
+.tip-theme {
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  border: 2px solid #000;
+}
+.tip-theme .my-custom-theme {
+  border-radius: 5px;
+  border: 2px solid #000;
+  background: #4c4c4c;
+  color: #fff;
 }
 /*# sourceMappingURL=afterLogin.css.map */

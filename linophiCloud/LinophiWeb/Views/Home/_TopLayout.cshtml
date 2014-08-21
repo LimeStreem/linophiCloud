@@ -9,17 +9,18 @@
 {
     <link href="~/Content/css/Shared/topLayout.min.css" rel="stylesheet" />
     <link href="~/Content/Tooltipster/css/tooltipster.css" rel="stylesheet" />
-    @RenderSection("CSS_Child",false)
+    <link href="~/Content/Tooltipster/css/themes/tooltipster-shadow.css" rel="stylesheet" />
+    @RenderSection("CSS_Child", false)
 }
 
 @section JS
 {
-<script src="~/Scripts/jquery.tooltipster.js"></script>
-<script src="~/Scripts/Home/AfterLogin.js"></script>
+    <script src="~/Scripts/jquery.tooltipster.js"></script>
+    <script src="~/Scripts/Home/AfterLogin.js"></script>
     @RenderSection("JS_Child", false)
     <script>
-        $(function () {
-            $(".afterlogin-searchbutton").on("click", function () {
+        $(function() {
+            $(".afterlogin-searchbutton").on("click", function() {
                 $(".afterlogin-searchform")
                     .css("z-index", "1000")
                     .animate({
@@ -29,18 +30,28 @@
                         "border-bottom-left-radius": "400px"
                     }, 300);
             });
+            $("*").not("afterlogin-searchbutton").on("click", function () {
+                $(".afterlogin-searchform")
+                    .css("z-index", "0")
+                    .animate({
+                        "width": "70px",
+                        "height": "70px",
+                        "opacity": "0",
+                        "border-bottom-left-radius": "70px"
+                    }, 300);
+            });
         });
     </script>
 }
 <!-- .afterlogin-*の省略形のクラス名
 
-*   container
-*       main
-*           sidebar
-*           contents
-*       footer
+    *   container
+    *       main
+    *           sidebar
+    *           contents
+    *       footer
 
--->
+    -->
 
 <div class="afterlogin-container">
     <div class="afterlogin-main">
