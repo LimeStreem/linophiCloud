@@ -1,0 +1,111 @@
+﻿h2 {
+    font-size: 30px !important;
+    font-weight: bold;
+    border-left: #e95464 0.5em solid;
+    padding: 0 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.myprofile {
+    &-wrapper {
+        position: relative;
+        margin: 0 auto;
+        overflow: hidden;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding-bottom: 40px;
+        min-height: 400px;
+    }
+
+    &-left {
+        float: left;
+        width: 400px;
+        text-align: center;
+
+        > img {
+            padding: 12px;
+            border: 1px solid #aaa;
+            margin-bottom: 20px;
+        }
+        > p {
+            font: 20px;
+        }
+    }
+
+    &-right {
+        float: left;
+        width: 500px;
+        > div {
+            padding-left: 3em;
+            padding-right: 3em;
+            padding-bottom: 2em;
+            color: #444;
+            padding-top: 2em;
+
+            &:last-child { 
+                text-align: center;
+                border-top: 1px solid #aaa; 
+                
+                > button {
+                    margin-right: 30px;
+                    font-size: 16px;
+                    bottom: 1.5em;
+                    right: 1.5em;
+                    padding: 0.3em 0.6em;
+                    -moz-box-sizing: content-box;
+                    -webkit-box-sizing: content-box;
+                    box-sizing: content-box;
+                    border-radius: 0.3em;
+                    border: 1px solid #81c8ff;
+                    color: #0e96ff;
+                    background: #d8eeff;
+                }
+            }
+        }
+    }
+
+    &-dialog {
+        position: absolute;
+        right: 100px;
+        left: 100px;
+        background: #ddd;
+        padding: 1.5em 2.2em;
+    }
+
+    &-select {
+        &-catalog, &-activity {
+            opacity: 1;
+        }
+    }
+
+}
+
+.content-background {
+    ul {
+        margin-left: 200px;
+        overflow: hidden;
+
+        li {
+            float: left;
+            text-align: center;
+            width: 150px;
+            line-height: 2.2em;
+            margin-right: 3em;
+            background: #fff;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            color: #666;
+            cursor: pointer;
+
+            &.selected {
+                background: #ddd;
+                color: #000;
+            }
+        }
+    }
+}

@@ -246,6 +246,18 @@
     <Content Include="Content\css\Edit\index.min.css">
       <DependentUpon>index.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Home\bookShelves.css">
+      <DependentUpon>bookShelves.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\bookShelves.min.css">
+      <DependentUpon>bookShelves.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\MyProfile.css">
+      <DependentUpon>MyProfile.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\MyProfile.min.css">
+      <DependentUpon>MyProfile.css</DependentUpon>
+    </Content>
     <Content Include="Content\css\Home\notification.css">
       <DependentUpon>notification.less</DependentUpon>
     </Content>
@@ -323,6 +335,8 @@
     <Content Include="Content\imgs\Home\right.png" />
     <Content Include="Content\imgs\Home\samune.png" />
     <Content Include="Content\imgs\Home\search.png" />
+    <Content Include="Content\imgs\Home\search1.png" />
+    <Content Include="Content\imgs\Home\search2.png" />
     <Content Include="Content\imgs\Home\settings.png" />
     <Content Include="Content\imgs\Home\settings2.png" />
     <Content Include="Content\imgs\logo.png" />
@@ -407,6 +421,14 @@
     <Content Include="Content\css\Home\settings.css.map">
       <DependentUpon>settings.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Home\MyProfile.less" />
+    <Content Include="Content\css\Home\MyProfile.css.map">
+      <DependentUpon>MyProfile.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Home\bookShelves.less" />
+    <Content Include="Content\css\Home\bookShelves.css.map">
+      <DependentUpon>bookShelves.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -450,6 +472,10 @@
     <Content Include="Views\Home\Settings.cshtml" />
     <Content Include="Content\css\Home\settings.less" />
     <Content Include="Views\Home\MyProduction.cshtml" />
+    <Content Include="Views\Home\MyProfile.cshtml" />
+    <Content Include="Views\Home\BookShelves.cshtml" />
+    <Content Include="Views\Index.cshtml" />
+    <Content Include="Views\View\AfterRead.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

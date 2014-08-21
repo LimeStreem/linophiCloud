@@ -1,0 +1,42 @@
+﻿h1 {
+  font-size: 30px;
+  font-weight: bold;
+  border-left: #e95464 0.5em solid;
+  padding: 0 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.search-result {
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.search-result img {
+  float: left;
+  width: 10%;
+}
+.search-result > div {
+  float: left;
+  width: 90%;
+}
+.search-result > div > p {
+  line-height: 150%;
+  color: #444;
+  padding: 16px 40px;
+  width: 800px;
+}
+.search-result > div > p:first-child {
+  border-bottom: 1px solid #bbb;
+}
+.search-result > div > p a {
+  color: #0066ff;
+  text-decoration: none;
+  font-size: 24px;
+}
+.search-result > div > p a:hover {
+  color: darkblue;
+  text-decoration: underline;
+}
+.search-result > div > p a:visited {
+  color: indigo;
+}
+/*# sourceMappingURL=bookShelves.css.map */

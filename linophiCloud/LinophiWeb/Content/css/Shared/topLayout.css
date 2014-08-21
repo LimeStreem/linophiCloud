@@ -33,6 +33,8 @@ img {
   background: #433D59;
   color: #fff;
   width: 150px;
+  padding-bottom: 1000000px;
+  margin-bottom: -1000000px;
 }
 .afterlogin-sidebar-x {
   position: absolute;
@@ -103,10 +105,13 @@ img {
   right: 0;
   height: 70px;
   width: 70px;
-  background: #433d59 url('../../imgs/Home/search.png') right top;
+  background: #433d59 url('../../imgs/Home/search1.png') right top no-repeat;
   border-radius: 0 0 0 70px;
   color: #fff;
   text-align: center;
+}
+.afterlogin-searchbutton {
+  cursor: pointer;
 }
 .afterlogin-searchform {
   text-align: right;
@@ -119,9 +124,9 @@ img {
   top: 3em;
   right: 6em;
   padding: 0 1.5em;
-  border-radius: 1em 0 0 1em;
+  border-radius: 1.5em 0 0 1.5em;
   width: 200px;
-  height: 2em;
+  height: 3em;
   font-size: 16px;
   background: #fff;
   border: none;
@@ -141,14 +146,14 @@ img {
 .afterlogin-searchform button {
   position: absolute;
   top: 3em;
-  right: 3em;
-  border-radius: 0 1em 1em 0;
-  width: 3em;
-  height: 2em;
+  right: 2em;
+  border-radius: 0 1.5em 1.5em 0;
+  width: 4em;
+  height: 3em;
   font-size: 16px;
-  background: #fff;
+  background: #bbbbbb url('../../imgs/Home/search2.png') center no-repeat;
   border: none;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid #777;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -175,5 +180,12 @@ img {
 .afterlogin-footer a:hover {
   color: #eee;
   text-decoration: underline;
+}
+a[href='Follow'] li,
+a[href='Settings'] li {
+  margin-top: 20px;
+}
+a[href='Settings'] li {
+  border-right: none;
 }
 /*# sourceMappingURL=topLayout.css.map */
