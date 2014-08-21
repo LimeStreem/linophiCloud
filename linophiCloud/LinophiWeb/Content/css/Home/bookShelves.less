@@ -22,9 +22,26 @@
             color: #444;
             padding: 16px 40px;
             width: 800px;
+            position: relative;
 
             &:first-child {
                 border-bottom: 1px solid #bbb;
+                .badge {
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    padding: 0.6em 1em;
+                }
+
+                .new {
+                    background: #E4867c;
+                    border: 1px solid #df6b6a;
+                    color: #df6b6a;
+                }
+
+                .unread {
+
+                }
             }
             a {
                 color: #0066ff;
