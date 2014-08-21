@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿html,
 body,
 .afterlogin-container,
@@ -11,6 +12,7 @@ body,
 .afterlogin-container,
 .afterlogin-main,
 .afterlogin-footer {
+  font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Meiryo UI', 'メイリオ', Verdana, 'ＭＳ Ｐゴシック', sans-serif;
   width: 100%;
 }
 body {
@@ -31,14 +33,14 @@ img {
   float: left;
   background: #433D59;
   color: #fff;
-  width: 150px;
+  width: 200px;
 }
 .afterlogin-sidebar .profile {
   overflow: hidden;
 }
 .afterlogin-sidebar .profile > div {
   float: left;
-  font-size: 10px;
+  font-size: 15px;
   font-weight: 700;
   margin: 10px auto 10px;
   position: relative;
@@ -50,6 +52,7 @@ img {
 }
 .afterlogin-sidebar .profile > div > img {
   padding: 5px;
+  text-align: right;
   border: 1px solid #bbb;
 }
 .afterlogin-sidebar .profile:nth-child(2) {
@@ -70,9 +73,9 @@ img {
   font-size: 14px;
 }
 .afterlogin-sidebar ul li {
-  padding: 0.1em 1em;
-  margin: 0.3em 0;
-  border-right: solid 4px #ccc;
+  padding: 10px 1em;
+  margin: 3px 0;
+  border-right: solid 5px #ccc;
 }
 .afterlogin-sidebar ul a[href='/Home/AfterLogin'] li {
   font-weight: 700;
@@ -90,6 +93,9 @@ img {
   margin-left: 100px;
 }
 .afterlogin-contents h1 {
+=======
+﻿.afterlogin-contents h1 {
+>>>>>>> 47a1b61a09e30efe730dcca60883b17224a07abe
   padding-left: 2.5em;
   padding-top: 0.4em;
   font-size: 20px;
@@ -104,31 +110,49 @@ img {
   padding: 30px 20px;
   vertical-align: middle;
 }
+.afterlogin-contents .books a {
+  margin-right: 45px;
+}
 .afterlogin-contents .books > img {
-  margin-right: 30px;
+  margin-right: 45px;
+  margin-bottom: 55px;
 }
 .afterlogin-contents .books > img:first-child {
   margin-left: 30px;
-  margin-bottom: 45px;
 }
-.afterlogin-contents .books > img:last-child {
-  margin-bottom: 45px;
+a[href='Follow'] li,
+a[href='Settings'] li {
+  margin-top: 20px;
 }
-.afterlogin-footer {
+a[href='Settings'] li {
+  border-right: none;
+}
+.tip-container {
+  width: 400px;
+}
+.tip-book-title {
   text-align: center;
-  font-size: 10px;
-  position: absolute;
-  border-top: 1px solid #444;
-  height: 2em;
-  bottom: 0;
+  font-size: x-large;
+  margin: 2px auto;
 }
-.afterlogin-footer a {
-  color: #444;
-  text-decoration: none;
-  padding: 0 2px 0;
+.tip-book-auther {
+  text-align: center;
+  margin: 2px auto;
 }
-.afterlogin-footer a:hover {
-  color: #333;
-  text-decoration: underline;
+.tip-left {
+  float: left;
+  width: 50%;
+}
+.tip-theme {
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  border: 2px solid #000;
+}
+.tip-theme .my-custom-theme {
+  border-radius: 5px;
+  border: 2px solid #000;
+  background: #4c4c4c;
+  color: #fff;
 }
 /*# sourceMappingURL=afterLogin.css.map */

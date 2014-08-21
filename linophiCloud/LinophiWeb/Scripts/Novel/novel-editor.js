@@ -672,7 +672,7 @@ var NovelEditer;
                     break;
                 }
             }
-            var markups = [new RubyMarkupBase()];
+            var markups = [new BoldMarkup(), new RubyMarkupBase()];
             for (var j = 0; j < markups.length; j++) {
                 rawStr = markups[j].getMarkupString(rawStr);
             }

@@ -7,13 +7,32 @@
 
 @section CSS
 {
-    <link href="~/Content/css/Home/afterLogin.min.css" rel="stylesheet" />
-    @RenderSection("CSS_Child",false)
+    <link href="~/Content/css/Shared/topLayout.min.css" rel="stylesheet" />
+    <link href="~/Content/Tooltipster/css/tooltipster.css" rel="stylesheet" />
+    <link href="~/Content/Tooltipster/css/themes/tooltipster-shadow.css" rel="stylesheet" />
+    @RenderSection("CSS_Child", false)
 }
 
 @section JS
 {
-    @RenderSection("JS_Child",false)
+    <script src="~/Scripts/jquery.tooltipster.js"></script>
+    <script src="~/Scripts/Home/AfterLogin.js"></script>
+    @RenderSection("JS_Child", false)
+    <script>
+        $(function() {
+            $(".afterlogin-searchbutton").on("click", function() {
+                $(".afterlogin-searchform")
+                    .css("z-index", "1000")
+                    .animate({
+                        "width": "400px",
+                        "height": "400px",
+                        "opacity": "1",
+                        "border-bottom-left-radius": "400px"
+                    }, 300);
+            });
+        });
+
+    </script>
 }
 <!-- .afterlogin-*の省略形のクラス名
 
@@ -30,7 +49,7 @@
         <div class="afterlogin-sidebar">
             <div class="profile">
                 <div>
-                    <p><a href="">プロフィール</a></p>
+                    <p><a href="MyProfile">プロフィール</a></p>
                 </div>
                 <div>
                     <img src="~/Content/imgs/Home/samune.png" height="50" width="50" /><!-- important -->
@@ -41,21 +60,29 @@
             </div>
 
             <ul>
-                <a href="/Home/AfterLogin"><li>トップ</li></a>
-                <a href=""><li>お気に入り</li></a>
-                <a href=""><li>ランキング</li></a>
-                <a href=""><li>本棚</li></a>
-                <a href=""><li>お知らせ</li></a>
-                <a href=""><li>自分の作品</li></a>
-                <a href=""><li>フォロー</li></a>
-                <a href=""><li>フォロワー</li></a>
-                <a href=""><li>設定</li></a>
+                <a href="AfterLogin"><li>トップ</li></a>
+                <a href="Favorites"><li>お気に入り</li></a>
+                <a href="Ranking"><li>ランキング</li></a>
+                <a href="BookShelves"><li>本棚</li></a>
+                <a href="Notification"><li>お知らせ</li></a>
+                <a href="MyProduction"><li>自分の作品</li></a>
+                <a href="Follow"><li>フォロー</li></a>
+                <a href="Follower"><li>フォロワー</li></a>
+                <a href="Settings"><li><img src="~/Content/imgs/Home/settings.png" /> 設定</li></a>
             </ul>
 
             <div class="side-footer">
                 (C) linophi 2014-
             </div>
+        
+            
+            <div class="afterlogin-sidebar-x"><div>×</div></div>
         </div> <!-- sidebar -->
+        <div class="afterlogin-searchbutton"></div>
+        <div class="afterlogin-searchform">
+            <input type="search" placeholder="本、著者名などで検索" />
+            <button></button>
+        </div>
 
 
         <div class="afterlogin-contents">

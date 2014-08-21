@@ -19,4 +19,7 @@
   -o-writing-mode: vertical-rl;
   -webkit-writing-mode: vertical-rl;
 }
+.b {
+  font-weight: bolder;
+}
 /*# sourceMappingURL=novel-editor.css.map */

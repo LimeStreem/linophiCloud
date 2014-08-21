@@ -1,0 +1,66 @@
+﻿@model  dynamic
+
+@{
+    ViewBag.Title = "linophi";
+    Layout = "~/Views/Home/_TopLayout.cshtml";
+}
+
+@section CSS_Child
+{
+    <link href="~/Content/css/Home/notification.min.css" rel="stylesheet" />
+    <style>
+        a[href='Notification'] li {
+            font-weight: 700;
+            border: none;
+            box-shadow: 1.2em 0 #9e9cbf;
+            background: #9e9cbf;
+        }
+    </style>
+}
+
+<h2>お知らせ</h2>
+
+<div class="notification-box-top">
+    <h3>フォロー中の通知</h3>
+</div>
+<div class="notification-box-contents">
+    <img src="~/Content/imgs/Home/samune.png" height="50" width="50" />
+    <a href="">七篠権兵衛さんが会報「小説発売決定！」を公開しました。</a><span>３時間前</span>
+    <button>詳細</button>
+    <div class="notification-box-contents-detail">
+        <h4>小説発売決定！</h4>
+        <p>これは詳細が押された時の状態です。</p>
+        <p>ここに書き手からフォロワーに向けての会報やメッセージが表示できます。</p>
+        <p>ろーれむいぷさむ。</p>
+    </div>
+</div>
+<div class="notification-box-contents">
+    <img src="~/Content/imgs/Home/samune.png" height="50" width="50" />
+    <a href="../View/Index">七篠権兵衛さんが小説「いかにして問題をとくか」を更新しました。</a><span>４時間前</span>
+    <button>詳細</button>
+</div>
+<div class="notification-box-contents">
+    <img src="~/Content/imgs/Home/samune.png" height="50" width="50" />
+    <a href="">七篠権兵衛さんが会報「小説発売決定！」を公開しました。<span>５時間前</span></a>
+    <button>詳細</button>
+</div>
+<div class="notification-box-contents">
+    <img src="~/Content/imgs/Home/samune.png" height="50" width="50" />
+    <a href="">七篠権兵衛さんが会報「小説発売決定！」を公開しました。<span>６時間前</span></a>
+    <button>詳細</button>
+</div>
+<div class="notification-box-bottom">
+    <button>すべての通知を読む</button>
+</div>
+
+
+<div class="notification-box-top">
+    <h3>フォロー著者の新着</h3>
+</div>
+<div class="notification-box-contents">
+    <img src="~/Content/imgs/Home/book.jpg" height="70" width="50" />
+    <a href="../View/Index">いかにして問題をとくか</a>　-　七篠権兵衛<br />更新 <span>３週間前</span>
+</div>
+<div class="notification-box-bottom">
+    <button>すべての通知を読む</button>
+</div>

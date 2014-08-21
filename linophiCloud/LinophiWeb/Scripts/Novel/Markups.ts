@@ -1,5 +1,6 @@
-﻿ $(() =>
- {
+﻿$(() => {
+    var m: BoldMarkup = new BoldMarkup();
+    m.getMarkupString("今日は=いい天気で=す。|=あいうえお|=。かきく|=けこ=")
  });
     class MarkupBase
     {
@@ -7,7 +8,29 @@
         {
             return "Not Implemented";
         }
+ }
+
+ class BoldMarkup extends MarkupBase {
+     getMarkupString(str: string): string {
+         var result: string = "";
+         while (true) {
+             var strCache: string = str;
+             var s = str.replace(/\|=/g, "@@");
+             if (s.match(/^(.*?[=][^=]*?[=]).*$/) == null) {
+                 //マッチしないとき
+                 result += str;
+                 break;
+             }
+             var s1 = s.replace(/^(.*?[=][^=]*?[=]).*$/, "$1");
+             str = str.substr(s1.length, str.length - s1.length);
+             //console.warn("str:" + str);
+             var s2 = s1.replace(/^.*?[=]([^=]*)?[=].*$/, "$1");
+             var s3 = s1.replace(/^(.*)?[=][^=]*?[=].*$/, "$1");
+             result += s3 + '<span class="b">' + s2 + "</span>";
+         }
+         return result;
     }
+ }
 
     class RubyMarkupBase extends MarkupBase
     {
@@ -21,6 +44,7 @@
             var result: string = "";
             while (true)
             {
+                
                 var strCache: string = str;
                 var s = str.replace(/\|[\(\)]/g, "@@");
                 var s2 = s.replace(/^(.*?[\(].+?[\)]).*$/, "$1");
@@ -35,7 +59,9 @@
                 console.warn("str:"+str);
                 s3_a = s3_a.replace(/\|\(/g, "(").replace(/\|\)/g, ")");;
                 var s3_b = s2.replace(/^.*?[\(](.+)?[\)]$/, "$1");
-                //s3_b = strCache.substr(str.length - 1 - s3_b.length, s3_b.length).replace(/\|\(/g, "(").replace(/\|\)/g, ")");;
+                var cachedS2: string = strCache.substr(0, s2.length);
+                var l = s3_b.length;
+                s3_b = cachedS2.substr(s3_a.length + 1, l).replace(/\|\(/g, "(").replace(/\|\)/g, ")");;
                 console.info("s2=" + s2);
                 console.info("s3-a=" + s3_a);
                 console.info("s3-b=" + s3_b);
@@ -74,7 +100,7 @@
                 } else if (RubyMarkupBase.isAlphabet(c1))
                 {
                     console.info("アルファベット/自動ルピ");
-                    var s5 = s3_a.replace(/([a-z|A-Z|0-9|\s]+)$/, "$1");
+                    var s5 = s3_a.replace(/.+?([a-z|A-Z|0-9|\s]+)$/, "$1");
                     console.warn(s5);
                     var s5_inv = s3_a.substr(0, s3_a.length - s5.length);
                     result += s5_inv + "<ruby><rb>" + s5 + "</rb><rt>" + s3_b + "</rt></ruby>";
