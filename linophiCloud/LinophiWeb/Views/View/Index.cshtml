@@ -12,6 +12,7 @@
 {
     
     <script src="~/Scripts/Utility/HeightStretcher.js"></script>
+<script src="~/Scripts/Novel/Markups.js"></script>
 <script src="~/Scripts/Novel/novel-editor.js"></script>
     <script src="~/Scripts/Novel/ParagraphFactory.js"></script>
     <script src="~/Scripts/View/index.js"></script>
@@ -21,7 +22,7 @@
     <!-- ▼ ヘッダー -->
     <header>
         <a class="Topimage" href="#"><img src="/Content/imgs/View/goHome.png" alt="TAG index"></a>
-        <a class="toTop" href="#">トップに戻る</a>
+        @Html.ActionLink("トップに戻る","AfterLogin","Home",null,new{@class="toTop"})
     </header>
 
     <!-- ▼ コンテンツ内容 -->
