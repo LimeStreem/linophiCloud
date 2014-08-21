@@ -1,7 +1,12 @@
 ﻿/// <reference path="../typings/jquery/jquery.d.ts" />
 var editPage: EditPage;
+var editorInstance: NovelEditer.NovelEditer;
 $(() => {
     editPage = new EditPage();
+        editorInstance = new NovelEditer.NovelEditer($(".edit-context"), $(".preview-body"), $(".preview-context"));
+        editorInstance.updateToshow();
+        editPage.onChanged();
+
 });
 
 function selectEditBody() {

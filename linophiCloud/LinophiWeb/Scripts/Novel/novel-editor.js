@@ -4,13 +4,6 @@
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-var editorInstance;
-$(function () {
-    editorInstance = new NovelEditer.NovelEditer($(".edit-context"), $(".preview-body"), $(".preview-context"));
-    editorInstance.updateToshow();
-    editPage.onChanged();
-});
-
 var NovelEditer;
 (function (_NovelEditer) {
     var NovelEditer = (function () {
@@ -39,6 +32,12 @@ var NovelEditer;
             });
             this._editorTarget.bind('input propertychange', function () {
                 return _this.textChanged();
+            });
+            $(".next-page").click(function () {
+                _this.gonextPage();
+            });
+            $(".prev-page").click(function () {
+                _this.goprevPage();
             });
             this._paragraphManager = new ParagraphManager();
             this._paragraphList.add(0);
@@ -250,6 +249,8 @@ var NovelEditer;
                 }
                 i++;
             }
+            this._nextPageFirstParagraph = this._paragraphManager.headParagraph.getParagraphFromthis(i);
+            console.warn(this._nextPageFirstParagraph);
         };
 
         //改行の数をカウントする
@@ -261,6 +262,20 @@ var NovelEditer;
                 }
             }
             return count;
+        };
+
+        NovelEditer.prototype.toJSON = function () {
+            var innerJSON = "";
+            var cacheParagraph = this._paragraphManager.headParagraph;
+            while (true) {
+                innerJSON += cacheParagraph.toJSON();
+                if (!cacheParagraph.isFinalParagraph)
+                    innerJSON += ",";
+                if (cacheParagraph.isFinalParagraph)
+                    break;
+                cacheParagraph = cacheParagraph.nextParagraph;
+            }
+            return "[" + innerJSON + "]";
         };
 
         NovelEditer.prototype.mouseHandler = function () {
@@ -275,6 +290,37 @@ var NovelEditer;
             //    this.currentParagraphChanged(this._pageFirstParagraph.getParagraph(lfc));
             //    this.updateToshow();
             //}
+        };
+
+        NovelEditer.prototype.gonextPage = function () {
+            if (this._nextPageFirstParagraph != null) {
+                this._paragraphManager.headParagraph = this._nextPageFirstParagraph;
+                this.updateToshow();
+            }
+        };
+        NovelEditer.prototype.goprevPage = function () {
+            var i = 1;
+            var cacheHead = this._paragraphManager.headParagraph;
+            if (cacheHead.isFirstParagraph)
+                return;
+            while (true) {
+                cacheHead = cacheHead.prevParagraph;
+                while (i <= this._paragraphManager.lastParagraphIndex + 1) {
+                    this._previewTarget.html(cacheHead.getParagraphHtmls(i));
+                    if (this._previewTarget.width() > this._previewBounds.width()) {
+                        this._previewTarget.html(cacheHead.getParagraphHtmls(i - 1));
+                        break;
+                    }
+                    i++;
+                }
+                var next = cacheHead.getParagraphFromthis(i);
+                if (next == this._paragraphManager.headParagraph)
+                    break;
+                if (cacheHead.isFinalParagraph)
+                    break;
+                cacheHead = cacheHead.prevParagraph;
+            }
+            this._paragraphManager.headParagraph = cacheHead;
         };
         NovelEditer._endOfLineChar = ["\n"];
         NovelEditer._shiftCaretKeys = [39 /* ArrowRight */, 37 /* ArrowLeft */, 40 /* ArrowDown */, 38 /* ArrowUp */];
@@ -508,6 +554,7 @@ var NovelEditer;
             this._iD = "Not Implemented!";
             this._manager = manager;
             this._rawText = rawText;
+            this._iD = this.generateId();
             this.updateCacheHtml();
         }
         Paragraph.prototype.getPrevParagraph = function () {
@@ -529,6 +576,14 @@ var NovelEditer;
             return this._iD;
         };
 
+        Paragraph.prototype.generateId = function () {
+            var id = "";
+            for (var i = 0; i < 10; i++) {
+                id += Paragraph._IdString.substr(Math.floor(Math.random() * Paragraph._IdString.length), 1);
+            }
+            return id;
+        };
+
         Paragraph.prototype.toJSON = function () {
             var jsonObj = {
                 prevParagraph: this.isFirstParagraph ? null : this.prevParagraph.getId(),
@@ -539,8 +594,7 @@ var NovelEditer;
             };
             return JSON.stringify(jsonObj);
         };
-        Paragraph.prototype.fromJSON = function (str) {
-            var jsonObj = JSON.parse(str);
+        Paragraph.prototype.fromJSON = function (jsonObj) {
             if (jsonObj.prevParagraph != null && this._manager.ParagraphDictionary.containsKey(jsonObj.prevParagraph)) {
                 this.prevParagraph = this._manager.ParagraphDictionary.getValue(jsonObj.prevParagraph);
                 this.prevParagraph.nextParagraph = this;
@@ -553,6 +607,9 @@ var NovelEditer;
             this.updateCacheHtml();
             this._paragraphIndex = jsonObj.paragraphIndex;
             this._iD = jsonObj.id;
+            if (!this._manager.ParagraphDictionary.containsKey(this._iD)) {
+                this._manager.ParagraphDictionary.setValue(this._iD, this);
+            }
         };
 
         Object.defineProperty(Paragraph.prototype, "isEmphasized", {
@@ -614,6 +671,10 @@ var NovelEditer;
                     isPrefixed = true;
                     break;
                 }
+            }
+            var markups = [new BoldMarkup(), new RubyMarkupBase()];
+            for (var j = 0; j < markups.length; j++) {
+                rawStr = markups[j].getMarkupString(rawStr);
             }
             if (!isPrefixed) {
                 tag = $("<p/>");
@@ -681,6 +742,18 @@ var NovelEditer;
                 return this._manager.headParagraph.getParagraphByIndex(index);
             var parag = this;
             for (var i = 0; i < index; i++) {
+                if (parag.nextParagraph == null)
+                    return parag.nextParagraph;
+                parag = parag.nextParagraph;
+            }
+            return parag;
+        };
+
+        Paragraph.prototype.getParagraphFromthis = function (dest) {
+            var parag = this;
+            for (var i = 0; i < dest; i++) {
+                if (parag.nextParagraph == null)
+                    return parag.nextParagraph;
                 parag = parag.nextParagraph;
             }
             return parag;
@@ -811,6 +884,7 @@ var NovelEditer;
         Paragraph.prototype.toString = function () {
             return this.rawText;
         };
+        Paragraph._IdString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         return Paragraph;
     })();
     _NovelEditer.Paragraph = Paragraph;

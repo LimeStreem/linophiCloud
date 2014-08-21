@@ -1,0 +1,65 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "マイプロフィール";
+    Layout = "~/Views/Shared/_CommonDocumentLayout.cshtml";
+}
+
+@section CSS
+{
+    <link href="~/Content/css/Home/MyProfile.min.css" rel="stylesheet" />
+}
+
+@section JS
+{
+    <script>
+        $(function () {
+            $(".myprofile-select-catalog").on("click", function () {
+                $(this).addClass("selected");
+                $("myprofile-select-activity").removeClass("selected");
+                $("myprofile-catalog").css("z-index", "1000");
+                $("myprofile-activity").css("z-index", "-1000");
+            });
+
+            $(".myprofile-select-activity").on("click", function () {
+                $(this).addClass("selected");
+                $("myprofile-select-catalog").removeClass("selected");
+                $("myprofile-activity").css("z-index", "1000");
+                $("myprofile-selected").css("z-index", "-1000");
+            });
+        });
+    </script>
+}
+
+<h2>マイプロフィール</h2>
+
+<div class="myprofile-wrapper">
+    <div class="myprofile-left">
+        <img src="~/Content/imgs/Home/samune.png" height="250" width="250">
+        <p>七篠権兵衛</p>
+    </div>
+    <div class="myprofile-right">
+        <div>
+            <p>ご意見はツイッターにいただければ嬉しいです。＠kirituki_kura 連載漫画もあげてるのでお気軽にいらっしゃいませー＾＾ デザイナーしたり、絵とか漫画描いたりして生活してます。 綺麗系イラストや二次創作関係は全部ピクシブに上げてます。 pixiv→＠239710</p>
+        </div>
+        <div>
+            <button>プロフィール画像編集</button>
+            <button>コメントを編集</button>
+        </div>
+    </div>
+</div>
+
+<ul>
+    <li class="myprofile-select-catalog selected">小説一覧</li>
+    <li class="myprofile-select-activity">最近の活動</li>
+</ul>
+
+<div class="myprofile-wrapper">
+    <div class="myprofile-dialog myprofile-catalog">
+        xcyhuijkop
+    </div>
+    
+    <div class="myprofile-dialog myprofile-activity">
+        ctvybuiop
+    </div>
+</div>

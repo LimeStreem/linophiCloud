@@ -13,5 +13,10 @@ namespace LinophiWeb.Controllers
         {
             return View();
         }
+
+        public ActionResult AfterRead()
+        {
+            return View();
+        }
     }
 }

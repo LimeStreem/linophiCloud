@@ -12,6 +12,7 @@
     <AssemblyName>linophiCloud</AssemblyName>
     <StartDevelopmentStorage>True</StartDevelopmentStorage>
     <Name>linophiCloud</Name>
+    <UseWebProjectPorts>True</UseWebProjectPorts>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,10 +48,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="LinophiCrawlerContent\" />
     <Folder Include="LinophiWebContent\" />
     <Folder Include="Profiles" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LinophiCrawlerContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="LinophiWebContent\diagnostics.wadcfg">
       <SubType>Content</SubType>
     </Content>

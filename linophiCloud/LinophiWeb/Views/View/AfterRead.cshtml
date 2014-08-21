@@ -1,0 +1,58 @@
+﻿@model dynamic
+
+@{
+    Layout = "../Shared/_BaseLayout.cshtml";
+}
+@section CSS
+{
+    <link href="~/Content/css/View/index.css" rel="stylesheet" />
+    <link href="~/Content/css/Novel/novel-viewer.css" rel="stylesheet" />
+    <link href="~/Content/css/View/afterRead.min.css" rel="stylesheet" />
+}
+@section JS
+{
+    <script src="~/Scripts/Utility/HeightStretcher.js"></script>
+    <script src="~/Scripts/Novel/novel-editor.js"></script>
+    <script src="~/Scripts/Novel/ParagraphFactory.js"></script>
+    <script src="~/Scripts/View/index.js"></script>
+    <script src="~/Scripts/Novel/novel-viewer.js"></script>
+}
+<div id="container">
+    <!-- ▼ ヘッダー -->
+    <header>
+        <a class="Topimage" href="#"><img src="/Content/imgs/View/goHome.png" alt="TAG index"></a>
+        <a class="toTop" href="#">トップに戻る</a>
+    </header>
+
+    <!-- ▼ コンテンツ内容 -->
+    <article>
+        <a href="#"><img class="img-to-right" src="/Content/imgs/View/pageRight.svg" alt="次のページへ"></a>
+        <a href="#"><img class="img-to-left" src="/Content/imgs/View/pageLeft.svg" alt="前のページへ"></a>
+        <section id="left" class="novel-side">
+            <div id="left-inner">
+                <h4>コメント</h4>
+                <p>縦書きで表示されます。</p>
+                <p>この本はもっと若い時に読んでおきたかったなあ</p>
+                
+                <h4>評価</h4>
+                <p>★：６０８</p>
+            </div>
+        </section>
+        <section id="right" class="novel-side">
+            <img src="~/Content/imgs/Home/book.jpg" />
+            <button>別の帯を見る</button>
+            <button>帯を作る</button>
+        </section>
+    </article>
+
+    <!-- ▼ フッター -->
+    <footer>
+        <div class="footer-line"></div>
+        <div class="postit">
+            <ul>
+                <li>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</div>

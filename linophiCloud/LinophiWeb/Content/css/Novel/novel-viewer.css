@@ -1,6 +1,10 @@
 ﻿.novel-side {
-  -ms-writing-mode: tb-rl;
-  writing-mode: vertical-lr;
+  writing-mode: tb-rl;
+  /* IE独自仕様 */
+  writing-mode: vertical-rl;
+  -moz-writing-mode: vertical-rl;
+  -o-writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
 }
 .novel-side p {
   height: 35em;
@@ -22,7 +26,8 @@
   word-wrap: break-word;
   /* IE 5+ */
 }
-.novel-side-inner {
-  padding: 3em 2em 3em 2em;
+#left-inner,
+#right-inner {
+  margin: 3em 2em 3em 2em;
 }
 /*# sourceMappingURL=novel-viewer.css.map */

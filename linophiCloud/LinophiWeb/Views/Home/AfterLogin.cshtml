@@ -2,12 +2,20 @@
 
 @{
     ViewBag.Title = "linophi";
-    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    Layout = "~/Views/Home/_TopLayout.cshtml";
 }
 
-@section CSS
+@section CSS_Child
 {
     <link href="~/Content/css/Home/afterLogin.min.css" rel="stylesheet" />
+    <style>
+        a[href='AfterLogin'] li{
+            font-weight: 700;
+            border: none;
+            box-shadow: 1.2em 0 #9e9cbf;
+            background: #9e9cbf;
+}
+    </style>
 }
 
 <!-- .afterlogin-*の省略形のクラス名
@@ -20,75 +28,27 @@
 
 -->
 
-<div class="afterlogin-container">
-    <div class="afterlogin-main">
-        <div class="afterlogin-sidebar">
-            <div class="profile">
-                <div>
-                    <p><a href="">プロフィール</a></p>
-                </div>
-                <div>
-                    <img src="~/Content/imgs/Home/samune.png" height="50" width="50" /><!-- important -->
-                </div>
-            </div>
-            <div class="profile">
-                七篠権兵衛
-            </div>
-
-            <ul>
-                <a href="/Home/AfterLogin"><li>トップ</li></a>
-                <a href=""><li>お気に入り</li></a>
-                <a href=""><li>ランキング</li></a>
-                <a href=""><li>本棚</li></a>
-                <a href=""><li>お知らせ</li></a>
-                <a href=""><li>自分の作品</li></a>
-                <a href=""><li>フォロー</li></a>
-                <a href=""><li>フォロワー</li></a>
-                <a href="" data-icon=”gear”><li>設定</li></a>
-            </ul>
-
-            <div class="side-footer">
-                (C) linophi 2014-
-            </div>
-        </div> <!-- sidebar -->
-
-
-        <div class="afterlogin-contents">
             <h1>ランキング</h1>
             <div class="books">
-
                 <img src="~/Content/imgs/Home/left.png" />
-                <img src="~/Content/imgs/Home/book.jpg" height="141" width="100" />
-                <img src="~/Content/imgs/Home/book.jpg" height="141" width="100" />
-                <img src="~/Content/imgs/Home/book.jpg" height="141" width="100" />
-                <img src="~/Content/imgs/Home/book.jpg" height="141" width="100" />
-                <img src="~/Content/imgs/Home/book.jpg" height="141" width="100" />
-                <img src="~/Content/imgs/Home/book.jpg" height="141" width="100" />
+    <a href="/View/Index"><img src="~/Content/imgs/Home/book.jpg" height="141" width="100" /></a>
+    <a href="/View/Index"><img src="~/Content/imgs/Home/book.jpg" height="141" width="100" /></a>
+    <a href="/View/Index"><img src="~/Content/imgs/Home/book.jpg" height="141" width="100" /></a>
+    <a href="/View/Index"><img src="~/Content/imgs/Home/book.jpg" height="141" width="100" /></a>
+    <a href="/View/Index"><img src="~/Content/imgs/Home/book.jpg" height="141" width="100" /></a>
+    <a href="/View/Index"><img src="~/Content/imgs/Home/book.jpg" height="141" width="100" /></a>
                 <img src="~/Content/imgs/Home/right.png" />
             </div>
 
-            <h1>フォロー著者の新着</h1>
+<h1>新着</h1>
 
             <div class="books">
                 <img src="~/Content/imgs/Home/left.png" />
-                <img src="~/Content/imgs/Home/book.jpg" height="141" width="100" />
-                <img src="~/Content/imgs/Home/book.jpg" height="141" width="100" />
-                <img src="~/Content/imgs/Home/book.jpg" height="141" width="100" />
-                <img src="~/Content/imgs/Home/book.jpg" height="141" width="100" />
-                <img src="~/Content/imgs/Home/book.jpg" height="141" width="100" />
-                <img src="~/Content/imgs/Home/book.jpg" height="141" width="100" />
+    <a href="/View/Index"><img src="~/Content/imgs/Home/book.jpg" height="141" width="100" /></a>
+    <a href="/View/Index"><img src="~/Content/imgs/Home/book.jpg" height="141" width="100" /></a>
+    <a href="/View/Index"><img src="~/Content/imgs/Home/book.jpg" height="141" width="100" /></a>
+    <a href="/View/Index"><img src="~/Content/imgs/Home/book.jpg" height="141" width="100" /></a>
+    <a href="/View/Index"><img src="~/Content/imgs/Home/book.jpg" height="141" width="100" /></a>
+    <a href="/View/Index"><img src="~/Content/imgs/Home/book.jpg" height="141" width="100" /></a>
                 <img src="~/Content/imgs/Home/right.png" />
             </div>
-
-
-        </div> <!-- contents -->
-
-    </div> <!-- main -->
-
-
-    <div class="afterlogin-footer">
-        <a href="">&nbsp;&nbsp;チュートリアル&nbsp;&nbsp;</a>
-        <a href="">&nbsp;&nbsp;利用規約&nbsp;&nbsp;</a>
-        <a href="">&nbsp;&nbsp;プライバシーポリシー&nbsp;&nbsp;</a>
-    </div> <!-- footer -->
-</div> <!-- container -->

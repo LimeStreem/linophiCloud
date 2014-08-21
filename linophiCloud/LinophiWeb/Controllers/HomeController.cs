@@ -20,6 +20,61 @@ namespace LinophiWeb.Controllers
             return View();
         }
 
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        public ActionResult Follow()
+        {
+            return View();
+        }
+
+        public ActionResult Follower()
+        {
+            return View();
+        }
+
+        public ActionResult Favorites()
+        {
+            return View();
+        }
+
+        public ActionResult Ranking()
+        {
+            return View();
+        }
+
+        public ActionResult BookShelves()
+        {
+            return View();
+        }
+
+        public ActionResult Notification()
+        {
+            return View();
+        }
+
+        public ActionResult NewArticle()
+        {
+            return View();
+        }
+
+        public ActionResult Settings()
+        {
+            return View();
+        }
+
+        public ActionResult MyProduction()
+        {
+            return View();
+        }
+
+        public ActionResult MyProfile()
+        {
+            return View();
+        }
+
         public ActionResult PrivacyPolicy()
         {
             return View();

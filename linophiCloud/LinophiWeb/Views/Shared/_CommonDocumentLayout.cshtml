@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.17.2/build/cssreset/cssreset-min.css">
+    <link href="~/Content/css/Shared/cssreset.css" rel="stylesheet" />
     <meta name="robots" content="noindex,nofollow" />
     <script>
         (function (i, s, o, g, r, a, m) {
@@ -38,5 +38,7 @@
     <div class="content-background">
         @RenderBody()
     </div>
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    @RenderSection("JS",false)
 </body>
 </html>
