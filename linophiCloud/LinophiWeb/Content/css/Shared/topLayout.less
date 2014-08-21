@@ -38,6 +38,8 @@ img { vertical-align: bottom }
         background: #433D59;
         color: #fff;
         width: 150px;
+        padding-bottom: 1000000px;
+        margin-bottom: -1000000px;
 
         &-x {
             position: absolute;
@@ -102,7 +104,7 @@ img { vertical-align: bottom }
 
             li {
                 padding: 0.1em 1em;
-                margin: 0.3em 0;
+                margin: 0.7em 0;
                 border-right: solid 4px #ccc;
             }
         }
@@ -120,11 +122,13 @@ img { vertical-align: bottom }
         right: 0;
         height: 70px;
         width: 70px;
-        background: #433D59 url('../../imgs/Home/search.png') right top;
+        background: #433D59 url('../../imgs/Home/search1.png') right top no-repeat;
         border-radius: 0 0 0 70px;
         color: #fff;
         text-align: center;
     }
+
+    &-searchbutton { cursor: pointer; }
 
     &-searchform {
         text-align: right;
@@ -137,9 +141,9 @@ img { vertical-align: bottom }
             top: 3em;
             right: 6em;
             padding: 0 1.5em;
-            border-radius: 1em 0 0 1em;
+            border-radius: 1.5em 0 0 1.5em;
             width: 200px;
-            height: 2em;
+            height: 3em;
             font-size: 16px;
             .placeholder-color(#ccc);
             background: #fff;
@@ -149,14 +153,14 @@ img { vertical-align: bottom }
         button {
             position: absolute;
             top: 3em;
-            right: 3em;
-            border-radius: 0 1em 1em 0;
-            width: 3em;
-            height: 2em;
+            right: 2em;
+            border-radius: 0 1.5em 1.5em 0;
+            width: 4em;
+            height: 3em;
             font-size: 16px;
-            background: #fff;
+            background: #bbb url('../../imgs/Home/search2.png') center no-repeat;
             border: none;
-            border-left: 1px solid #ccc;
+            border-left: 1px solid #777;
             -moz-box-sizing: border-box;
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -191,3 +195,8 @@ img { vertical-align: bottom }
         }
     }
 }
+
+
+a[href='Follow'] li, a[href='Settings'] li { margin-top: 20px; }
+
+a[href='Settings'] li { border-right: none; }

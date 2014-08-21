@@ -45,6 +45,11 @@ namespace LinophiWeb.Controllers
             return View();
         }
 
+        public ActionResult BookShelves()
+        {
+            return View();
+        }
+
         public ActionResult Notification()
         {
             return View();
@@ -61,6 +66,11 @@ namespace LinophiWeb.Controllers
         }
 
         public ActionResult MyProduction()
+        {
+            return View();
+        }
+
+        public ActionResult MyProfile()
         {
             return View();
         }
