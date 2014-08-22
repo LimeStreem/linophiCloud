@@ -13,5 +13,11 @@ namespace LinophiWeb.Controllers
         {
             return View("Editor");
         }
+
+        //ObiEditorを読み込む
+        public ActionResult ObiEdit()
+        {
+            return View("ObiEdit");
+        }
     }
 }

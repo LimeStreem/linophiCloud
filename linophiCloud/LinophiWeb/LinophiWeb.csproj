@@ -234,6 +234,14 @@
     <Content Include="Content\css\Edit\header.min.css">
       <DependentUpon>header.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Edit\ObiEdit.css">
+      <DependentUpon>ObiEdit.less</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\Edit\ObiEdit.min.css">
+      <DependentUpon>ObiEdit.css</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\css\Home\afterLogin.css">
       <DependentUpon>afterLogin.less</DependentUpon>
     </Content>
@@ -480,6 +488,13 @@
     <Content Include="Content\css\View\afterRead.css.map">
       <DependentUpon>afterRead.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Edit\ObiEdit.less">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\Edit\ObiEdit.css.map">
+      <DependentUpon>ObiEdit.css</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -531,6 +546,7 @@
     <Content Include="Views\Home\BookShelves.cshtml" />
     <Content Include="Views\Index.cshtml" />
     <Content Include="Views\View\AfterRead.cshtml" />
+    <Content Include="Views\Edit\ObiEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
